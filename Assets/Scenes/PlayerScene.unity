@@ -331,9 +331,11 @@ GameObject:
   - component: {fileID: 1760668580}
   - component: {fileID: 1760668579}
   - component: {fileID: 1760668583}
+  - component: {fileID: 1760668584}
+  - component: {fileID: 1760668585}
   m_Layer: 0
   m_Name: PlayerShip
-  m_TagString: Untagged
+  m_TagString: PlayerShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -350,6 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c3841e28a69274bb683e512e0f7752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 9.03
 --- !u!114 &1760668580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,6 +365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88cc49c64d1e508409c48eac52dbec37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefrab: {fileID: 9187117320916237108, guid: cc885e5c1c804c04e9e9f9523a814472, type: 3}
+  firePosition: {fileID: 435700048}
 --- !u!114 &1760668581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,4 +409,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b5e87064e4398049b0f3123b64e25bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guns: []
+--- !u!50 &1760668584
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760668578}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!58 &1760668585
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760668578}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
