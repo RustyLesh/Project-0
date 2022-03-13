@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(Health), typeof(Battlements))]
+[RequireComponent(typeof(Health), typeof(Arsenal))]
 public class PlayerShip : MonoBehaviour
 {
     public Health PlayerHealth { get; private set; }
-    public Battlements PlayerBattlements { get; private set; }
+    public Arsenal PlayerBattlements { get; private set; }
 
     private PlayerControls playerControls;
 
@@ -28,20 +28,15 @@ public class PlayerShip : MonoBehaviour
     {
         playerControls = new PlayerControls();
         PlayerHealth = GetComponent<Health>();
-        PlayerBattlements = GetComponent<Battlements>();
+        PlayerBattlements = GetComponent<Arsenal>();
     }
 
     public void Shoot()
     {
-            Debug.Log("OI"); //#TODO replace with proper code to use weapon and bullet variables
+            //#TODO replace with proper code to use weapons
             GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
             newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;
-        //foreach (Gun gun in PlayerBattlements.guns)
-        //{
-        //    GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
-        //    newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;
-        //}
-        //#TODO This is temp for testing. the bullet itself should change the speed as to not call get component everyframe for every bullet.
+       
     }
 
     private void Update()

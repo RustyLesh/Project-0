@@ -30,5 +30,8 @@ public class Health : MonoBehaviour
     public void SetMaxHealth(float maxHealthValue)
     {
         maxHealth = maxHealthValue;
+
+        if (maxHealth < 1)
+            maxHealth = 1;
     }
 }
