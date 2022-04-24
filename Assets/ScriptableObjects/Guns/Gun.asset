@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Gun
   m_EditorClassIdentifier: 
   weaponName: 
-  bullet: {fileID: 0}
+  bullet: {fileID: 11400000, guid: daf07bada6b1d4842a87a5e2fd8e6106, type: 2}
   sprite: {fileID: 0}
   projectileCount: 0
+  fireRate: 0

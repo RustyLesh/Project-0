@@ -43,7 +43,7 @@ public class PlayerShip : MonoBehaviour
     {
         if (playerControls.PlayerShipControls.Shoot.ReadValue<float>() > 0)
         {
-            Shoot();
+            Shoot(); //#TODO Use shoot from arsenal
         }
     }
 }
