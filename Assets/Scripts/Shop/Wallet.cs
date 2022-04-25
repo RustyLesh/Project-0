@@ -1,18 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Wallet : MonoBehaviour
+namespace Project0
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Wallet
     {
-        
-    }
+        private int coinCount;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public Wallet()
+        {
+            coinCount = 0;
+        }
+
+        public Wallet(int Value)
+        {
+            coinCount = Value;
+        }
+        public void GainCoins(int amount)
+        {
+            coinCount += amount;
+        }
+
+        public bool PayCoins(int amount)
+        {
+            if (coinCount >= amount)
+            {
+                coinCount -= amount;
+                return true;
+            }
+            else
+            {
+                Debug.Log("Not enough coinage"); //TODO: Notify the player in ui.
+                return false;
+            }
+        }
+
+        public int getCoinCount()
+        {
+            return coinCount;
+        }
     }
 }
