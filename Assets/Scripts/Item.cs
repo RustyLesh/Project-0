@@ -5,15 +5,17 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     [SerializeField]string itemName;
-    [SerializeField]Texture2D sprite;
+    [SerializeField]Texture2D icon;
 
-    public string GetItemName()
+    public string ItemName
     {
-        return itemName;
+        private set => itemName = value;
+        get => itemName;
     }
 
-    public Texture2D GetSprite()
+    public Texture2D Icon
     {
-        return sprite;
+        private set => icon = value;
+        get => icon;
     }
 }

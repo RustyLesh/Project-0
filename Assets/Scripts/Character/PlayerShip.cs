@@ -11,7 +11,7 @@ public class PlayerShip : MonoBehaviour
 
     private float bulletSpeed = 5;
 
-    [SerializeField]private GameObject bulletPrefrab;
+    [SerializeField] private GameObject bulletPrefrab;
 
     [SerializeField] private Transform firePosition;
     private void OnEnable()
@@ -33,10 +33,10 @@ public class PlayerShip : MonoBehaviour
 
     public void Shoot()
     {
-            //#TODO replace with proper code to use weapons
-            GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
-            newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;
-       
+        //#TODO replace with proper code to use weapons
+        GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
+        newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;
+
     }
 
     private void Update()
@@ -45,10 +45,5 @@ public class PlayerShip : MonoBehaviour
         {
             Shoot(); //#TODO Use shoot from arsenal
         }
-    }
-
-    public Health GetPlayerHealth()
-    {
-        return PlayerHealth;
     }
 }

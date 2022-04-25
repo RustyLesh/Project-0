@@ -33,6 +33,7 @@ public class Health : MonoBehaviour
     {
         return currentHealth;
     }
+
     public void SetMaxHealth(float maxHealthValue)
     {
         maxHealth = maxHealthValue;

@@ -4,7 +4,13 @@ namespace Project0
 {
     public class Wallet
     {
-        private int coinCount;
+        [SerializeField]private int coinCount;
+
+        public int CoinCount
+        {
+            private set => coinCount = value;
+            get => coinCount;
+        }
 
         public Wallet()
         {
@@ -32,11 +38,6 @@ namespace Project0
                 Debug.Log("Not enough coinage"); //TODO: Notify the player in ui.
                 return false;
             }
-        }
-
-        public int GetCoinCount()
-        {
-            return coinCount;
         }
     }
 }
