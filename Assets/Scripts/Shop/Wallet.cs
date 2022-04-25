@@ -34,7 +34,7 @@ namespace Project0
             }
         }
 
-        public int getCoinCount()
+        public int GetCoinCount()
         {
             return coinCount;
         }

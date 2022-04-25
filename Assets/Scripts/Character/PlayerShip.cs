@@ -46,4 +46,9 @@ public class PlayerShip : MonoBehaviour
             Shoot(); //#TODO Use shoot from arsenal
         }
     }
+
+    public Health GetPlayerHealth()
+    {
+        return PlayerHealth;
+    }
 }
