@@ -1,28 +1,24 @@
-using System.Collections;
+using UnityEditor;
 using System.Collections.Generic;
 using UnityEngine;
 using Project0;
-
 public class Shop : MonoBehaviour
 {
-    [SerializeField]Dictionary<int, ShopItem> shopInventory;
+    [SerializeField]List<ShopItem> shopInventory;
 
     public ShopItem GetShopItem(int slotNumber)
     {
-        shopInventory.TryGetValue(slotNumber, out ShopItem returner);
-
-        return returner;
+        return shopInventory[slotNumber];
     }
 
     public void PurchaseItem(Wallet wallet, int slotNumber)
     {
-        shopInventory.TryGetValue(slotNumber, out ShopItem shopItem);
 
-        if (shopItem.GetAmountInStock() > 0)
+        if (shopInventory[slotNumber].GetAmountInStock() > 0)
         {
-            if (wallet.PayCoins(shopItem.GetPurchaseValue()))
+            if (wallet.PayCoins(shopInventory[slotNumber].GetPurchaseValue()))
             {
-                shopItem.RemoveStock(1); //TODO: variable purchase amount, allow player to purchase multiple for bulk items.
+                shopInventory[slotNumber].RemoveStock(1); //TODO: variable purchase amount, allow player to purchase multiple for bulk items.
             }
         }
         else

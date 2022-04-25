@@ -10,7 +10,7 @@ public class WalletTest
         int gain_amount_to_test = 15;
         wallet.GainCoins(gain_amount_to_test);
 
-        Assert.AreEqual(expected: gain_amount_to_test, actual: wallet.GetCoinCount());
+        Assert.AreEqual(expected: gain_amount_to_test, actual: wallet.CoinCount);
     }
 
     [Test]
@@ -23,7 +23,7 @@ public class WalletTest
         int testValue = walletStart + amountToAdd;
         wallet.GainCoins(amountToAdd);
 
-        Assert.AreEqual(expected: testValue, actual: wallet.GetCoinCount());
+        Assert.AreEqual(expected: testValue, actual: wallet.CoinCount);
     }
 
     [Test]
@@ -36,7 +36,7 @@ public class WalletTest
         int testValue = walletStart - amountToPay;
         wallet.PayCoins(amountToPay);
 
-        Assert.AreEqual(expected: testValue, actual: wallet.GetCoinCount());
+        Assert.AreEqual(expected: testValue, actual: wallet.CoinCount);
     }
 
     [Test]
@@ -49,7 +49,7 @@ public class WalletTest
         int testValue = walletStart - amountToPay;
         wallet.PayCoins(amountToPay);
 
-        Assert.AreEqual(expected: testValue, actual: wallet.GetCoinCount());
+        Assert.AreEqual(expected: testValue, actual: wallet.CoinCount);
     }
 
     [Test]
@@ -61,7 +61,7 @@ public class WalletTest
 
         wallet.PayCoins(amountToPay);
 
-        Assert.IsTrue(wallet.GetCoinCount() > 0);
-        Assert.AreEqual(expected: walletStart, actual: wallet.GetCoinCount());
+        Assert.IsTrue(wallet.CoinCount > 0);
+        Assert.AreEqual(expected: walletStart, actual: wallet.CoinCount);
     }
 }

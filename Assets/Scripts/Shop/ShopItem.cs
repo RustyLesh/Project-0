@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class ShopItem : Item
+[Serializable]
+public class ShopItem
 {
     [SerializeField]int purchaseValue = 1;
     [SerializeField]int amountInStock = 0;
-
+    [SerializeField] Item item;
     public int GetPurchaseValue()
     {
         return purchaseValue;

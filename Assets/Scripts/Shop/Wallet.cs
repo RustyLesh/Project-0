@@ -23,11 +23,25 @@ namespace Project0
         }
         public void GainCoins(int amount)
         {
-            coinCount += amount;
+            if (amount > 0)
+            {
+                coinCount += amount;
+            }
+            else
+            {
+                Debug.LogWarning("Trying to gain negative amount or 0. Amount must be greater than 0\n Consider using \"PayCoins\" method");
+            }
         }
 
         public bool PayCoins(int amount)
         {
+            //TODO: Fix negative value purchases
+            if (amount < 0)
+            {
+                Debug.LogWarning("Trying to pay a negative amount. Amount must be a positive value. \n Consider using \"GainCoins\" method");
+                return false;
+            }
+
             if (coinCount >= amount)
             {
                 coinCount -= amount;

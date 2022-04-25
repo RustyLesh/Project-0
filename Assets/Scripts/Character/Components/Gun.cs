@@ -11,11 +11,7 @@ public class Gun : Item
     [SerializeField] private float fireRate;
 
 #region Public Getters
-    public float WeaponName
-    {
-        private set => fireRate = value;
-        get => fireRate;
-    }
+
     public Bullet Bullet
     {
         private set => bullet = value;
@@ -37,4 +33,5 @@ public class Gun : Item
         get => fireRate;
     }
 #endregion
+
 }
