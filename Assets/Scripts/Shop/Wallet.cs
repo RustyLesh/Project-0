@@ -1,7 +1,9 @@
 using UnityEngine;
+using System;
 
 namespace Project0
 {
+    [Serializable]
     public class Wallet
     {
         [SerializeField]private int coinCount;

@@ -2,19 +2,27 @@ using UnityEditor;
 using System.Collections.Generic;
 using UnityEngine;
 using Project0;
+
 public class Shop : MonoBehaviour
 {
     [SerializeField]List<ShopItem> shopInventory;
 
+    Wallet wallet;
+
     public delegate void ShopChanged();
     public static event ShopChanged OnShopChanged;
+
+    void Start()
+    {
+        wallet = GetComponent<MoneyManager>().PlayerWallet;
+    }
 
     public ShopItem GetShopItem(int slotNumber)
     {
         return shopInventory[slotNumber];
     }
 
-    public void PurchaseItem(Wallet wallet, int slotNumber)
+    public void PurchaseItem(int slotNumber)
     {
 
         if (shopInventory[slotNumber].GetAmountInStock() > 0)
