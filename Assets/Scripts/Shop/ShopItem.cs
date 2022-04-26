@@ -4,9 +4,10 @@ using UnityEngine;
 [Serializable]
 public class ShopItem
 {
-    [SerializeField]int purchaseValue = 1;
-    [SerializeField]int amountInStock = 0;
+    [SerializeField] int purchaseValue = 1;
+    [SerializeField] int amountInStock = 0;
     [SerializeField] Item item;
+
     public int GetPurchaseValue()
     {
         return purchaseValue;
@@ -31,4 +32,5 @@ public class ShopItem
     {
         return item;
     }
+
 }

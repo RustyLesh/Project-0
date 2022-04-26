@@ -46,5 +46,5 @@ public class Shop : MonoBehaviour
 
     public int GetItemCount() { return shopInventory.Count; }
 
-    public Item GetItemAtIndex(int index) { return shopInventory[index].GetItem(); }
+    public Item GetItemAtIndex(int index) { return shopInventory[index].GetItem(); }//TODO: Change to ShopItem
 }

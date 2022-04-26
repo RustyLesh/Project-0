@@ -4,6 +4,23 @@ using Project0;
 
 public class MoneyManager : MonoBehaviour
 {
+    #region Singleton
+
+    public static MoneyManager instance;
+
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one inventory instance found!");
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    #endregion
+
     [SerializeField]Wallet wallet;
 
     public int CoinBaseValue = 1;
