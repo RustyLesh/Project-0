@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Project0;
 
@@ -7,6 +5,14 @@ using Project0;
 public class MoneyManager : MonoBehaviour
 {
     [SerializeField]Wallet wallet;
+
+    public int CoinBaseValue = 1;
+    public float MoneyMultiplier = 1;
+
+    void OnEnable()
+    {
+        Coin.OnCoinCollected += CoinCollected;
+    }
 
     void Start()
     {
@@ -17,5 +23,15 @@ public class MoneyManager : MonoBehaviour
     {
         private set => wallet = value;
         get => wallet;
+    }
+
+    private void CoinCollected()
+    {
+        wallet.GainCoins((int)(CoinBaseValue * MoneyMultiplier));
+    }
+
+    void OnDisable()
+    {
+        Coin.OnCoinCollected -= CoinCollected;
     }
 }

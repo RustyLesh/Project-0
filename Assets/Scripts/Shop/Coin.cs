@@ -1,19 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+namespace Project0
 {
-
-    [SerializeField] private int Value = 1;
-
-    public void GhangeValue(int newValue)
+    public class Coin : MonoBehaviour
     {
-        Value = newValue;
-    }
+        public delegate void CoinCollected();
+        public static event CoinCollected OnCoinCollected;
 
-    public int GetValue()
-    {
-        return Value;
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.tag == "PlayerShip")
+            {
+                OnCoinCollected.Invoke();
+                Destroy(gameObject);
+            }
+        }
     }
 }
+

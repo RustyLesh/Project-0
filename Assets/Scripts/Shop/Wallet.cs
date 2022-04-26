@@ -23,6 +23,7 @@ namespace Project0
         {
             coinCount = Value;
         }
+
         public void GainCoins(int amount)
         {
             if (amount > 0)
