@@ -31,11 +31,13 @@ public class Inventory : MonoBehaviour
     #endregion
 
     public delegate void OnItemChanged();
-    public OnItemChanged onItemChangedCallBack;
+    public static event OnItemChanged onItemChangedCallBack;
 
     [SerializeField] List<Item> items = new List<Item>();
 
-    [SerializeField] int space = 20;
+    [SerializeField] int space = 12;
+
+    public Item debugItem;
 
     public bool Add(Item item)
     {
@@ -49,6 +51,17 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
+    public void AddDebugItem()
+    {
+        if (items.Count >= space)
+        {
+            Debug.Log("Not enough room in inventory!");
+            return;
+        }
+        items.Add(debugItem);
+        onItemChangedCallBack.Invoke();
+    }
+
     public bool Remove(Item item)
     {
         if(items.Count <=0 )
@@ -60,4 +73,19 @@ public class Inventory : MonoBehaviour
         onItemChangedCallBack.Invoke();
         return true;
     }
+
+    public void RemoveDebugItem()
+    {
+        if (items.Count <= 0)
+        {
+            Debug.Log("Inventory is empty to remove!");
+            return;
+        }
+        items.RemoveAt(items.Count-1);
+        onItemChangedCallBack.Invoke();
+    }
+
+    public int GetItemCount() { return items.Count; }
+
+    public Item GetItemIndex(int index) { return items[index]; }
 }

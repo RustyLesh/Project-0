@@ -26,4 +26,9 @@ public class ShopItem
         else
             Debug.LogError("Not enough stock to remove, stock should be greater than 0 to purchase");
     }
+
+    public Item GetItem()
+    {
+        return item;
+    }
 }

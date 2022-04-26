@@ -5,7 +5,7 @@ using Project0;
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField]List<ShopItem> shopInventory;
+    [SerializeField] List<ShopItem> shopInventory = new List<ShopItem>();
 
     Wallet wallet;
 
@@ -43,4 +43,8 @@ public class Shop : MonoBehaviour
             Debug.Log("Not enough in stock"); //TODO: Notify the player in ui.
         }
     }
+
+    public int GetItemCount() { return shopInventory.Count; }
+
+    public Item GetItemAtIndex(int index) { return shopInventory[index].GetItem(); }
 }
