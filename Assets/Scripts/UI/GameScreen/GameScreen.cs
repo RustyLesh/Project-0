@@ -34,7 +34,6 @@ public class GameScreen : MonoBehaviour
         // Initiallize Player related   
         playerShip = FindObjectOfType<PlayerShip>();
         playerHPBar.value = playerShip.PlayerHealth.GetHealth();
-        Health.OnHealthChanged += HealthChanged;
 
         // Initiallize UI related
         // currentStage = getCurrentStage();
@@ -42,6 +41,17 @@ public class GameScreen : MonoBehaviour
         // currentScore = getCurrentGameManager().getTotalScore();
         // plz implement these so I can finish this
     }
+
+    void OnEnable()
+    {
+        Health.OnHealthChanged += HealthChanged;
+    }
+
+    void OnDisable()
+    {
+        Health.OnHealthChanged -= HealthChanged;
+    }
+
     // Subscribing to the Health. Updates value when player health is changed
     public void HealthChanged()
     {

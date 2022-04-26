@@ -6,7 +6,7 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     [SerializeField]string itemName;
-    [SerializeField]Texture2D icon;
+    [SerializeField]Sprite icon;
 
     public string ItemName
     {
@@ -14,7 +14,7 @@ public class Item : ScriptableObject
         get => itemName;
     }
 
-    public Texture2D Icon
+    public Sprite Icon
     {
         private set => icon = value;
         get => icon;

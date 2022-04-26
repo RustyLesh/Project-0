@@ -14,7 +14,7 @@ public class Shop : MonoBehaviour
 
     void Start()
     {
-        wallet = GetComponent<MoneyManager>().PlayerWallet;
+        wallet = FindObjectOfType<MoneyManager>().PlayerWallet;
     }
 
     public List<ShopItem> GetAllShotItem()
