@@ -19,13 +19,13 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        Mathf.Clamp((maxHealth -= damage), 0, maxHealth);
+        Mathf.Clamp((currentHealth -= damage), 0, maxHealth);
         OnHealthChanged.Invoke();
     }
 
     public void Heal(float healAmount)
     {
-        Mathf.Clamp((maxHealth += healAmount), 0, maxHealth);
+        Mathf.Clamp((currentHealth += healAmount), 0, maxHealth);
         OnHealthChanged.Invoke();
     }
 
