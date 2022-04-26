@@ -17,6 +17,11 @@ public class Shop : MonoBehaviour
         wallet = GetComponent<MoneyManager>().PlayerWallet;
     }
 
+    public List<ShopItem> GetAllShotItem()
+    {
+        return shopInventory;
+    }
+
     public ShopItem GetShopItem(int slotNumber)
     {
         return shopInventory[slotNumber];

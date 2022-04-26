@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameScreen : MonoBehaviour
 {
@@ -16,8 +17,13 @@ public class GameScreen : MonoBehaviour
     [SerializeField] Slider playerHPBar;
 
     //Level
+    [SerializeField] TMP_Text timeRemainingInSecondsText;
+    [SerializeField] TMP_Text currentStageText;
+    [SerializeField] TMP_Text currentDeathsText;
+    [SerializeField] TMP_Text currentScoreText;
+
     int timeRemainingInSeconds = 60;
-    int currentStange = 0;
+    int currentStage = 0;
     int currentDeaths = 0;
     int currentScore = 0;
 
@@ -26,8 +32,9 @@ public class GameScreen : MonoBehaviour
     void Start()
     {
         // Initiallize Player related   
-        playerShip = GetComponent<PlayerShip>();
-        Health health = playerShip.PlayerHealth;
+        playerShip = FindObjectOfType<PlayerShip>();
+        playerHPBar.value = playerShip.PlayerHealth.GetHealth();
+        Health.OnHealthChanged += HealthChanged;
 
         // Initiallize UI related
         // currentStage = getCurrentStage();
@@ -38,6 +45,7 @@ public class GameScreen : MonoBehaviour
     // Subscribing to the Health. Updates value when player health is changed
     public void HealthChanged()
     {
+        //Debug.Log("Health changed!");
         playerHPBar.value = playerShip.PlayerHealth.GetHealth();
     }
 }
