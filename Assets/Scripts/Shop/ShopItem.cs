@@ -8,6 +8,13 @@ public class ShopItem
     [SerializeField] int amountInStock = 0;
     [SerializeField] Item item;
 
+    public ShopItem(Item item, int purchaseValue, int amountInStock)
+    {
+        this.item = item;
+        this.purchaseValue = purchaseValue;
+        this.amountInStock = amountInStock;
+    }
+
     public int GetPurchaseValue()
     {
         return purchaseValue;

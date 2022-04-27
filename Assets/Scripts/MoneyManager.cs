@@ -51,4 +51,14 @@ public class MoneyManager : MonoBehaviour
     {
         Coin.OnCoinCollected -= CoinCollected;
     }
+
+    public void DebugAddCoins(int coins)
+    {
+        wallet.GainCoins(coins);
+    }
+
+    public int GetCoinInWallet()
+    {
+        return wallet.CoinCount;
+    }
 }

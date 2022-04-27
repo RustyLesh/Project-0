@@ -44,7 +44,19 @@ public class Shop : MonoBehaviour
         }
     }
 
+    public void AddItemIntoShop(Item item, int amount, int price)
+    {
+        shopInventory.Add(new ShopItem(item, amount, price));
+        OnShopChanged.Invoke();
+    }
+
+    public void DeleteItemInInventory(int index)
+    {
+        shopInventory.RemoveAt(index);
+        OnShopChanged.Invoke();
+    }
+
     public int GetItemCount() { return shopInventory.Count; }
 
-    public Item GetItemAtIndex(int index) { return shopInventory[index].GetItem(); }//TODO: Change to ShopItem
+    public ShopItem GetItemAtIndex(int index) { return shopInventory[index]; }//TODO: Change to ShopItem
 }

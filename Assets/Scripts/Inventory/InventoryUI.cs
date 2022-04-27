@@ -13,17 +13,17 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
-    public Transform itemsParent;
+    // public Transform itemsParent;
 
     Inventory inventory;
 
-    InventorySlot[] slots;
+    public InventorySlot[] slots;
 
     void Start()
     {
         inventory = Inventory.instance;
 
-        slots = itemsParent.GetComponentsInChildren<InventorySlot>();
+        //slots = itemsParent.GetComponentsInChildren<InventorySlot>();
 
         UpdateUI();
     }
