@@ -8,6 +8,7 @@ public class Shop : MonoBehaviour
     [SerializeField] List<ShopItem> shopInventory = new List<ShopItem>();
 
     Wallet wallet;
+    Inventory inventory;
 
     public delegate void ShopChanged();
     public static event ShopChanged OnShopChanged;
@@ -15,6 +16,7 @@ public class Shop : MonoBehaviour
     void Start()
     {
         wallet = FindObjectOfType<MoneyManager>().PlayerWallet;
+        inventory = Inventory.instance;
     }
 
     public List<ShopItem> GetAllShotItem()
@@ -34,6 +36,7 @@ public class Shop : MonoBehaviour
         {
             if (wallet.PayCoins(shopInventory[slotNumber].GetPurchaseValue()))
             {
+                inventory.Add(shopInventory[slotNumber].GetItem());
                 shopInventory[slotNumber].RemoveStock(1); //TODO: variable purchase amount, allow player to purchase multiple for bulk items (if bulk items are added, eg bombs/nukes).
                 OnShopChanged.Invoke();
             }

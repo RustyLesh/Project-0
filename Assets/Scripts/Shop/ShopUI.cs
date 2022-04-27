@@ -19,7 +19,7 @@ public class ShopUI : MonoBehaviour
     {
         // Debug use
         moneyManager = FindObjectOfType<MoneyManager>();
-        currentCoinsText.text = "Coins: " + moneyManager.GetCoinInWallet();
+        
 
         shop = FindObjectOfType<Shop>();
 
@@ -39,6 +39,7 @@ public class ShopUI : MonoBehaviour
     void UpdateUI()
     {
         //Debug.Log("Updating UI");
+        currentCoinsText.text = "Coins: " + moneyManager.GetCoinInWallet();
 
         // loop through all shop slots
         for (int i = 0; i < slots.Length; i++)
@@ -55,6 +56,12 @@ public class ShopUI : MonoBehaviour
             }
         }
 
+        CheckPurchaseable();
+    }
+
+    // Debuging use
+    void Update()
+    {
         CheckPurchaseable();
     }
 
@@ -77,13 +84,14 @@ public class ShopUI : MonoBehaviour
 
     public void PurchaseItem(int btnNo)
     {
-        Debug.Log("Button: " + btnNo + " has been pressed");
+        // Debug.Log("Button: " + btnNo + " has been pressed");
+        // Debug.Log(shop.GetItemAtIndex(btnNo).GetItem().ItemName);
         // if we do have enough coins
         if (moneyManager.PlayerWallet.CoinCount >= shop.GetItemAtIndex(btnNo).GetPurchaseValue())
         {
-            moneyManager.PlayerWallet.PayCoins(shop.GetItemAtIndex(btnNo).GetPurchaseValue());
             shop.PurchaseItem(btnNo);
             CheckPurchaseable();
+
         }
         // minus coins from wallet
         // update coin value in UI

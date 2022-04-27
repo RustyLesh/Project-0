@@ -16,7 +16,7 @@ namespace Project0
 
         public Wallet()
         {
-            coinCount = 0;
+            coinCount = 100;
         }
 
         public Wallet(int Value)
