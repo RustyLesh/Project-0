@@ -6,7 +6,8 @@ public class CSS_Enemy : MonoBehaviour
 {
 
     [Header("Enemy Stats")]
-    public int hp = 10;     // Base 10 
+    public int hp = 10;     // Base 10
+    public int bodyDmg = 50;     // 
     public float movementSpeed = 3.0f;
     public float fireSpeed = 2.0f;
     public float fireReload = 2.0f;
@@ -92,6 +93,18 @@ public class CSS_Enemy : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerShip")
+        {
+            //Debug.Log("Enemy Touched Player");
+
+            // Health script with take damage function Invoke line linked to UI 
+            collision.gameObject.GetComponent<PlayerShip>().PlayerHealth.TakeDamage((float) this.bodyDmg);
+            this.OnDeath();
+            
+        }
+    }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// <summary>
