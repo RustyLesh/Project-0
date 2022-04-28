@@ -96,8 +96,8 @@ public class CSS_Spawn : MonoBehaviour
         }
     }
 
-    public Transform[] GetAtkRun01()
-    {
-        return (this.atkRunMovePos);
-    }
+
+
+    /// Getters
+    public Transform[] GetAtkRun01() { return (this.atkRunMovePos); }
 }

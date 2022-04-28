@@ -6,12 +6,21 @@ public class CSS_Enemy : MonoBehaviour
 {
 
     [Header("Enemy Stats")]
+    public int hp = 10;     // Base 10 
     public float movementSpeed = 3.0f;
-    private Vector2 moveDown2D = new Vector2(0, -1);
-    //private Vector3 moveDown3D = new Vector3(0, -1, 0);
+    public float fireSpeed = 2.0f;
+    public float fireReload = 2.0f;
 
+    [Space]
+    [Header("Debug Functions")]
+    public bool isTakingDamage = false;
+
+    [Space]
+    [Header("Pattern Info")]
     public int waypointPos = 1;     // Skip 0 as they spawn at 0
     public int movementPatternID;
+
+    private Vector2 moveDown2D = new Vector2(0, -1);
 
     // Start is called before the first frame update
     void Start()
@@ -23,9 +32,72 @@ public class CSS_Enemy : MonoBehaviour
     void Update()
     {
         this.SetMovementPattern(this.movementPatternID);
+        this.Shooting();
+
+        // Debug Functions
+        this.DebugIsTakeDamage();
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private void Shooting()
+    {
+        if(fireReload > 0.0f)
+        {
+            fireReload -= Time.deltaTime;
+        }
+        else
+        {
+            // Spawn bullet class and do any set up needed for bullet modifcation here
+            // NOTE: if trying to tailor specific bullet types and behaviour notify Leo
+            // to set up check enemy type for easier spawning in bullet class (reminder for Leo simple enum struct for enemy type)
+            // Input Spawn bullet here
+            Debug.Log("Enemy Mob is Firing");
+
+            // Reload
+            fireReload = fireSpeed;
+        }
         
     }
 
+    // Delete itself when mob has survived and moved off screen
+    // when hitting the offscreen collider
+    public void DeleteItSelf()
+    {
+        Destroy(this.gameObject);
+    }
+
+    // When mob dies from player attacks
+    public void OnDeath()
+    {
+        // Put VFX and lootdrop chance functions here from other classes
+        // Both functions should be spawning objects itself so that it would 
+        // be affected when this object delete itself.
+
+        // Do stuff here....
+
+        // Delete itself
+        this.DeleteItSelf();
+    }
+
+    // Bullet class should call this function and pass in the bullet damage 
+    // value base dmg should be 10 to one hit ordinary mobs
+    public void TakeDamage(int _dmg)
+    {
+        this.hp -= _dmg;
+
+        if(this.hp <= 0)
+        {
+            this.OnDeath();
+        }
+    }
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>
+    /// Setting Enemey Movement Patterns will determine 
+    /// the enemies behaviour. 
+    /// </summary>
     public void SetMovementID(int _id)
     {
         this.movementPatternID = _id;
@@ -64,7 +136,7 @@ public class CSS_Enemy : MonoBehaviour
                         else
                         {
                             // Simple delete
-                            Destroy(this.gameObject);
+                            this.DeleteItSelf();
                         }
                     }
 
@@ -72,8 +144,20 @@ public class CSS_Enemy : MonoBehaviour
                 }
             default:
                 {
+                    Debug.Log("Debug MSG From CSS_Enemt: Movement Pattern setting Error");
                     break;
                 }
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// Debug Functions for live testing
+    /// 
+    public void DebugIsTakeDamage()
+    {
+        if(this.isTakingDamage == true)
+        {
+            this.TakeDamage(10);
         }
     }
 }
