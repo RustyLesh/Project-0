@@ -18,9 +18,9 @@ public class CSS_Spawn : MonoBehaviour
     public float spawnTime = 1.0f;
 
     [Space]
-    //public List<Transform> defSpawnPos = new List<Transform>();
+    [Header("Spawn Position Info")]
     public Transform[] defSpawnPos;
-    public Transform[] atkRunMovePos;
+    public List<List<Transform>> atkRunMovePos = new List<List<Transform>>();
 
     private void Awake()
     {
@@ -32,7 +32,7 @@ public class CSS_Spawn : MonoBehaviour
     {
         this.spawnTimer = this.spawnTime;
         this.SetDefaultSpawnPosition();
-        this.SetAtkRun01();
+        this.SetAtkRunPos();
     }
 
     // Update is called once per frame
@@ -45,14 +45,24 @@ public class CSS_Spawn : MonoBehaviour
             GameObject tempEnemy = Instantiate(obj_enemy01, this.RandomSpawnPosition(), Quaternion.identity);
             tempEnemy.GetComponent<CSS_Enemy>().SetMovementID(0);
 
-            // Spawn AtkRun Enemy
-            GameObject tempEnemy02 = Instantiate(obj_enemy01, this.atkRunMovePos[0].position, Quaternion.identity);
+            // Spawn AtkRun01 Enemy
+            //GameObject tempEnemy02 = Instantiate(obj_enemy01, this.atkRunMovePos[0].position, Quaternion.identity);
+            GameObject tempEnemy02 = Instantiate(obj_enemy01, this.atkRunMovePos[0][0].position, Quaternion.identity);
             tempEnemy02.GetComponent<CSS_Enemy>().SetMovementID(1);
 
-            if (tempEnemy02.GetComponent<CSS_Enemy>())
-            {
-                Debug.Log("Script is shooting");
-            }
+            GameObject tempEnemy03 = Instantiate(obj_enemy01, this.atkRunMovePos[0][this.atkRunMovePos[0].Count -1].position, Quaternion.identity);
+            tempEnemy03.GetComponent<CSS_Enemy>().SetIsRightSide(true);
+            tempEnemy03.GetComponent<CSS_Enemy>().SetMovementID(1);
+            tempEnemy03.GetComponent<CSS_Enemy>().SetWaypointPos(this.atkRunMovePos[0].Count - 2);
+
+            // Spawn AtkRun03 Enemy
+            GameObject tempEnemy04 = Instantiate(obj_enemy01, this.atkRunMovePos[2][0].position, Quaternion.identity);
+            tempEnemy04.GetComponent<CSS_Enemy>().SetMovementID(3);
+
+            GameObject tempEnemy05 = Instantiate(obj_enemy01, this.atkRunMovePos[2][2].position, Quaternion.identity);
+            tempEnemy05.GetComponent<CSS_Enemy>().SetIsRightSide(true);
+            tempEnemy05.GetComponent<CSS_Enemy>().SetMovementID(3);
+
 
             // Reset Timer
             this.spawnTimer = this.spawnTime;
@@ -62,18 +72,28 @@ public class CSS_Spawn : MonoBehaviour
 
     void SetDefaultSpawnPosition()
     {
-        //int listIndex = 0;
-        //while (this.spawnPoints.transform.GetChild(0).GetChild(listIndex).transform)
-        //{
-        //    this.defSpawnPos.Add(this.spawnPoints.transform.GetChild(0).GetChild(listIndex).transform);
-        //    listIndex++;
-        //}
-
         int arraySize = this.spawnPoints.transform.GetChild(0).childCount;
         this.defSpawnPos = new Transform[arraySize];
         for (int i = 0; i < arraySize; i++)
         {
             this.defSpawnPos[i] = this.spawnPoints.transform.GetChild(0).GetChild(i).transform;
+        }
+    }
+
+    private void SetAtkRunPos()
+    {
+        for (int i = 0; i < this.movementPoints.transform.childCount; i++)
+        {
+            int arraySize = this.movementPoints.transform.GetChild(i).childCount;
+
+            this.atkRunMovePos.Add(new List<Transform>());
+            for(int j = 0; j < arraySize; j++)
+            {
+                this.atkRunMovePos[i].Add(this.movementPoints.transform.GetChild(i).GetChild(j).transform);
+            }
+
+            // Prints out the number of patterns inside the list
+            // Debug.Log("Movement PAttern: " + this.atkRunMovePos[i]);
         }
     }
 
@@ -86,18 +106,27 @@ public class CSS_Spawn : MonoBehaviour
         return (tempVec);
     }
 
-    void SetAtkRun01()
-    {
-        int arraySize = this.movementPoints.transform.GetChild(0).childCount;
-        this.atkRunMovePos = new Transform[arraySize];
-        for (int i = 0; i < arraySize; i++)
-        {
-            this.atkRunMovePos[i] = this.movementPoints.transform.GetChild(0).GetChild(i).transform;
-        }
-    }
-
-
+    //void SetAtkRun01()
+    //{
+    //    //int arraySize = this.movementPoints.transform.GetChild(0).childCount;
+    //    //this.atkRunMovePos = new Transform[arraySize];      
+        
+    //    //for (int i = 0; i < arraySize; i++)
+    //    //{
+    //    //    this.atkRunMovePos[i] = this.movementPoints.transform.GetChild(0).GetChild(i).transform;
+    //    //}
+    //}
 
     /// Getters
-    public Transform[] GetAtkRun01() { return (this.atkRunMovePos); }
+    public Transform[] GetAtkRun(int index) {
+
+        Transform[] temp = new Transform[this.atkRunMovePos[index].Count];
+
+        for(int i = 0; i < temp.Length; i++)
+        {
+            temp[i] = this.atkRunMovePos[index][i];
+        }
+        
+        return (temp); 
+    }
 }
