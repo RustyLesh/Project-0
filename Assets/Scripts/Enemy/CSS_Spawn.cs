@@ -10,8 +10,9 @@ public class CSS_Spawn : MonoBehaviour
     [Header("References")]
     public GameObject spawnPoints;
     public GameObject movementPoints;
-    //public GameObject playerShip; // temp here until proper game manger
+    public GameObject bossWayPoints;
     public GameObject obj_enemy01;
+    public GameObject obj_boss01;
 
     [Space]
     [Header("Spawn Settings")]
@@ -21,6 +22,8 @@ public class CSS_Spawn : MonoBehaviour
     [Space]
     [Header("Spawn Position Info")]
     public Transform[] defSpawnPos;
+    private Transform bossSpawnPos;
+    public List<List<Transform>> bossMovementPattern = new List<List<Transform>>();
     public List<List<Transform>> atkRunMovePos = new List<List<Transform>>();
 
     [Space]
@@ -29,6 +32,7 @@ public class CSS_Spawn : MonoBehaviour
     [SerializeField] private bool isSpawnMob02 = false; // Sneaky curve
     [SerializeField] private bool isSpawnMob03 = false; // Bulk fire and run
     [SerializeField] private bool isSpawnMob04 = false; // Cut 
+    [SerializeField] private bool isSpawnBoss01 = false;
 
     private void Awake()
     {
@@ -43,6 +47,8 @@ public class CSS_Spawn : MonoBehaviour
     {
         this.spawnTimer = this.spawnTime;
         this.SetDefaultSpawnPosition();
+        this.SetBossSpawnPoint();
+        this.SetBossMovementPattern();
         this.SetAtkRunPos();
     }
 
@@ -88,16 +94,36 @@ public class CSS_Spawn : MonoBehaviour
         this.DebugIsSpawnMob02();
         this.DebugIsSpawnMob03();
         this.DebugIsSpawnMob04();
+        this.DebugIsSpawnBoss01();
 
     }
 
-    void SetDefaultSpawnPosition()
+    private void SetDefaultSpawnPosition()
     {
         int arraySize = this.spawnPoints.transform.GetChild(0).childCount;
         this.defSpawnPos = new Transform[arraySize];
         for (int i = 0; i < arraySize; i++)
         {
             this.defSpawnPos[i] = this.spawnPoints.transform.GetChild(0).GetChild(i).transform;
+        }
+    }
+
+    private void SetBossSpawnPoint()
+    {
+        this.bossSpawnPos = this.spawnPoints.transform.GetChild(1).transform;
+    }
+
+    private void SetBossMovementPattern()
+    {
+        for (int i = 0; i < this.bossWayPoints.transform.childCount; i++)
+        {
+            int arraySize = this.bossWayPoints.transform.GetChild(i).childCount;
+
+            this.bossMovementPattern.Add(new List<Transform>());
+            for (int j = 0; j < arraySize; j++)
+            {
+                this.bossMovementPattern[i].Add(this.bossWayPoints.transform.GetChild(i).GetChild(j).transform);
+            }
         }
     }
 
@@ -138,6 +164,18 @@ public class CSS_Spawn : MonoBehaviour
         }
         
         return (temp); 
+    }
+
+    public Transform[] GetBossMovementPattern(int index) {
+
+        Transform[] temp = new Transform[this.bossMovementPattern[index].Count];
+
+        for (int i = 0; i < temp.Length; i++)
+        {
+            temp[i] = this.bossMovementPattern[index][i];
+        }
+
+        return (temp);
     }
 
     /// Debug Functions
@@ -195,6 +233,17 @@ public class CSS_Spawn : MonoBehaviour
             //tempEnemy05.GetComponent<CSS_Enemy>().SetIsRightSide(true);
             //tempEnemy05.GetComponent<CSS_Enemy>().SetMovementID(3);
             this.isSpawnMob04 = false;
+        }
+    }
+
+    private void DebugIsSpawnBoss01()
+    {
+        if (this.isSpawnBoss01 == true)
+        {
+            GameObject tempBoss01 = Instantiate(obj_boss01, this.bossSpawnPos.position, Quaternion.identity);
+            tempBoss01.GetComponent<CSS_Boss>().SetMovementPattern(1,this.GetBossMovementPattern(0));
+
+            this.isSpawnBoss01 = false;
         }
     }
 
