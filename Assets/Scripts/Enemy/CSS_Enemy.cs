@@ -23,6 +23,9 @@ public class CSS_Enemy : MonoBehaviour
 
     private Vector2 moveDown2D = new Vector2(0, -1);
 
+    [SerializeField] SpawnCoin spawnCoin;
+    [SerializeField] SpawnParticleSystem spawnParticleSystem;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,8 +77,10 @@ public class CSS_Enemy : MonoBehaviour
         // Put VFX and lootdrop chance functions here from other classes
         // Both functions should be spawning objects itself so that it would 
         // be affected when this object delete itself.
-
         // Do stuff here....
+
+        spawnCoin.SpawnCoinOnDeath(gameObject.transform);
+        spawnParticleSystem.ParticleEffectOnDeath(gameObject.transform);
 
         // Delete itself
         this.DeleteItSelf();
