@@ -12,6 +12,10 @@ public class CSS_Spawn : MonoBehaviour
     public GameObject movementPoints;
     public GameObject bossWayPoints;
     public GameObject obj_enemy01;
+    public GameObject obj_enemy02;
+    public GameObject obj_enemy03;
+    public GameObject obj_enemy04;
+    public GameObject obj_enemy05;
     public GameObject obj_boss01;
 
     [Space]
@@ -196,7 +200,7 @@ public class CSS_Spawn : MonoBehaviour
         if (this.isSpawnMob02 == true)
         {
             // Spawn AtkRun01 Enemy
-            GameObject tempEnemy02 = Instantiate(obj_enemy01, this.atkRunMovePos[0][0].position, Quaternion.identity);
+            GameObject tempEnemy02 = Instantiate(obj_enemy02, this.atkRunMovePos[0][0].position, Quaternion.identity);
             tempEnemy02.GetComponent<CSS_Enemy>().SetMovementID(1);
             this.isSpawnMob02 = false;
 
@@ -213,7 +217,7 @@ public class CSS_Spawn : MonoBehaviour
         if (this.isSpawnMob03 == true)
         {
             // Spawn AtkRun02 Enemy
-            GameObject tempEnemy06 = Instantiate(obj_enemy01, this.atkRunMovePos[1][0].position, Quaternion.identity);
+            GameObject tempEnemy06 = Instantiate(obj_enemy03, this.atkRunMovePos[1][0].position, Quaternion.identity);
             tempEnemy06.GetComponent<CSS_Enemy>().SetMovementID(2);
             //tempEnemy06.GetComponent<CSS_Enemy>().SetPlayerShipPos(CSS_GameManager.Instance.playerShip.transform.position);
             this.isSpawnMob03 = false;
@@ -225,7 +229,7 @@ public class CSS_Spawn : MonoBehaviour
         if (this.isSpawnMob04 == true)
         {
             // Spawn AtkRun03 Enemy
-            GameObject tempEnemy04 = Instantiate(obj_enemy01, this.atkRunMovePos[2][0].position, Quaternion.identity);
+            GameObject tempEnemy04 = Instantiate(obj_enemy05, this.atkRunMovePos[2][0].position, Quaternion.identity);
             tempEnemy04.GetComponent<CSS_Enemy>().SetMovementID(3);
 
             // Right Side

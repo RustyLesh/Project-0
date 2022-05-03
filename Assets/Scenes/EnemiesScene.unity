@@ -1284,6 +1284,10 @@ MonoBehaviour:
   movementPoints: {fileID: 1237189717}
   bossWayPoints: {fileID: 969144243}
   obj_enemy01: {fileID: 7140702229461096008, guid: 7e7c906f5b23e7f41bfaaafc368be2e7, type: 3}
+  obj_enemy02: {fileID: 1238640455025427776, guid: 506765fa1d9b1c84aa84d02f390f17ae, type: 3}
+  obj_enemy03: {fileID: 2232383172117710494, guid: b7a775acf3a5b9c4dbd65bf42ff8197c, type: 3}
+  obj_enemy04: {fileID: 4410790164949615092, guid: 6438f9c899b9bf8498ab139fa3b65ff7, type: 3}
+  obj_enemy05: {fileID: 6110272017055853480, guid: f7df22bbe51e339468791e0759319f92, type: 3}
   obj_boss01: {fileID: 1584175332987601894, guid: fa146b7f22709464da0704ee5abef267, type: 3}
   spawnTimer: 0
   spawnTime: 1
