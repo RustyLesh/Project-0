@@ -6,6 +6,8 @@ public class PlayerShip : MonoBehaviour
 {
     public Health PlayerHealth { get; private set; }
     public Arsenal PlayerBattlements { get; private set; }
+    public int coinCount { get; private set; }
+    
 
     private PlayerControls playerControls;
 
@@ -35,6 +37,7 @@ public class PlayerShip : MonoBehaviour
         playerControls = new PlayerControls();
         PlayerHealth = GetComponent<Health>();
         PlayerBattlements = GetComponent<Arsenal>();
+        coinCount = 0;
     }
 
     public void Shoot()
@@ -55,6 +58,13 @@ public class PlayerShip : MonoBehaviour
         if (playerControls.PlayerShipControls.Shoot.ReadValue<float>() > 0)
         {
             Shoot(); //TODO: Use shoot from arsenal
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.tag == "Coin") {
+            coinCount++;
+            Debug.Log("Player has: " + coinCount + " coins");
         }
     }
 }
