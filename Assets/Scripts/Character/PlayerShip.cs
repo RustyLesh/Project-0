@@ -11,9 +11,15 @@ public class PlayerShip : MonoBehaviour
 
     private float bulletSpeed = 5;
 
+    [SerializeField]private float shootDelay = 0.7f;
+
     [SerializeField] private GameObject bulletPrefrab;
 
     [SerializeField] private Transform firePosition;
+
+    float time = 0;
+
+    private float nextShootTime = 0;
     private void OnEnable()
     {
         playerControls.Enable();
@@ -33,13 +39,19 @@ public class PlayerShip : MonoBehaviour
 
     public void Shoot()
     {
-        //TODO: replace with proper code to use weapons
-        GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
-        newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;
+        if (time > nextShootTime)
+        {
+            nextShootTime = (time + shootDelay);
+            //TODO: replace with proper code to use weapons
+            GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
+            newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;
+        }
     }
 
     private void Update()
     {
+        time += Time.deltaTime;
+
         if (playerControls.PlayerShipControls.Shoot.ReadValue<float>() > 0)
         {
             Shoot(); //TODO: Use shoot from arsenal

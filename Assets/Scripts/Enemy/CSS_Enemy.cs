@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class CSS_Enemy : MonoBehaviour
 {
+    enum EAIState
+    {
+        Moving,
+        Targeting,
+        Shooting,
+        Retreating
+    }
 
-    [Header("Enemy Stats")]
+    [Header("Enemy Stats")] // Leave public for now until optimization process
     public int hp = 10;     // Base 10
     public int bodyDmg = 50;     // 
     public float movementSpeed = 3.0f;
     public float fireSpeed = 2.0f;
-    public float fireReload = 2.0f;
+    [SerializeField] private float fireReload;
+    [SerializeField] private float rotateSpeed;
+    [SerializeField] private float stateTimer;
+    [SerializeField] private EAIState state;
 
     [Space]
     [Header("Debug Functions")]
@@ -18,10 +28,13 @@ public class CSS_Enemy : MonoBehaviour
 
     [Space]
     [Header("Pattern Info")]
-    public int waypointPos = 1;     // Skip 0 as they spawn at 0
+    [SerializeField] private bool isRightSide;
+    [SerializeField] private int waypointPos;     
     public int movementPatternID;
 
-    private Vector2 moveDown2D = new Vector2(0, -1);
+    private Vector2 moveDown2D;
+    private Transform[] movementPattern;
+    private Vector3 playerShipPos;
 
     [SerializeField] SpawnCoin spawnCoin;
     [SerializeField] SpawnParticleSystem spawnParticleSystem;
@@ -30,13 +43,24 @@ public class CSS_Enemy : MonoBehaviour
     void Start()
     {
         //movementPatternID = 0;
+        this.fireReload = this.fireSpeed;
+        this.rotateSpeed = 40.0f;
+        this.stateTimer = 0.0f;
+        this.state = EAIState.Moving;
+        this.isRightSide = false;
+        this.waypointPos = 1;   // Skip 0 as they spawn at 0
+        this.moveDown2D = new Vector2(0, -1);
+
+        // Turn Forward Direction to down 
+        // due to unity Z-axis is the forward dir
+        this.transform.Rotate(new Vector3(0, 0, -90));
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.SetMovementPattern(this.movementPatternID);
-        this.Shooting();
+        this.UpdateMovementPattern(this.movementPatternID);
+        //this.Shooting();
 
         // Debug Functions
         this.DebugIsTakeDamage();
@@ -57,6 +81,7 @@ public class CSS_Enemy : MonoBehaviour
             // to set up check enemy type for easier spawning in bullet class (reminder for Leo simple enum struct for enemy type)
             // Input Spawn bullet here
             Debug.Log("Enemy Mob is Firing");
+
 
             // Reload
             fireReload = fireSpeed;
@@ -111,6 +136,42 @@ public class CSS_Enemy : MonoBehaviour
         }
     }
 
+    public void SetIsRightSide(bool _isRight)
+    {
+        this.isRightSide = _isRight;
+    }
+
+    public void SetWaypointPos(int _pos)
+    {
+        this.waypointPos = _pos;
+    }
+
+    public void SetMovementSpeed(float _speed)
+    {
+        this.movementSpeed = _speed;
+    }
+
+    public void SetFireSpeed(float _speed)
+    {
+        this.fireSpeed = _speed;
+        this.fireReload = _speed;
+    }
+
+    public void SetBodyDamage(int _dmg)
+    {
+        this.bodyDmg = _dmg;
+    }
+
+    public void SetHealth(int _hp)
+    {
+        this.hp = _hp;
+    }
+
+    public void SetPlayerShipPos(Vector3 _vec3)
+    {
+        this.playerShipPos = _vec3;
+    }
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// <summary>
     /// Setting Enemey Movement Patterns will determine 
@@ -119,9 +180,16 @@ public class CSS_Enemy : MonoBehaviour
     public void SetMovementID(int _id)
     {
         this.movementPatternID = _id;
+
+        if(_id != 0)
+        {
+            this.movementPattern = CSS_Spawn.Instance.GetAtkRun(_id - 1);
+        }
     }
 
-    void SetMovementPattern(int _id)
+    // TODO: After Sprint 1 optimize code if have time seperate behaviour into different scripts
+    // which will force a different prefab creations and instantiating differnt objects in spawn class
+    private void UpdateMovementPattern(int _id)
     {
         switch (_id)
         {
@@ -134,30 +202,137 @@ public class CSS_Enemy : MonoBehaviour
                 }
             case 1:
                 {
-                    //CSS_Spawn.Instance.GetAtkRun01();
-
                     // MoveTowards follows towards target
                     // For more advance movement patterns that requires following waypoints 
                     // or targeting the player itself.
 
-                    Transform[] tempPattern = CSS_Spawn.Instance.GetAtkRun01();
-                    this.transform.position = Vector2.MoveTowards(this.transform.position,
-                                                                tempPattern[this.waypointPos].position, 
+                    if (isRightSide)
+                    {
+                        //this.waypointPos = this.movementPattern.Length - 2;
+                        this.transform.position = Vector2.MoveTowards(this.transform.position, this.movementPattern[this.waypointPos].position, this.movementSpeed * Time.deltaTime);
+
+                        if (Vector2.Distance(transform.position, this.movementPattern[this.waypointPos].position) <= 0.1f)
+                        {
+                            if (this.waypointPos > 0)
+                            {
+                                this.waypointPos--;
+                            }
+                            else
+                            {
+                                // Simple delete
+                                this.DeleteItSelf();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.transform.position = Vector2.MoveTowards(this.transform.position,
+                                                                this.movementPattern[this.waypointPos].position,
                                                                 this.movementSpeed * Time.deltaTime);
 
-                    if(Vector2.Distance(transform.position, tempPattern[this.waypointPos].position) <= 0.1f)
-                    {
-                        if(this.waypointPos < tempPattern.Length - 1)
+                        if (Vector2.Distance(transform.position, this.movementPattern[this.waypointPos].position) <= 0.1f)
                         {
-                            this.waypointPos++;
+                            if (this.waypointPos < this.movementPattern.Length - 1)
+                            {
+                                this.waypointPos++;
+                            }
+                            else
+                            {
+                                // Simple delete
+                                this.DeleteItSelf();
+                            }
                         }
-                        else
+                    }                   
+
+                    break;
+                }
+            case 2:
+                {
+                    //this.stateTimer += Time.deltaTime;
+                    // Hit and run tactics
+                    if (isRightSide)
+                    {
+
+                    }
+                    else
+                    {
+                        if(this.state == EAIState.Moving)
+                        {
+                            this.transform.position = Vector2.MoveTowards(this.transform.position, this.movementPattern[1].position, this.movementSpeed * Time.deltaTime);
+
+                            if (Vector2.Distance(transform.position, this.movementPattern[1].position) <= 0.1f)
+                            {
+                                this.state = EAIState.Targeting;
+                            }
+
+                        }
+                        else if(this.state == EAIState.Targeting){ // total 6 sec
+
+                            this.stateTimer += Time.deltaTime;
+
+                            this.playerShipPos = CSS_GameManager.Instance.playerShip.transform.position;
+                            float rotateAngle = (Mathf.Atan2(this.playerShipPos.y - this.transform.position.y, 
+                                                             this.playerShipPos.x - this.transform.position.x) * Mathf.Rad2Deg);
+                            Quaternion tempRotAngle = Quaternion.Euler(new Vector3(0, 0, rotateAngle));
+                            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, tempRotAngle, rotateSpeed * Time.deltaTime);
+
+                            if(this.stateTimer >= 3.0f)
+                            {
+                                this.state = EAIState.Shooting;
+                            }
+
+                        }
+                        else if(this.state == EAIState.Shooting)
+                        {
+
+                            this.stateTimer += Time.deltaTime;
+                            this.Shooting();
+
+                            if (this.stateTimer >= 6.0f)
+                            {
+                                this.state = EAIState.Retreating;
+                            }
+                        }
+                        else if(this.state == EAIState.Retreating)
+                        {
+                            this.transform.position = Vector2.MoveTowards(this.transform.position, this.movementPattern[0].position, this.movementSpeed * Time.deltaTime);
+
+                            this.rotateSpeed = 500.0f;
+                            Quaternion tempRotAngle = Quaternion.Euler(new Vector3(0, 0, 90));
+                            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, tempRotAngle, rotateSpeed * Time.deltaTime);
+
+                            if (Vector2.Distance(transform.position, this.movementPattern[0].position) <= 0.1f)
+                            {
+                                // Simple delete
+                                this.DeleteItSelf();
+                            }
+                        }
+                    }
+
+                    break;
+                }
+            case 3:
+                {
+                    if (isRightSide)
+                    {
+                        this.transform.position = Vector2.MoveTowards(this.transform.position, this.movementPattern[3].position, this.movementSpeed * Time.deltaTime);
+
+                        if (Vector2.Distance(transform.position, this.movementPattern[3].position) <= 0.1f)
                         {
                             // Simple delete
                             this.DeleteItSelf();
                         }
                     }
+                    else
+                    {    
+                        this.transform.position = Vector2.MoveTowards(this.transform.position, this.movementPattern[1].position, this.movementSpeed * Time.deltaTime);
 
+                        if (Vector2.Distance(transform.position, this.movementPattern[1].position) <= 0.1f)
+                        {
+                            // Simple delete
+                            this.DeleteItSelf();
+                        }
+                    }
                     break;
                 }
             default:
@@ -171,11 +346,12 @@ public class CSS_Enemy : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// Debug Functions for live testing
     /// 
-    public void DebugIsTakeDamage()
+    private void DebugIsTakeDamage()
     {
         if(this.isTakingDamage == true)
         {
             this.TakeDamage(10);
+            this.isTakingDamage = false;
         }
     }
 }
