@@ -42,6 +42,7 @@ public class CSS_Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         //movementPatternID = 0;
         this.fireReload = this.fireSpeed;
         this.rotateSpeed = 40.0f;
@@ -54,6 +55,8 @@ public class CSS_Enemy : MonoBehaviour
         // Turn Forward Direction to down 
         // due to unity Z-axis is the forward dir
         this.transform.Rotate(new Vector3(0, 0, -90));
+
+        Invoke("OnDeath", 3f);
     }
 
     // Update is called once per frame
