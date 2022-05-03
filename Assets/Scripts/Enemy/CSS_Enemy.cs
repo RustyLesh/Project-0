@@ -28,8 +28,8 @@ public class CSS_Enemy : MonoBehaviour
 
     [Space]
     [Header("Pattern Info")]
-    [SerializeField] private bool isRightSide;
-    [SerializeField] private int waypointPos;     
+    [SerializeField] private bool isRightSide = false;
+    [SerializeField] private int waypointPos = 1;   // Skip 0 as they spawn at 0  
     public int movementPatternID;
 
     private Vector2 moveDown2D;
@@ -47,8 +47,8 @@ public class CSS_Enemy : MonoBehaviour
         this.rotateSpeed = 40.0f;
         this.stateTimer = 0.0f;
         this.state = EAIState.Moving;
-        this.isRightSide = false;
-        this.waypointPos = 1;   // Skip 0 as they spawn at 0
+        //this.isRightSide = false;
+        //this.waypointPos = 1;   
         this.moveDown2D = new Vector2(0, -1);
 
         // Turn Forward Direction to down 
@@ -81,7 +81,10 @@ public class CSS_Enemy : MonoBehaviour
             // to set up check enemy type for easier spawning in bullet class (reminder for Leo simple enum struct for enemy type)
             // Input Spawn bullet here
             Debug.Log("Enemy Mob is Firing");
-
+            //.transform.position;
+            //Vector3 spawnPosition = new Vector3(this.transform.position.x, this.transform.position.y - 5, this.transform.position.z);
+            //transform.position += enemies forward Vector3.forward * Time.deltaTime * movementSpeed;
+            // Unity Forward always on the Z-axis pointing right -->
 
             // Reload
             fireReload = fireSpeed;
@@ -248,11 +251,61 @@ public class CSS_Enemy : MonoBehaviour
                 }
             case 2:
                 {
-                    //this.stateTimer += Time.deltaTime;
                     // Hit and run tactics
                     if (isRightSide)
                     {
+                        if (this.state == EAIState.Moving)
+                        {
+                            this.transform.position = Vector2.MoveTowards(this.transform.position, this.movementPattern[3].position, this.movementSpeed * Time.deltaTime);
 
+                            if (Vector2.Distance(transform.position, this.movementPattern[3].position) <= 0.1f)
+                            {
+                                this.state = EAIState.Targeting;
+                            }
+
+                        }
+                        else if (this.state == EAIState.Targeting)
+                        { // total 6 sec
+
+                            this.stateTimer += Time.deltaTime;
+
+                            this.playerShipPos = CSS_GameManager.Instance.playerShip.transform.position;
+                            float rotateAngle = (Mathf.Atan2(this.playerShipPos.y - this.transform.position.y,
+                                                             this.playerShipPos.x - this.transform.position.x) * Mathf.Rad2Deg);
+                            Quaternion tempRotAngle = Quaternion.Euler(new Vector3(0, 0, rotateAngle));
+                            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, tempRotAngle, rotateSpeed * Time.deltaTime);
+
+                            if (this.stateTimer >= 3.0f)
+                            {
+                                this.state = EAIState.Shooting;
+                            }
+
+                        }
+                        else if (this.state == EAIState.Shooting)
+                        {
+
+                            this.stateTimer += Time.deltaTime;
+                            this.Shooting();
+
+                            if (this.stateTimer >= 6.0f)
+                            {
+                                this.state = EAIState.Retreating;
+                            }
+                        }
+                        else if (this.state == EAIState.Retreating)
+                        {
+                            this.transform.position = Vector2.MoveTowards(this.transform.position, this.movementPattern[2].position, this.movementSpeed * Time.deltaTime);
+
+                            this.rotateSpeed = 500.0f;
+                            Quaternion tempRotAngle = Quaternion.Euler(new Vector3(0, 0, 90));
+                            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, tempRotAngle, rotateSpeed * Time.deltaTime);
+
+                            if (Vector2.Distance(transform.position, this.movementPattern[2 ].position) <= 0.1f)
+                            {
+                                // Simple delete
+                                this.DeleteItSelf();
+                            }
+                        }
                     }
                     else
                     {

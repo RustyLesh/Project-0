@@ -59,39 +59,17 @@ public class CSS_Spawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.spawnTimer -= Time.deltaTime;
-        if(this.spawnTimer <= 0.0f)
-        {
-            // Spawn Simple Enemy
-            //GameObject tempEnemy = Instantiate(obj_enemy01, this.RandomSpawnPosition(), Quaternion.identity);
-            //tempEnemy.GetComponent<CSS_Enemy>().SetMovementID(0);
+        //this.spawnTimer -= Time.deltaTime;
+        //if(this.spawnTimer <= 0.0f)
+        //{
 
-            //// Spawn AtkRun01 Enemy
-            ////GameObject tempEnemy02 = Instantiate(obj_enemy01, this.atkRunMovePos[0].position, Quaternion.identity);
-            //GameObject tempEnemy02 = Instantiate(obj_enemy01, this.atkRunMovePos[0][0].position, Quaternion.identity);
-            //tempEnemy02.GetComponent<CSS_Enemy>().SetMovementID(1); 
+        //    //this.SpawnCurveMob(true);
+        //    //this.SpawnHitAndRunMob(true);
+        //    //this.SpawnCutterMob(true);
 
-            //GameObject tempEnemy03 = Instantiate(obj_enemy01, this.atkRunMovePos[0][this.atkRunMovePos[0].Count -1].position, Quaternion.identity);
-            //tempEnemy03.GetComponent<CSS_Enemy>().SetIsRightSide(true);
-            //tempEnemy03.GetComponent<CSS_Enemy>().SetMovementID(1);
-            //tempEnemy03.GetComponent<CSS_Enemy>().SetWaypointPos(this.atkRunMovePos[0].Count - 2);
-
-            // Spawn AtkRun02 Enemy
-            //GameObject tempEnemy06 = Instantiate(obj_enemy01, this.atkRunMovePos[1][0].position, Quaternion.identity);
-            //tempEnemy06.GetComponent<CSS_Enemy>().SetMovementID(2);
-
-            //// Spawn AtkRun03 Enemy
-            //GameObject tempEnemy04 = Instantiate(obj_enemy01, this.atkRunMovePos[2][0].position, Quaternion.identity);
-            //tempEnemy04.GetComponent<CSS_Enemy>().SetMovementID(3);
-
-            //GameObject tempEnemy05 = Instantiate(obj_enemy01, this.atkRunMovePos[2][2].position, Quaternion.identity);
-            //tempEnemy05.GetComponent<CSS_Enemy>().SetIsRightSide(true);
-            //tempEnemy05.GetComponent<CSS_Enemy>().SetMovementID(3);
-
-            // Reset Timer
-            this.spawnTimer = this.spawnTime;
-        }
-
+        //    // Reset Timer
+        //    this.spawnTimer = this.spawnTime;
+        //}
 
         // Debug Functions
         this.DebugIsSpawnMob01();
@@ -99,7 +77,104 @@ public class CSS_Spawn : MonoBehaviour
         this.DebugIsSpawnMob03();
         this.DebugIsSpawnMob04();
         this.DebugIsSpawnBoss01();
+    }
 
+    public void SpawnChargerMob()
+    {
+        // Spawn Map Charging Enemies 
+        GameObject tempEnemy = Instantiate(obj_enemy01, this.RandomSpawnPosition(), Quaternion.identity);
+        tempEnemy.GetComponent<CSS_Enemy>().SetMovementID(0);
+    }
+
+    // Spawn both left and right
+    public void SpawnCurveMob()
+    {
+        GameObject tempEnemy03 = Instantiate(obj_enemy02, this.atkRunMovePos[0][this.atkRunMovePos[0].Count - 1].position, Quaternion.identity);
+        tempEnemy03.GetComponent<CSS_Enemy>().SetIsRightSide(true);
+        tempEnemy03.GetComponent<CSS_Enemy>().SetMovementID(1);
+        tempEnemy03.GetComponent<CSS_Enemy>().SetWaypointPos(this.atkRunMovePos[0].Count - 2);
+
+        GameObject tempEnemy02 = Instantiate(obj_enemy02, this.atkRunMovePos[0][0].position, Quaternion.identity);
+        tempEnemy02.GetComponent<CSS_Enemy>().SetMovementID(1);
+    }
+
+    public void SpawnCurveMob(bool isRightSide)
+    {
+        // Spawn AtkRun01 Enemy
+        if (isRightSide)
+        {
+            GameObject tempEnemy03 = Instantiate(obj_enemy02, this.atkRunMovePos[0][this.atkRunMovePos[0].Count - 1].position, Quaternion.identity);
+            tempEnemy03.GetComponent<CSS_Enemy>().SetIsRightSide(isRightSide);
+            tempEnemy03.GetComponent<CSS_Enemy>().SetMovementID(1);
+            tempEnemy03.GetComponent<CSS_Enemy>().SetWaypointPos(this.atkRunMovePos[0].Count - 2);
+        }
+        else
+        {
+            GameObject tempEnemy02 = Instantiate(obj_enemy02, this.atkRunMovePos[0][0].position, Quaternion.identity);
+            tempEnemy02.GetComponent<CSS_Enemy>().SetMovementID(1);
+        }
+    }
+
+    // Spawn both left and right 
+    public void SpawnHitAndRunMob()
+    {
+        // Spawn Right
+        GameObject tempEnemy06 = Instantiate(obj_enemy03, this.atkRunMovePos[1][2].position, Quaternion.identity);
+        tempEnemy06.GetComponent<CSS_Enemy>().SetIsRightSide(true);
+        tempEnemy06.GetComponent<CSS_Enemy>().SetMovementID(2);
+
+        // Spawn Left
+        GameObject tempEnemy07 = Instantiate(obj_enemy03, this.atkRunMovePos[1][0].position, Quaternion.identity);
+        tempEnemy07.GetComponent<CSS_Enemy>().SetMovementID(2);
+    }
+
+    public void SpawnHitAndRunMob(bool isRightSide)
+    {
+        // Spawn AtkRun02 Enemy
+        if (isRightSide)
+        {
+            GameObject tempEnemy06 = Instantiate(obj_enemy03, this.atkRunMovePos[1][2].position, Quaternion.identity);
+            tempEnemy06.GetComponent<CSS_Enemy>().SetIsRightSide(isRightSide);
+            tempEnemy06.GetComponent<CSS_Enemy>().SetMovementID(2);
+            //tempEnemy06.GetComponent<CSS_Enemy>().SetWaypointPos(3);
+        }
+        else
+        {         
+            GameObject tempEnemy06 = Instantiate(obj_enemy03, this.atkRunMovePos[1][0].position, Quaternion.identity);
+            tempEnemy06.GetComponent<CSS_Enemy>().SetMovementID(2);
+        }
+    }
+
+    public void SpawnCutterMob()
+    {
+        GameObject tempEnemy05 = Instantiate(obj_enemy05, this.atkRunMovePos[2][2].position, Quaternion.identity);
+        tempEnemy05.GetComponent<CSS_Enemy>().SetIsRightSide(true);
+        tempEnemy05.GetComponent<CSS_Enemy>().SetMovementID(3);
+
+        GameObject tempEnemy04 = Instantiate(obj_enemy05, this.atkRunMovePos[2][0].position, Quaternion.identity);
+        tempEnemy04.GetComponent<CSS_Enemy>().SetMovementID(3);
+    }
+
+    public void SpawnCutterMob(bool isRightSide)
+    {
+        // Spawn AtkRun03 Enemy
+        if (isRightSide)
+        {
+            GameObject tempEnemy05 = Instantiate(obj_enemy05, this.atkRunMovePos[2][2].position, Quaternion.identity);
+            tempEnemy05.GetComponent<CSS_Enemy>().SetIsRightSide(isRightSide);
+            tempEnemy05.GetComponent<CSS_Enemy>().SetMovementID(3);
+        }
+        else
+        {
+            GameObject tempEnemy04 = Instantiate(obj_enemy05, this.atkRunMovePos[2][0].position, Quaternion.identity);
+            tempEnemy04.GetComponent<CSS_Enemy>().SetMovementID(3);
+        }
+    }
+
+    public void SpawnBoss01()
+    {
+        GameObject tempBoss01 = Instantiate(obj_boss01, this.bossSpawnPos.position, Quaternion.identity);
+        tempBoss01.GetComponent<CSS_Boss>().SetMovementPattern(1, this.GetBossMovementPattern(0));
     }
 
     private void SetDefaultSpawnPosition()
@@ -191,7 +266,6 @@ public class CSS_Spawn : MonoBehaviour
             GameObject tempEnemy = Instantiate(obj_enemy01, this.RandomSpawnPosition(), Quaternion.identity);
             tempEnemy.GetComponent<CSS_Enemy>().SetMovementID(0);
             this.isSpawnMob01 = false;
-         
         }
     }
 
@@ -203,12 +277,6 @@ public class CSS_Spawn : MonoBehaviour
             GameObject tempEnemy02 = Instantiate(obj_enemy02, this.atkRunMovePos[0][0].position, Quaternion.identity);
             tempEnemy02.GetComponent<CSS_Enemy>().SetMovementID(1);
             this.isSpawnMob02 = false;
-
-            // Right Side
-            //GameObject tempEnemy03 = Instantiate(obj_enemy01, this.atkRunMovePos[0][this.atkRunMovePos[0].Count -1].position, Quaternion.identity);
-            //tempEnemy03.GetComponent<CSS_Enemy>().SetIsRightSide(true);
-            //tempEnemy03.GetComponent<CSS_Enemy>().SetMovementID(1);
-            //tempEnemy03.GetComponent<CSS_Enemy>().SetWaypointPos(this.atkRunMovePos[0].Count - 2);
         }
     }
 
@@ -219,7 +287,6 @@ public class CSS_Spawn : MonoBehaviour
             // Spawn AtkRun02 Enemy
             GameObject tempEnemy06 = Instantiate(obj_enemy03, this.atkRunMovePos[1][0].position, Quaternion.identity);
             tempEnemy06.GetComponent<CSS_Enemy>().SetMovementID(2);
-            //tempEnemy06.GetComponent<CSS_Enemy>().SetPlayerShipPos(CSS_GameManager.Instance.playerShip.transform.position);
             this.isSpawnMob03 = false;
         }
     }
@@ -231,11 +298,6 @@ public class CSS_Spawn : MonoBehaviour
             // Spawn AtkRun03 Enemy
             GameObject tempEnemy04 = Instantiate(obj_enemy05, this.atkRunMovePos[2][0].position, Quaternion.identity);
             tempEnemy04.GetComponent<CSS_Enemy>().SetMovementID(3);
-
-            // Right Side
-            //GameObject tempEnemy05 = Instantiate(obj_enemy01, this.atkRunMovePos[2][2].position, Quaternion.identity);
-            //tempEnemy05.GetComponent<CSS_Enemy>().SetIsRightSide(true);
-            //tempEnemy05.GetComponent<CSS_Enemy>().SetMovementID(3);
             this.isSpawnMob04 = false;
         }
     }
