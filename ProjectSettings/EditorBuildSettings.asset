@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Final Scenes/StartScreen.unity
     guid: 4395acd574d356747a33f4eab00e5ee3
   - enabled: 1
-    path: Assets/Scenes/Final Scenes/PlayScreen.unity
-    guid: 011738ec167484a4dabf54abbc6c8dcc
+    path: Assets/Scenes/Final Scenes/Lvl_01.unity
+    guid: fb559d523a8501b4d859525a970f51e0
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 6b67ce0b2a144054a89ce159cd1fea6b, type: 2}

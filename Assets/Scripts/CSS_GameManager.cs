@@ -9,6 +9,7 @@ public class CSS_GameManager : MonoBehaviour
 
     [Header("References")]
     public GameObject playerShip;
+    public GameObject bossShip;
 
     [Space]
     [Header("Game Points")]
@@ -18,6 +19,7 @@ public class CSS_GameManager : MonoBehaviour
     [Space]
     [Header("Level 1 info")]
     public bool isBossSpawned = false;
+    public bool isBossDead = false;
     public int spawnPattern = 1;
     public int spawnNumbers = 5;
     public float gameTimer = 0.0f;
@@ -25,6 +27,13 @@ public class CSS_GameManager : MonoBehaviour
     public float spawnRate = 0.5f;
     public float cannonFodderTimer = 0.0f;
     public float lancerTimer = 0.0f;
+
+
+    // event
+    // to trigger to UI when boss is spawned
+    public delegate void OnBossUpdate();
+    public static event OnBossUpdate onBossUpdate;
+
 
     void Awake()
     {
@@ -121,8 +130,11 @@ public class CSS_GameManager : MonoBehaviour
         {
             if (!this.isBossSpawned)
             {
-                CSS_Spawn.Instance.SpawnBoss01();
+                bossShip = CSS_Spawn.Instance.SpawnBoss01();
                 this.isBossSpawned = true;
+
+                // send message that boss spawned
+                onBossUpdate.Invoke();
             }
         }
 

@@ -171,10 +171,12 @@ public class CSS_Spawn : MonoBehaviour
         }
     }
 
-    public void SpawnBoss01()
+    public GameObject SpawnBoss01()
     {
         GameObject tempBoss01 = Instantiate(obj_boss01, this.bossSpawnPos.position, Quaternion.identity);
         tempBoss01.GetComponent<CSS_Boss>().SetMovementPattern(1, this.GetBossMovementPattern(0));
+
+        return tempBoss01;
     }
 
     private void SetDefaultSpawnPosition()

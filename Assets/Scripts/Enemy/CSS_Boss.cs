@@ -15,11 +15,14 @@ public class CSS_Boss : MonoBehaviour
     public int bossID = 1;  // Only 1 boss atm
     public int bodyDmg = 50;
     private int waypoint;
-    [SerializeField] private float movementSpeed = 2.0f; 
+    [SerializeField] private float movementSpeed = 2.0f;
     public EBossState state;
 
     private Transform[] movementPattern;
     private List<GameObject> modules;
+
+    // Debug
+    [SerializeField] private bool isTakingDamage = false;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +41,9 @@ public class CSS_Boss : MonoBehaviour
     void Update()
     {
         this.MovementUpdate();
+
+        // debug
+        this.DebugIsTakeDamage();
     }
 
     private void MovementUpdate()
@@ -137,6 +143,7 @@ public class CSS_Boss : MonoBehaviour
             tempTotal += this.modules[i].GetComponent<CSS_BossModules>().GetModHP();
         }
 
+        //Debug.Log($"Boss health: {tempTotal}");
         return (tempTotal);
     }
 
@@ -161,6 +168,19 @@ public class CSS_Boss : MonoBehaviour
     {
         this.bossID = _id;
         this.movementPattern = _movePat;
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    ///Debug
+    ///
+
+    private void DebugIsTakeDamage()
+    {
+        if (this.isTakingDamage == true)
+        {
+            this.modules[0].GetComponent<CSS_BossModules>().TakeDamage(100);
+            this.isTakingDamage = false;
+        }
     }
 
 }
