@@ -127,6 +127,19 @@ public class CSS_Boss : MonoBehaviour
         }
     }
 
+    // Getting total health with all modules combined
+    // for UI healthbar
+    public int GetTotalBossHealth()
+    {
+        int tempTotal = 0;
+        for (int i = 0; i < this.modules.Count; i++)
+        {
+            tempTotal += this.modules[i].GetComponent<CSS_BossModules>().GetModHP();
+        }
+
+        return (tempTotal);
+    }
+
     /////////////////////////////////////////////////////////////////////////////////////////////////
     /// Encapsulators
     ///
