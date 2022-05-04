@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 775a56e10a42c0645bd6a691dd95d130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldCoin: {fileID: 9038690414998365371}
+  speed: 1
 --- !u!58 &7410890445567877698
 CircleCollider2D:
   m_ObjectHideFlags: 0
