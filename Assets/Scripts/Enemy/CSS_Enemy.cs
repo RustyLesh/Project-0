@@ -56,7 +56,7 @@ public class CSS_Enemy : MonoBehaviour
         // due to unity Z-axis is the forward dir
         this.transform.Rotate(new Vector3(0, 0, -90));
 
-        Invoke("OnDeath", 3f);
+        //Invoke("OnDeath", 3f);
     }
 
     // Update is called once per frame
