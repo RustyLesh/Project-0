@@ -4,12 +4,15 @@ using UnityEngine;
 [RequireComponent(typeof(Health), typeof(Arsenal))]
 public class PlayerShip : MonoBehaviour
 {
+    
+
+    public bool PlayerShoot;
     public Health PlayerHealth { get; private set; }
     public Arsenal PlayerBattlements { get; private set; }
 
     private PlayerControls playerControls;
 
-    private float bulletSpeed = 5;
+    private float timer;
 
     [SerializeField]private float shootDelay = 0.7f;
 
@@ -17,9 +20,20 @@ public class PlayerShip : MonoBehaviour
 
     [SerializeField] private Transform firePosition;
 
+    
+
     float time = 0;
 
     private float nextShootTime = 0;
+
+    [SerializeField] private float fireRate = 0.1f;
+
+    //private float bulletSpeed = 20f;
+
+    //[SerializeField]private GameObject bulletPrefrab;
+
+    //[SerializeField] private Transform firePosition;
+
     private void OnEnable()
     {
         playerControls.Enable();
@@ -37,7 +51,7 @@ public class PlayerShip : MonoBehaviour
         PlayerBattlements = GetComponent<Arsenal>();
     }
 
-    public void Shoot()
+    /*public void Shoot()
     {
         if (time > nextShootTime)
         {
@@ -45,16 +59,36 @@ public class PlayerShip : MonoBehaviour
             //TODO: replace with proper code to use weapons
             GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
             newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;
+
         }
     }
 
-    private void Update()
+       
+    }*/
+
+
+    void Update()
     {
         time += Time.deltaTime;
 
         if (playerControls.PlayerShipControls.Shoot.ReadValue<float>() > 0)
         {
-            Shoot(); //TODO: Use shoot from arsenal
+
+            timer += Time.deltaTime;
+            if (timer > fireRate) {
+                
+               GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
+                //PlayerBattlements.Shoot();
+                //PlayerShoot = true;
+                //newBullet.GetComponent<BulletTest>().SetPlayerFired();
+
+                timer = 0;
+                    }
+
         }
+        
     }
+
+    
+
 }

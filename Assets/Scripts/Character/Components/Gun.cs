@@ -8,7 +8,7 @@ public class Gun : Item
     [SerializeField] private Bullet bullet;
     [SerializeField] private Texture2D sprite;
     [SerializeField] private int projectileCount;
-    [SerializeField] private float fireRate;
+    public float fireRate;
 
 #region Public Getters
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CSS_Enemy : MonoBehaviour
 {
+    public PlayerShip EnemyShoot;
+
     enum EAIState
     {
         Moving,
@@ -21,6 +23,7 @@ public class CSS_Enemy : MonoBehaviour
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float stateTimer;
     [SerializeField] private EAIState state;
+    [SerializeField] private GameObject bullet;
 
     [Space]
     [Header("Debug Functions")]
@@ -57,7 +60,7 @@ public class CSS_Enemy : MonoBehaviour
     void Update()
     {
         this.UpdateMovementPattern(this.movementPatternID);
-        //this.Shooting();
+        this.Shooting();
 
         // Debug Functions
         this.DebugIsTakeDamage();
@@ -73,6 +76,10 @@ public class CSS_Enemy : MonoBehaviour
         }
         else
         {
+
+            Vector3 spawnPosition = new Vector3(this.transform.position.x, this.transform.position.y - 3f, this.transform.position.z);
+            GameObject newBullet = Instantiate(bullet, spawnPosition, this.transform.rotation);
+            //EnemyShoot.PlayerShoot = false;
             // Spawn bullet class and do any set up needed for bullet modifcation here
             // NOTE: if trying to tailor specific bullet types and behaviour notify Leo
             // to set up check enemy type for easier spawning in bullet class (reminder for Leo simple enum struct for enemy type)

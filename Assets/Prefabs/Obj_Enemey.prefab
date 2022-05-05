@@ -133,8 +133,10 @@ MonoBehaviour:
   movementSpeed: 3
   fireSpeed: 2
   fireReload: 2
+  rotateSpeed: 0
   stateTimer: 0
   state: 0
+  bullet: {fileID: 9187117320916237108, guid: cc885e5c1c804c04e9e9f9523a814472, type: 3}
   isTakingDamage: 0
   isRightSide: 0
   waypointPos: 1

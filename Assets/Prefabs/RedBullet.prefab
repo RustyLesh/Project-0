@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 8657587973761910746}
   - component: {fileID: 6304990497609984036}
   - component: {fileID: 1773839936534793811}
+  - component: {fileID: 7028012009541229707}
   m_Layer: 0
   m_Name: RedBullet
   m_TagString: Bullet
@@ -130,7 +131,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -152,3 +153,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.21, y: 0.72}
   m_Direction: 0
+--- !u!114 &7028012009541229707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9187117320916237108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c1fb6a9e09eee41a47b862ac8814f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  rb: {fileID: 6304990497609984036}
