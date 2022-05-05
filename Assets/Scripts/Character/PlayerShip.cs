@@ -9,6 +9,8 @@ public class PlayerShip : MonoBehaviour
     public bool PlayerShoot;
     public Health PlayerHealth { get; private set; }
     public Arsenal PlayerBattlements { get; private set; }
+    public int coinCount { get; private set; }
+    
 
     private PlayerControls playerControls;
 
@@ -49,6 +51,7 @@ public class PlayerShip : MonoBehaviour
         playerControls = new PlayerControls();
         PlayerHealth = GetComponent<Health>();
         PlayerBattlements = GetComponent<Arsenal>();
+        coinCount = 0;
     }
 
     /*public void Shoot()
@@ -89,6 +92,12 @@ public class PlayerShip : MonoBehaviour
         
     }
 
-    
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.tag == "Coin") {
+            coinCount++;
+            Debug.Log("Player has: " + coinCount + " coins");
+        }
+    }
 
 }

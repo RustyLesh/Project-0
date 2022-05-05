@@ -12,7 +12,8 @@ public class CSS_MobOffScreen : MonoBehaviour
         {
             // Simple deletion because it survived
             collision.gameObject.GetComponent<CSS_Enemy>().DeleteItSelf();
-            Debug.Log("Enemy Survived");
+            // eg collision.gameObject.GetComponent<CSS_Enemy>().TakeDamage(10);
+            //Debug.Log("Enemy Survived");
         }
     }
 }

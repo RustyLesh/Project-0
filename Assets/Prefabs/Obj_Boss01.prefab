@@ -128,6 +128,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee1c7afbd243304484a0003a835bbf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDestroyed: 0
+  modHP: 0
+  defaultModHP: 0
+  ammo: 0
+  ammoCount: 0
+  fireSpeed: 0
+  fireReload: 0
+  fireRate: 0
 --- !u!212 &1584175332036980896
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -305,6 +313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07559e9cbc279854fa11d7b02aba5fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDestroyed: 0
+  modHP: 0
 --- !u!212 &1584175332335000056
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -449,6 +459,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee1c7afbd243304484a0003a835bbf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDestroyed: 0
+  modHP: 0
+  defaultModHP: 0
+  ammo: 0
+  ammoCount: 0
+  fireSpeed: 0
+  fireReload: 0
+  fireRate: 0
 --- !u!212 &1584175332564851313
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -571,7 +589,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584175332987601894}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -579,7 +597,7 @@ Transform:
   - {fileID: 1584175331950441248}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1584175332987601892
 MonoBehaviour:
   m_ObjectHideFlags: 0

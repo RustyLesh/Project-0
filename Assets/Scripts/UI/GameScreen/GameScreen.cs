@@ -5,8 +5,6 @@
  * All elements on the gamescreen UI will be managed here
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -16,46 +14,102 @@ public class GameScreen : MonoBehaviour
     // Player
     [SerializeField] Slider playerHPBar;
 
+    // Boss
+    [SerializeField] GameObject bossObject;
+    [SerializeField] Slider bossHPBar;
+
     //Level
     [SerializeField] TMP_Text timeRemainingInSecondsText;
     [SerializeField] TMP_Text currentStageText;
-    [SerializeField] TMP_Text currentDeathsText;
-    [SerializeField] TMP_Text currentScoreText;
 
-    int timeRemainingInSeconds = 60;
-    int currentStage = 0;
-    int currentDeaths = 0;
-    int currentScore = 0;
+    float timeRemainingInSeconds = 140;
+    int currentStage = 1;
 
-    private PlayerShip playerShip;
+    bool timerOn = false;
+    bool bossSpawned = false;
+
+    // CACHE
+    GameObject playerShip;
+    GameObject bossShip;
+    CSS_GameManager gameManager = CSS_GameManager.Instance;
+
 
     void Start()
     {
-        // Initiallize Player related   
-        playerShip = FindObjectOfType<PlayerShip>();
-        playerHPBar.value = playerShip.PlayerHealth.GetHealth();
+        // Initiallize Player related
+        playerShip = CSS_GameManager.Instance.playerShip;
+        playerHPBar.maxValue = playerShip.GetComponent<PlayerShip>().PlayerHealth.GetHealth();
+        playerHPBar.value = playerShip.GetComponent<PlayerShip>().PlayerHealth.GetHealth();
 
-        // Initiallize UI related
-        // currentStage = getCurrentStage();
-        // currentDeaths = getCurrentGameManager().getTotalDeaths();
-        // currentScore = getCurrentGameManager().getTotalScore();
-        // plz implement these so I can finish this
+        // Init stage
+        currentStageText.text = $"Stage: {currentStage}";
+
+        // boss object off
+        bossObject.SetActive(false);
+
+        timerOn = true;
+    }
+
+    void Update()
+    {
+        //Timer UI
+        if (timerOn)
+        {
+            if (timeRemainingInSeconds > 0)
+            {
+                timeRemainingInSeconds -= Time.deltaTime;
+                UpdateTime();
+            }
+            else
+            {
+                timerOn = false;
+                timeRemainingInSeconds = 0;
+                timeRemainingInSecondsText.text = "Boss Fight";
+            }
+        }
+
+
+        // Update the boss health bar
+        if (bossSpawned)
+        {
+            bossHPBar.value = bossShip.GetComponent<CSS_Boss>().GetTotalBossHealth();
+        }
+               
+
     }
 
     void OnEnable()
     {
         Health.OnHealthChanged += HealthChanged;
+        CSS_GameManager.onBossUpdate += ActivateBossHealthBar;
     }
 
     void OnDisable()
     {
         Health.OnHealthChanged -= HealthChanged;
+        CSS_GameManager.onBossUpdate -= ActivateBossHealthBar;
     }
 
     // Subscribing to the Health. Updates value when player health is changed
     public void HealthChanged()
     {
-        //Debug.Log("Health changed!");
-        playerHPBar.value = playerShip.PlayerHealth.GetHealth();
+        playerHPBar.value = playerShip.GetComponent<PlayerShip>().PlayerHealth.GetHealth();
+    }
+
+    // Subscribing to boss.
+    void ActivateBossHealthBar()
+    {
+        timeRemainingInSecondsText.text = "Boss Fight";
+        bossShip = CSS_GameManager.Instance.bossShip;
+        bossObject.SetActive(true);
+        bossSpawned = true;
+
+        // TODO: Fix null error (prob instatiate timing different to Invoke)
+        //bossHPBar.maxValue = bossShip.GetComponent<CSS_Boss>().GetTotalBossHealth();
+    }
+
+    void UpdateTime()
+    {
+        timeRemainingInSecondsText.text = ((int) timeRemainingInSeconds).ToString();
     }
 }

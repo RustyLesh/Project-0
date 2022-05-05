@@ -607,10 +607,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHPBar: {fileID: 1292531691}
+  bossObject: {fileID: 0}
+  bossHPBar: {fileID: 0}
   timeRemainingInSecondsText: {fileID: 0}
   currentStageText: {fileID: 0}
-  currentDeathsText: {fileID: 0}
-  currentScoreText: {fileID: 0}
 --- !u!114 &743023093
 MonoBehaviour:
   m_ObjectHideFlags: 0
