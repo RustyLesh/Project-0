@@ -30,11 +30,6 @@ public class PlayerShip : MonoBehaviour
 
     [SerializeField] private float fireRate = 0.1f;
 
-    //private float bulletSpeed = 20f;
-
-    //[SerializeField]private GameObject bulletPrefrab;
-
-    //[SerializeField] private Transform firePosition;
 
     private void OnEnable()
     {
@@ -54,21 +49,6 @@ public class PlayerShip : MonoBehaviour
         coinCount = 0;
     }
 
-    /*public void Shoot()
-    {
-        if (time > nextShootTime)
-        {
-            nextShootTime = (time + shootDelay);
-            //TODO: replace with proper code to use weapons
-            GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
-            newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;
-
-        }
-    }
-
-       
-    }*/
-
 
     void Update()
     {
@@ -81,9 +61,8 @@ public class PlayerShip : MonoBehaviour
             if (timer > fireRate) {
                 
                GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
-                //PlayerBattlements.Shoot();
-                //PlayerShoot = true;
-                //newBullet.GetComponent<BulletTest>().SetPlayerFired();
+               newBullet.transform.Rotate(new Vector3(0, 0, +90));
+               newBullet.GetComponent<BulletTest>().SetPlayerFired(true);
 
                 timer = 0;
                     }
