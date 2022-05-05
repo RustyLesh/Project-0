@@ -22,14 +22,28 @@ namespace Project0
         }
 
         void Update() {
-            //Move coin downwards
-            transform.position += Vector3.down * Time.deltaTime * speed;
-
+            MoveDownwards();
             //If coin falls out of view destroy it
-            if (!goldCoin.GetComponent<Renderer>().isVisible) {
+            if (!IsInView()) {
                 Destroy(gameObject);
             }
-        }     
+        }
+
+        public void DestroySelf() {
+            if (!IsInView()) {
+                Destroy(gameObject);
+            }
+        }
+        
+        public void MoveDownwards() {
+            //Move coin downwards
+            transform.position += Vector3.down * Time.deltaTime * speed;
+        }
+
+        //Checks if coin is outside of camera view
+        public bool IsInView() {
+            return goldCoin.GetComponent<Renderer>().isVisible;
+        }
     }
 }
 
