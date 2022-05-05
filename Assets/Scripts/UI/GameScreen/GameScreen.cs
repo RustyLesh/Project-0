@@ -29,17 +29,17 @@ public class GameScreen : MonoBehaviour
     bool bossSpawned = false;
 
     // CACHE
-    PlayerShip playerShip;
+    GameObject playerShip;
     GameObject bossShip;
     CSS_GameManager gameManager = CSS_GameManager.Instance;
 
-    
 
     void Start()
     {
-        // Initiallize Player related   
-        playerShip = FindObjectOfType<PlayerShip>();
-        playerHPBar.value = playerShip.PlayerHealth.GetHealth();
+        // Initiallize Player related
+        playerShip = CSS_GameManager.Instance.playerShip;
+        playerHPBar.maxValue = playerShip.GetComponent<PlayerShip>().PlayerHealth.GetHealth();
+        playerHPBar.value = playerShip.GetComponent<PlayerShip>().PlayerHealth.GetHealth();
 
         // Init stage
         currentStageText.text = $"Stage: {currentStage}";
@@ -72,7 +72,6 @@ public class GameScreen : MonoBehaviour
         // Update the boss health bar
         if (bossSpawned)
         {
-            Debug.Log(bossShip.GetComponent<CSS_Boss>().GetTotalBossHealth());
             bossHPBar.value = bossShip.GetComponent<CSS_Boss>().GetTotalBossHealth();
         }
                
@@ -94,8 +93,7 @@ public class GameScreen : MonoBehaviour
     // Subscribing to the Health. Updates value when player health is changed
     public void HealthChanged()
     {
-        //Debug.Log("Health changed!");
-        playerHPBar.value = playerShip.PlayerHealth.GetHealth();
+        playerHPBar.value = playerShip.GetComponent<PlayerShip>().PlayerHealth.GetHealth();
     }
 
     // Subscribing to boss.
