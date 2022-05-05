@@ -31,6 +31,7 @@ public class GameScreen : MonoBehaviour
     // CACHE
     PlayerShip playerShip;
     GameObject bossShip;
+    CSS_GameManager gameManager = CSS_GameManager.Instance;
 
     
 
@@ -51,10 +52,10 @@ public class GameScreen : MonoBehaviour
 
     void Update()
     {
-        // Timer UI
-        if(timerOn)
+        //Timer UI
+        if (timerOn)
         {
-            if(timeRemainingInSeconds > 0)
+            if (timeRemainingInSeconds > 0)
             {
                 timeRemainingInSeconds -= Time.deltaTime;
                 UpdateTime();
@@ -63,8 +64,10 @@ public class GameScreen : MonoBehaviour
             {
                 timerOn = false;
                 timeRemainingInSeconds = 0;
+                timeRemainingInSecondsText.text = "Boss Fight";
             }
         }
+
 
         // Update the boss health bar
         if (bossSpawned)
