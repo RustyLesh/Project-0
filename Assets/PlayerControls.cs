@@ -33,6 +33,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Value"",
+                    ""id"": ""b415c2a3-0aba-44b0-8d61-0d341f64b724"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -101,6 +109,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9c35aa96-78f6-4017-8423-309a2f5c1e7a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -138,6 +157,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_PlayerShipControls = asset.FindActionMap("PlayerShipControls", throwIfNotFound: true);
         m_PlayerShipControls_PlayerMovement = m_PlayerShipControls.FindAction("PlayerMovement", throwIfNotFound: true);
         m_PlayerShipControls_Shoot = m_PlayerShipControls.FindAction("Shoot", throwIfNotFound: true);
+        m_PlayerShipControls_Pause = m_PlayerShipControls.FindAction("Pause", throwIfNotFound: true);
         // UIControls
         m_UIControls = asset.FindActionMap("UIControls", throwIfNotFound: true);
         m_UIControls_Pause = m_UIControls.FindAction("Pause", throwIfNotFound: true);
@@ -192,12 +212,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private IPlayerShipControlsActions m_PlayerShipControlsActionsCallbackInterface;
     private readonly InputAction m_PlayerShipControls_PlayerMovement;
     private readonly InputAction m_PlayerShipControls_Shoot;
+    private readonly InputAction m_PlayerShipControls_Pause;
     public struct PlayerShipControlsActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerShipControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @PlayerMovement => m_Wrapper.m_PlayerShipControls_PlayerMovement;
         public InputAction @Shoot => m_Wrapper.m_PlayerShipControls_Shoot;
+        public InputAction @Pause => m_Wrapper.m_PlayerShipControls_Pause;
         public InputActionMap Get() { return m_Wrapper.m_PlayerShipControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -213,6 +235,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Shoot.started -= m_Wrapper.m_PlayerShipControlsActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_PlayerShipControlsActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_PlayerShipControlsActionsCallbackInterface.OnShoot;
+                @Pause.started -= m_Wrapper.m_PlayerShipControlsActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerShipControlsActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerShipControlsActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerShipControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -223,6 +248,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -264,6 +292,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     {
         void OnPlayerMovement(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIControlsActions
     {
