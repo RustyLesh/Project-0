@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - EnemyParticleSystem
   - Coin
+  - Boss
   layers:
   - Default
   - TransparentFX

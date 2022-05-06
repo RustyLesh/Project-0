@@ -10,6 +10,7 @@ public class CSS_GameManager : MonoBehaviour
     [Header("References")]
     public GameObject playerShip;
     public GameObject bossShip;
+    [SerializeField] public GameObject bullet;
 
     [Space]
     [Header("Game Points")]
@@ -20,6 +21,7 @@ public class CSS_GameManager : MonoBehaviour
     [Header("Level 1 info")]
     public bool isBossSpawned = false;
     public bool isBossDead = false;
+    public bool isPlayerDead = false;
     public int spawnPattern = 1;
     public int spawnNumbers = 5;
     public float gameTimer = 0.0f;
@@ -137,6 +139,16 @@ public class CSS_GameManager : MonoBehaviour
                 onBossUpdate.Invoke();
             }
         }
-
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////
+
+    public void SetIsBossDead(bool _isDead){
+        this.isBossDead = _isDead;
+    }
+
+    public void SetIsPlayerDead(bool _isDead){
+        this.isPlayerDead = _isDead;
+    }
+
 }

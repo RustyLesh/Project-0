@@ -129,7 +129,7 @@ public class CSS_Boss : MonoBehaviour
         if (isBossDead)
         {
             // Ping Game Manager boss is dead
-
+            CSS_GameManager.Instance.SetIsBossDead(true);
         }
     }
 
