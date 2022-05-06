@@ -927,6 +927,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3140913851020366980, guid: 3d468838829b25a409a74430d7f46483, type: 3}
   m_PrefabInstance: {fileID: 579703376}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1859232831 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2400032090337409569, guid: 5a9bc28b82adf46b28439800c165cef0, type: 3}
+  m_PrefabInstance: {fileID: 1848642258143489198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1848642258143489198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -934,6 +939,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1438019887, guid: 5a9bc28b82adf46b28439800c165cef0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1848642256777982048, guid: 5a9bc28b82adf46b28439800c165cef0, type: 3}
+      propertyPath: playerDeadPanel
+      value: 
+      objectReference: {fileID: 1859232831}
     - target: {fileID: 1848642256777982051, guid: 5a9bc28b82adf46b28439800c165cef0, type: 3}
       propertyPath: m_Name
       value: GameScreen

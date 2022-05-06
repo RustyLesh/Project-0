@@ -25,6 +25,7 @@ public class GameScreen : MonoBehaviour
     [SerializeField] TMP_Text currentStageText;
 
     [SerializeField] GameObject bossDefeatPanel;
+    [SerializeField] GameObject playerDeadPanel;
 
     int currentStage = 1;
 
@@ -79,7 +80,12 @@ public class GameScreen : MonoBehaviour
 
         if (CSS_GameManager.Instance.isBossDead)
         {
-            ReturnToMainMenu();
+            ReturnToMainMenu("boss");
+        }
+
+        if(CSS_GameManager.Instance.isPlayerDead)
+        {
+            ReturnToMainMenu("player");
         }
 
     }
@@ -121,9 +127,17 @@ public class GameScreen : MonoBehaviour
         //timeRemainingInSecondsText.text = ((int) Game).ToString();
     }
 
-    void ReturnToMainMenu()
+    void ReturnToMainMenu(string entityDead)
     {
-        bossDefeatPanel.SetActive(true);
+        if(entityDead == "boss")
+        {
+            bossDefeatPanel.SetActive(true);
+        }
+        else if (entityDead == "player")
+        {
+            playerDeadPanel.SetActive(true);
+        }
+        
         StartCoroutine(DelayToMainMenu());
     }
 
