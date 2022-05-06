@@ -12,6 +12,7 @@ public class CSS_Boss : MonoBehaviour
     }
 
     [Header("Boss Stats")]
+    bool isBossDead = false;
     public int bossID = 1;  // Only 1 boss atm
     public int bodyDmg = 50;
     private int waypoint;
@@ -115,7 +116,7 @@ public class CSS_Boss : MonoBehaviour
     // to check if all other modules are also destroyed to end game.
     public void CheckModules()
     {
-        bool isBossDead = true;
+        this.isBossDead = true;
         for(int i = 0; i < this.modules.Count; i++)
         {
             if (this.modules[i].GetComponent<CSS_BossModules>().GetIsDestroyed() == false)
@@ -143,7 +144,7 @@ public class CSS_Boss : MonoBehaviour
             tempTotal += this.modules[i].GetComponent<CSS_BossModules>().GetModHP();
         }
 
-        //Debug.Log($"Boss health: {tempTotal}");
+        Debug.Log($"Boss health: {tempTotal}");
         return (tempTotal);
     }
 

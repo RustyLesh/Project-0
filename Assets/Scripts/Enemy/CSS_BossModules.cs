@@ -33,7 +33,7 @@ public abstract class CSS_BossModules : MonoBehaviour
     // Most likely to be turned into virtual
     public void ModuleDestroyed()
     {
-
+        this.isDestroyed = true;
         // Ping to Boss script to check other modules for death and endgame
         this.transform.parent.parent.gameObject.GetComponent<CSS_Boss>().CheckModules();
     }
