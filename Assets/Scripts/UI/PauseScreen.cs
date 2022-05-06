@@ -16,19 +16,23 @@ public class PauseScreen : MonoBehaviour
         playerControls = new PlayerControls();
     }
 
-    void Update()
+    void Start()
     {
-        //playerControls.PlayerShipControls.
+        pauseMenuUI.SetActive(false);
     }
 
     private void OnEnable()
     {
         playerControls.Enable();
+
+        playerControls.UIControls.Pause.started += OnPause;
     }
 
     private void OnDisable()
     {
         playerControls.Disable();
+
+        playerControls.UIControls.Pause.started -= OnPause;
     }
 
     void OnPause(InputAction.CallbackContext context)
@@ -44,7 +48,7 @@ public class PauseScreen : MonoBehaviour
         }
     }
 
-    void Resume()
+    public void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
@@ -56,5 +60,11 @@ public class PauseScreen : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+    }
+
+    public void Quit()
+    {
+        Debug.Log("Quitting");
+        Application.Quit();
     }
 }
