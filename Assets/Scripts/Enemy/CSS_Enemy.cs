@@ -45,7 +45,6 @@ public class CSS_Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         //movementPatternID = 0;
         this.fireReload = this.fireSpeed;
         this.rotateSpeed = 40.0f;
@@ -58,8 +57,6 @@ public class CSS_Enemy : MonoBehaviour
         // Turn Forward Direction to down 
         // due to unity Z-axis is the forward dir
         this.transform.Rotate(new Vector3(0, 0, -90));
-
-        //Invoke("OnDeath", 3f);
     }
 
     // Update is called once per frame
@@ -83,14 +80,20 @@ public class CSS_Enemy : MonoBehaviour
         else
         {
 
-            Vector3 spawnPosition = new Vector3(this.transform.position.x, this.transform.position.y - 3f, this.transform.position.z);
+            Vector3 spawnPosition = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
             GameObject newBullet = Instantiate(bullet, spawnPosition, this.transform.rotation);
+            newBullet.GetComponent<BulletTest>().SetPlayerFired(false);
+
+            if(this.movementPatternID == 2){
+                newBullet.GetComponent<BulletTest>().SetVelocityDirection(this.transform.forward);
+            }
+
             //EnemyShoot.PlayerShoot = false;
             // Spawn bullet class and do any set up needed for bullet modifcation here
             // NOTE: if trying to tailor specific bullet types and behaviour notify Leo
             // to set up check enemy type for easier spawning in bullet class (reminder for Leo simple enum struct for enemy type)
             // Input Spawn bullet here
-            Debug.Log("Enemy Mob is Firing");
+            //Debug.Log("Enemy Mob is Firing");
             //.transform.position;
             //Vector3 spawnPosition = new Vector3(this.transform.position.x, this.transform.position.y - 5, this.transform.position.z);
             //transform.position += enemies forward Vector3.forward * Time.deltaTime * movementSpeed;

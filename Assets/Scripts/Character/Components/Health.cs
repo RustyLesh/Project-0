@@ -21,6 +21,10 @@ public class Health : MonoBehaviour
     {
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
         OnHealthChanged.Invoke();
+
+        if(this.currentHealth <= 0){
+            CSS_GameManager.Instance.SetIsPlayerDead(true);
+        }
     }
 
     public void Heal(float healAmount)
