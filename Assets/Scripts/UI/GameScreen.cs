@@ -7,7 +7,9 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections;
 
 public class GameScreen : MonoBehaviour
 {
@@ -22,7 +24,8 @@ public class GameScreen : MonoBehaviour
     [SerializeField] TMP_Text timeRemainingInSecondsText;
     [SerializeField] TMP_Text currentStageText;
 
-    float timeRemainingInSeconds = 140;
+    [SerializeField] GameObject bossDefeatPanel;
+
     int currentStage = 1;
 
     bool timerOn = false;
@@ -31,7 +34,7 @@ public class GameScreen : MonoBehaviour
     // CACHE
     GameObject playerShip;
     GameObject bossShip;
-    CSS_GameManager gameManager = CSS_GameManager.Instance;
+    //CSS_GameManager gameManager = CSS_GameManager.Instance;
 
 
     void Start()
@@ -46,6 +49,7 @@ public class GameScreen : MonoBehaviour
 
         // boss object off
         bossObject.SetActive(false);
+        bossDefeatPanel.SetActive(false);
 
         timerOn = true;
     }
@@ -55,15 +59,13 @@ public class GameScreen : MonoBehaviour
         //Timer UI
         if (timerOn)
         {
-            if (timeRemainingInSeconds > 0)
+            if (CSS_GameManager.Instance.gameTimer <= 140)
             {
-                timeRemainingInSeconds -= Time.deltaTime;
                 UpdateTime();
             }
             else
             {
                 timerOn = false;
-                timeRemainingInSeconds = 0;
                 timeRemainingInSecondsText.text = "Boss Fight";
             }
         }
@@ -74,7 +76,11 @@ public class GameScreen : MonoBehaviour
         {
             bossHPBar.value = bossShip.GetComponent<CSS_Boss>().GetTotalBossHealth();
         }
-               
+
+        if (CSS_GameManager.Instance.isBossDead)
+        {
+            ReturnToMainMenu();
+        }
 
     }
 
@@ -110,6 +116,20 @@ public class GameScreen : MonoBehaviour
 
     void UpdateTime()
     {
-        timeRemainingInSecondsText.text = ((int) timeRemainingInSeconds).ToString();
+
+        timeRemainingInSecondsText.text = (140 - (int)CSS_GameManager.Instance.gameTimer).ToString();
+        //timeRemainingInSecondsText.text = ((int) Game).ToString();
+    }
+
+    void ReturnToMainMenu()
+    {
+        bossDefeatPanel.SetActive(true);
+        StartCoroutine(DelayToMainMenu());
+    }
+
+    IEnumerator DelayToMainMenu()
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene(0);
     }
 }
