@@ -10,6 +10,8 @@ namespace Project0
 
         [SerializeField] GameObject goldCoin;
         [SerializeField] float speed = 1f;
+        private bool spawned = false; 
+
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -22,15 +24,13 @@ namespace Project0
         }
 
         void Update() {
-            MoveDownwards();
-            //If coin falls out of view destroy it
-            if (!IsInView()) {
-                Destroy(gameObject);
+            //If sprite has rendered set spawned to true
+            if (goldCoin.GetComponent<Renderer>().isVisible) {
+                spawned = true;
             }
-        }
-
-        public void DestroySelf() {
-            if (!IsInView()) {
+            MoveDownwards();
+            //If coin has spawned and Renderer.IsVisible is false, destroy coin
+            if (spawned && !IsInView()) {
                 Destroy(gameObject);
             }
         }
