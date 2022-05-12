@@ -4,8 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(Health), typeof(Arsenal))]
 public class PlayerShip : MonoBehaviour
 {
-    
-
     public bool PlayerShoot;
     public Health PlayerHealth { get; private set; }
     public Arsenal PlayerBattlements { get; private set; }
@@ -48,14 +46,11 @@ public class PlayerShip : MonoBehaviour
             if (timer > fireRate) {
                 
                 GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
-                newBullet.transform.Rotate(new Vector3(0, 0, +90));
-                //newBullet.GetComponent<BulletTest>().SetPlayerFired(true);
+                newBullet.GetComponent<BulletTest>().SetPlayerFired(true);
 
                 timer = 0;
             }
-
         }
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

@@ -38,6 +38,7 @@ public class CSS_Enemy : MonoBehaviour
     private Vector2 moveDown2D;
     private Transform[] movementPattern;
     private Vector3 playerShipPos;
+    private Transform shootPos;
 
     [SerializeField] SpawnCoin spawnCoin;
     [SerializeField] SpawnParticleSystem spawnParticleSystem;
@@ -53,6 +54,7 @@ public class CSS_Enemy : MonoBehaviour
         //this.isRightSide = false;
         //this.waypointPos = 1;   
         this.moveDown2D = new Vector2(0, -1);
+        this.shootPos = this.transform.GetChild(1);
 
         // Turn Forward Direction to down 
         // due to unity Z-axis is the forward dir
@@ -63,7 +65,7 @@ public class CSS_Enemy : MonoBehaviour
     void Update()
     {
         this.UpdateMovementPattern(this.movementPatternID);
-        this.Shooting();
+        //this.Shooting();
 
         // Debug Functions
         this.DebugIsTakeDamage();
@@ -79,25 +81,25 @@ public class CSS_Enemy : MonoBehaviour
         }
         else
         {
-
-            Vector3 spawnPosition = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
-            GameObject newBullet = Instantiate(bullet, spawnPosition, this.transform.rotation);
-            newBullet.GetComponent<BulletTest>().SetPlayerFired(false);
-
-            if(this.movementPatternID == 2){
-                newBullet.GetComponent<BulletTest>().SetVelocityDirection(this.transform.forward);
-            }
-
-            //EnemyShoot.PlayerShoot = false;
             // Spawn bullet class and do any set up needed for bullet modifcation here
             // NOTE: if trying to tailor specific bullet types and behaviour notify Leo
             // to set up check enemy type for easier spawning in bullet class (reminder for Leo simple enum struct for enemy type)
             // Input Spawn bullet here
             //Debug.Log("Enemy Mob is Firing");
-            //.transform.position;
-            //Vector3 spawnPosition = new Vector3(this.transform.position.x, this.transform.position.y - 5, this.transform.position.z);
-            //transform.position += enemies forward Vector3.forward * Time.deltaTime * movementSpeed;
             // Unity Forward always on the Z-axis pointing right -->
+
+            //Vector3 spawnPosition = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+            Vector3 spawnPos = this.shootPos.position;
+
+            GameObject newBullet = Instantiate(bullet, spawnPos, Quaternion.identity);
+            newBullet.GetComponent<BulletTest>().SetPlayerFired(false);
+
+            // Setting shoot direction
+            Vector3 shootDir = this.shootPos.position - this.transform.position;
+            if (this.movementPatternID == 2)
+            {
+                newBullet.GetComponent<BulletTest>().SetVecDirection(shootDir);
+            }
 
             // Reload
             fireReload = fireSpeed;
@@ -214,6 +216,7 @@ public class CSS_Enemy : MonoBehaviour
                     // Simple Basic move down 
                     // For any items, basic items that needs to move down to off the screen
                     this.transform.position = this.transform.position + new Vector3(0, -1 * this.movementSpeed * Time.deltaTime, 0);
+                    this.Shooting();
                     break;
                 }
             case 1:
@@ -258,8 +261,8 @@ public class CSS_Enemy : MonoBehaviour
                                 this.DeleteItSelf();
                             }
                         }
-                    }                   
-
+                    }
+                    this.Shooting();
                     break;
                 }
             case 2:
@@ -399,6 +402,7 @@ public class CSS_Enemy : MonoBehaviour
                             this.DeleteItSelf();
                         }
                     }
+                    this.Shooting();
                     break;
                 }
             default:
