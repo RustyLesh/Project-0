@@ -10,7 +10,12 @@ namespace Project0
 
         [SerializeField] GameObject goldCoin;
         [SerializeField] float speed = 1f;
-        private bool spawned = false; 
+        private bool spawned = false;
+        private Renderer coinRenderer;
+
+        private void Awake() {
+            coinRenderer = goldCoin.GetComponent<Renderer>();
+        }
 
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -25,7 +30,7 @@ namespace Project0
 
         void Update() {
             //If sprite has rendered set spawned to true
-            if (goldCoin.GetComponent<Renderer>().isVisible) {
+            if (coinRenderer.isVisible) {
                 spawned = true;
             }
             MoveDownwards();
@@ -42,7 +47,7 @@ namespace Project0
 
         //Checks if coin is outside of camera view
         public bool IsInView() {
-            return goldCoin.GetComponent<Renderer>().isVisible;
+            return coinRenderer.isVisible;
         }
     }
 }
