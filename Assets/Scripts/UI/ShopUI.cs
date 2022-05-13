@@ -70,7 +70,8 @@ public class ShopUI : MonoBehaviour
         for(int i = 0; i < shop.GetItemCount(); i++)
         {
             // if we dont have enough coin make the button uninteractable
-            if (moneyManager.PlayerWallet.CoinCount >= shop.GetItemAtIndex(i).GetPurchaseValue())
+            if (moneyManager.PlayerWallet.CoinCount >= shop.GetItemAtIndex(i).GetPurchaseValue() &&
+                                                       shop.GetItemAtIndex(i).GetAmountInStock() > 0)
             {
                 purchaseButtons[i].interactable = true;
             }

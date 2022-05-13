@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseScreen : MonoBehaviour
 {
@@ -65,6 +66,6 @@ public class PauseScreen : MonoBehaviour
     public void Quit()
     {
         Debug.Log("Quitting");
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
 }
