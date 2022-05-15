@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, ISaveable
 {
     [SerializeField] private float currentHealth;
     
@@ -44,5 +44,24 @@ public class Health : MonoBehaviour
 
         if (maxHealth < 1)
             maxHealth = 1;
+    }
+
+    public object SaveState() {
+        return new SaveData() {
+            currentHealth = this.currentHealth,
+            maxHealth = this.maxHealth
+        };
+    }
+
+    public void LoadState(object state) {
+        var saveData = (SaveData)state;
+        currentHealth = saveData.currentHealth;
+        maxHealth = saveData.maxHealth;
+    }
+
+    [Serializable]
+    private struct SaveData {
+        public float currentHealth;
+        public float maxHealth;
     }
 }

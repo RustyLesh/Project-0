@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
 [RequireComponent(typeof(Health), typeof(Arsenal))]
-public class PlayerShip : MonoBehaviour
+public class PlayerShip : MonoBehaviour, ISaveable
 {
     public bool PlayerShoot;
     public Health PlayerHealth { get; private set; }
@@ -58,6 +60,28 @@ public class PlayerShip : MonoBehaviour
             coinCount++;
             Debug.Log("Player has: " + coinCount + " coins");
         }
+    }
+
+    public object SaveState() {
+        return new SaveData() {
+            coinCount = this.coinCount,
+            shootDelay = this.shootDelay,
+            fireRate = this.fireRate,
+        };
+    }
+
+    public void LoadState(object state) {
+        var saveData = (SaveData)state;
+        coinCount = saveData.coinCount;
+        shootDelay = saveData.shootDelay;
+        fireRate = saveData.fireRate;
+    }
+
+    [Serializable]
+    private struct SaveData {
+        public int coinCount;
+        public float shootDelay;
+        public float fireRate;
     }
 
 }
