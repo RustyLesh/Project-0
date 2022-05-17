@@ -39,7 +39,7 @@ public class ShopUI : MonoBehaviour
     void UpdateUI()
     {
         //Debug.Log("Updating UI");
-        currentCoinsText.text = "Coins: " + moneyManager.GetCoinInWallet();
+        currentCoinsText.text = "Coins: " + moneyManager.Money;
 
         // loop through all shop slots
         for (int i = 0; i < slots.Length; i++)
@@ -70,7 +70,7 @@ public class ShopUI : MonoBehaviour
         for(int i = 0; i < shop.GetItemCount(); i++)
         {
             // if we dont have enough coin make the button uninteractable
-            if (moneyManager.PlayerWallet.CoinCount >= shop.GetItemAtIndex(i).GetPurchaseValue() &&
+            if (moneyManager.Money >= shop.GetItemAtIndex(i).GetPurchaseValue() &&
                                                        shop.GetItemAtIndex(i).GetAmountInStock() > 0)
             {
                 purchaseButtons[i].interactable = true;
@@ -88,7 +88,7 @@ public class ShopUI : MonoBehaviour
         // Debug.Log("Button: " + btnNo + " has been pressed");
         // Debug.Log(shop.GetItemAtIndex(btnNo).GetItem().ItemName);
         // if we do have enough coins
-        if (moneyManager.PlayerWallet.CoinCount >= shop.GetItemAtIndex(btnNo).GetPurchaseValue())
+        if (moneyManager.Money >= shop.GetItemAtIndex(btnNo).GetPurchaseValue())
         {
             shop.PurchaseItem(btnNo);
             CheckPurchaseable();
@@ -103,6 +103,6 @@ public class ShopUI : MonoBehaviour
     public void AddCoins(int coins)
     {
         moneyManager.DebugAddCoins(coins);
-        currentCoinsText.text = "Coins: " + moneyManager.GetCoinInWallet();
+        currentCoinsText.text = "Coins: " + moneyManager.Money;
     }
 }

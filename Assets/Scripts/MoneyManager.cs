@@ -6,23 +6,22 @@ public class MoneyManager : MonoBehaviour
 {
     #region Singleton
 
-    public static MoneyManager instance;
+    public static MoneyManager Instance;
 
     void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Debug.LogWarning("More than one inventory instance found!");
             return;
         }
-        instance = this;
+        Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
     #endregion
 
-    [SerializeField]Wallet wallet;
-
+    [SerializeField] public int Money { get; private set; }
     public int CoinBaseValue = 1;
     public float MoneyMultiplier = 1;
 
@@ -31,20 +30,9 @@ public class MoneyManager : MonoBehaviour
         Coin.OnCoinCollected += CoinCollected;
     }
 
-    void Start()
-    {
-        wallet = new Wallet();
-    }
-
-    public Wallet PlayerWallet
-    {
-        private set => wallet = value;
-        get => wallet;
-    }
-
     private void CoinCollected()
     {
-        wallet.GainCoins((int)(CoinBaseValue * MoneyMultiplier));
+        GainCoins((int)(CoinBaseValue * MoneyMultiplier));
     }
 
     void OnDisable()
@@ -54,11 +42,39 @@ public class MoneyManager : MonoBehaviour
 
     public void DebugAddCoins(int coins)
     {
-        wallet.GainCoins(coins);
+        GainCoins(coins);
     }
 
-    public int GetCoinInWallet()
+    public bool PayCoins(int amount)
     {
-        return wallet.CoinCount;
+        //TODO: Fix negative value purchases
+        if (amount < 0)
+        {
+            Debug.LogWarning("Trying to pay a negative amount. Amount must be a positive value. \n Consider using \"GainCoins\" method");
+            return false;
+        }
+
+        if (Money >= amount)
+        {
+            Money -= amount;
+            return true;
+        }
+        else
+        {
+            Debug.Log("Not enough coinage"); //TODO: Notify the player in ui.
+            return false;
+        }
+    }
+
+    public void GainCoins(int amount)
+    {
+        if (amount > 0)
+        {
+            Money += amount;
+        }
+        else
+        {
+            Debug.LogWarning("Trying to gain negative amount or 0. Amount must be greater than 0\n Consider using \"PayCoins\" method");
+        }
     }
 }
