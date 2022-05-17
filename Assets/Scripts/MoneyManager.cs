@@ -1,8 +1,9 @@
 using UnityEngine;
 using Project0;
+using System;
 
 
-public class MoneyManager : MonoBehaviour
+public class MoneyManager : MonoBehaviour, ISaveable
 {
     #region Singleton
 
@@ -76,5 +77,22 @@ public class MoneyManager : MonoBehaviour
         {
             Debug.LogWarning("Trying to gain negative amount or 0. Amount must be greater than 0\n Consider using \"PayCoins\" method");
         }
+    }
+
+    public object SaveState() {
+        Debug.Log(Money);
+        return new SaveData() {
+            Money = this.Money,
+        };
+    }
+
+    public void LoadState(object state) {
+        var saveData = (SaveData)state;
+        Money = saveData.Money;
+    }
+
+    [Serializable]
+    private struct SaveData {
+        public int Money;
     }
 }

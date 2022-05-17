@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &47353600
+--- !u!1001 &221549301
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -144,7 +144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3109177252232432973, guid: b027930150a553c44a5a82e5947ee3d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3109177252232432973, guid: b027930150a553c44a5a82e5947ee3d8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -178,17 +178,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3109177252339880580, guid: b027930150a553c44a5a82e5947ee3d8, type: 3}
-      propertyPath: m_SortingOrder
-      value: 100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b027930150a553c44a5a82e5947ee3d8, type: 3}
---- !u!1 &47353601 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3109177252232432969, guid: b027930150a553c44a5a82e5947ee3d8, type: 3}
-  m_PrefabInstance: {fileID: 47353600}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &271825203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -658,7 +649,7 @@ PrefabInstance:
     - target: {fileID: 3140913851063077604, guid: 3d468838829b25a409a74430d7f46483, type: 3}
       propertyPath: playerShip
       value: 
-      objectReference: {fileID: 47353601}
+      objectReference: {fileID: 0}
     - target: {fileID: 3140913851325038310, guid: 3d468838829b25a409a74430d7f46483, type: 3}
       propertyPath: spawnPoints
       value: 
@@ -954,6 +945,10 @@ PrefabInstance:
     - target: {fileID: 1848642256777982051, guid: 5a9bc28b82adf46b28439800c165cef0, type: 3}
       propertyPath: m_Name
       value: GameScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 1848642256777982051, guid: 5a9bc28b82adf46b28439800c165cef0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1848642256777982076, guid: 5a9bc28b82adf46b28439800c165cef0, type: 3}
       propertyPath: m_Pivot.x

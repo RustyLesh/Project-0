@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3109177252232432972}
   - component: {fileID: 3109177252232432963}
   - component: {fileID: 3109177252232432962}
+  - component: {fileID: 5662319621679261699}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: PlayerShip
@@ -111,6 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c3841e28a69274bb683e512e0f7752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minBounds: {x: 0, y: 0}
+  maxBounds: {x: 1, y: 1}
   moveSpeed: 9.03
 --- !u!114 &3109177252232432972
 MonoBehaviour:
@@ -163,6 +166,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &5662319621679261699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3109177252232432969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb01a20d39984e48a5e7d5b0b1d4d67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 3c84d836-f3de-4f34-b08f-3501a45cf6e9
 --- !u!1 &3109177252339880582
 GameObject:
   m_ObjectHideFlags: 0

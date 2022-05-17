@@ -5,19 +5,39 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 public class SaveLoadSystem : MonoBehaviour {
-    public string SavePath => $"{Application.persistentDataPath}/save.txt";
+    public string fileName = "saveOne.txt";
+    public string SavePath => $"{Application.persistentDataPath}/" + fileName;
 
-    [ContextMenu("Save")]
-    void Save() {
+    public void Save(string fileName) {
+        this.fileName = fileName;
+        Debug.Log(SavePath);
         var state = LoadFile();
         SaveState(state);
         SaveFile(state);
+        Debug.Log("Saved");
+    }
+
+    public void Load(string fileName) {
+        var state = LoadFile();
+        this.fileName = fileName;
+        LoadState(state);
+        Debug.Log("Loaded");
+    }
+
+    [ContextMenu("Save")]
+    public void Save() {
+        Debug.Log(SavePath);
+        var state = LoadFile();
+        SaveState(state);
+        SaveFile(state);
+        Debug.Log("Saved");
     }
 
     [ContextMenu("Load")]
-    void Load() {
+    public void Load() {
         var state = LoadFile();
         LoadState(state);
+        Debug.Log("Loaded");
     }
 
     public void SaveFile(object state) {
@@ -42,6 +62,7 @@ public class SaveLoadSystem : MonoBehaviour {
     void SaveState(Dictionary<string, object> state) {
         foreach (var saveable in FindObjectsOfType<SaveableEntity>()) {
             state[saveable.Id] = saveable.SaveState();
+            Debug.Log(saveable.Id);
         }
     }
 

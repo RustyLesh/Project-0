@@ -47,6 +47,8 @@ public class Health : MonoBehaviour, ISaveable
     }
 
     public object SaveState() {
+        Debug.Log(currentHealth);
+        Debug.Log(maxHealth);
         return new SaveData() {
             currentHealth = this.currentHealth,
             maxHealth = this.maxHealth
