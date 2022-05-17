@@ -9,6 +9,12 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 moveDirection;
 
+    [SerializeField] private Vector2 minBounds;
+    [SerializeField] private Vector2 maxBounds;
+    
+    private Vector2 worldMinBounds;
+    private Vector2 worldMaxBounds;
+
     [SerializeField ]private float moveSpeed = 100;
     private void Awake()
     {
@@ -26,12 +32,33 @@ public class PlayerMovement : MonoBehaviour
         playerControls.Disable();
     }
 
+    private void Start()
+    {
+        InitBounds();
+    }
+
     private void Update()
     {
         moveDirection = playerControls.PlayerShipControls.PlayerMovement.ReadValue<Vector2>();
     }
+
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+
+        Vector2 pos = transform.position;
+
+        pos.x = Mathf.Clamp(transform.position.x, worldMinBounds.x, worldMaxBounds.x);
+        pos.y = Mathf.Clamp(transform.position.y, worldMinBounds.y, worldMaxBounds.y);
+
+        transform.position = pos;
+    }
+
+    private void InitBounds()
+    {
+        Camera mainCamera = Camera.main;
+
+        worldMinBounds = mainCamera.ViewportToWorldPoint(minBounds);
+        worldMaxBounds = mainCamera.ViewportToWorldPoint(maxBounds);
     }
 }
