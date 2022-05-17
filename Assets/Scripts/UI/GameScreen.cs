@@ -137,7 +137,8 @@ public class GameScreen : MonoBehaviour
         {
             playerDeadPanel.SetActive(true);
         }
-        
+
+        playerShip.GetComponent<PlayerShip>().DisablePlayer();
         StartCoroutine(DelayToMainMenu());
     }
 

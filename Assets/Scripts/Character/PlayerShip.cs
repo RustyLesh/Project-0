@@ -84,4 +84,13 @@ public class PlayerShip : MonoBehaviour, ISaveable
         public float fireRate;
     }
 
+    public void DisablePlayer()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void EnablePlayer()
+    {
+        gameObject.SetActive(true);
+    }
 }
