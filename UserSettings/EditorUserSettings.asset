@@ -6,6 +6,7 @@ EditorUserSettings:
   serializedVersion: 4
   m_ConfigSettings:
     RecentlyUsedScenePath-0:
+<<<<<<< Updated upstream
       value: 22424703114646680e0b0227036c7315001214192f2d2835633c133af6f9
       flags: 0
     RecentlyUsedScenePath-1:
@@ -16,6 +17,18 @@ EditorUserSettings:
       flags: 0
     RecentlyUsedScenePath-3:
       value: 22424703114646680e0b0227036c6c11001234252d2c15332827187df7ee3d2cfb
+=======
+      value: 22424703114646680e0b0227036c6c1819072b292926237e38271427fb
+      flags: 0
+    RecentlyUsedScenePath-1:
+      value: 22424703114646680e0b0227036c79191816146a1f2b233e283a5203eee12d0be1f533ece9742a323016f6
+      flags: 0
+    RecentlyUsedScenePath-2:
+      value: 22424703114646680e0b0227036c6c1100122b292926237e38271427fb
+      flags: 0
+    RecentlyUsedScenePath-3:
+      value: 22424703114646680e0b0227036c761e0012163e233a3f032e2c1336acf53a31f6fe
+>>>>>>> Stashed changes
       flags: 0
     RecentlyUsedScenePath-4:
       value: 22424703114646680e0b0227036c7a1e131a112f3f1b2535232c5326ece92021
@@ -24,6 +37,7 @@ EditorUserSettings:
       value: 22424703114646680e0b0227036c79191816146a1f2b233e283a5200f6e1262cd1e424ece2347129370bfb25
       flags: 0
     RecentlyUsedScenePath-6:
+<<<<<<< Updated upstream
       value: 22424703114646680e0b0227036c6c1819072b292926237e38271427fb
       flags: 0
     RecentlyUsedScenePath-7:
@@ -31,6 +45,15 @@ EditorUserSettings:
       flags: 0
     RecentlyUsedScenePath-8:
       value: 22424703114646680e0b0227036c6c1100122b292926237e38271427fb
+=======
+      value: 22424703114646680e0b0227036c7315001214192f2d2835633c133af6f9
+      flags: 0
+    RecentlyUsedScenePath-7:
+      value: 22424703114646680e0b0227036c7b09181615232f0c2f362b201e26eef42d0be1e238eca92f31352d1b
+      flags: 0
+    RecentlyUsedScenePath-8:
+      value: 22424703114646680e0b0227036c6f1c170e1d381f2b233e2867083debf42d
+>>>>>>> Stashed changes
       flags: 0
     RecentlyUsedScenePath-9:
       value: 22424703114646680e0b0227036c79191816146a1f2b233e283a521ff4ec0b68b3a923e7ee2e26

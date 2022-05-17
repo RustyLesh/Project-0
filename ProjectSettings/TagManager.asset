@@ -10,6 +10,7 @@ TagManager:
   - EnemyParticleSystem
   - Coin
   - Boss
+  - Boundry
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Boundry
+  - Player
   - 
   - 
   - 

@@ -22,9 +22,11 @@ public class MoneyManager : MonoBehaviour, ISaveable
 
     #endregion
 
-    [SerializeField] public int Money { get; private set; }
+    public int Money { get; private set; }
     public int CoinBaseValue = 1;
     public float MoneyMultiplier = 1;
+
+
 
     void OnEnable()
     {
