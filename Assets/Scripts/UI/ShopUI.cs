@@ -6,7 +6,7 @@ using TMPro;
 
 public class ShopUI : MonoBehaviour
 {
-    [SerializeField] MoneyManager moneyManager;
+    [SerializeField] CSS_MoneyManager moneyManager;
 
     Shop shop;
     public ShopSlot[] slots;
@@ -18,7 +18,7 @@ public class ShopUI : MonoBehaviour
     void Start()
     {
         // Debug use
-        moneyManager = FindObjectOfType<MoneyManager>();
+        moneyManager = FindObjectOfType<CSS_MoneyManager>();
         
 
         shop = FindObjectOfType<Shop>();

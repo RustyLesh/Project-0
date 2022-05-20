@@ -3,11 +3,11 @@ using Project0;
 using System;
 
 
-public class MoneyManager : MonoBehaviour, ISaveable
+public class CSS_MoneyManager : MonoBehaviour, ISaveable
 {
     #region Singleton
 
-    public static MoneyManager Instance;
+    public static CSS_MoneyManager Instance;
 
     void Awake()
     {

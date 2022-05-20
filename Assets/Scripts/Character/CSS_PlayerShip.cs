@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [RequireComponent(typeof(Health), typeof(Arsenal))]
-public class PlayerShip : MonoBehaviour, ISaveable
+public class CSS_PlayerShip : MonoBehaviour, ISaveable
 {
     public bool PlayerShoot;
     public Health PlayerHealth { get; private set; }

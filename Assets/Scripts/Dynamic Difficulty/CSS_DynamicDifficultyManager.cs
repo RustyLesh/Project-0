@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DynamicDifficultyManager : MonoBehaviour
+public class CSS_DynamicDifficultyManager : MonoBehaviour
 {
-    private PlayerShip playerShip;
+    private CSS_PlayerShip playerShip;
     private CSS_GameManager gameManager;
-    private MoneyManager moneyManager;
+    private CSS_MoneyManager moneyManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerShip = GetComponent<PlayerShip>();
+        playerShip = GetComponent<CSS_PlayerShip>();
         gameManager = CSS_GameManager.Instance;
-        moneyManager = MoneyManager.Instance;
+        moneyManager = CSS_MoneyManager.Instance;
     }
 }
