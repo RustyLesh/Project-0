@@ -6,17 +6,17 @@ using System;
 [RequireComponent(typeof(Health), typeof(Arsenal))]
 public class CSS_PlayerShip : MonoBehaviour, ISaveable
 {
-    public bool PlayerShoot;
-    public Health PlayerHealth { get; private set; }
-    public Arsenal PlayerBattlements { get; private set; }
+    public bool playerShoot;
+    public Health playerHealth { get; private set; }
+    public Arsenal playerBattlements { get; private set; }
     public int coinCount { get; private set; }
+
     private PlayerControls playerControls;
     private float timer;
+
     [SerializeField]private float shootDelay = 0.7f;
     [SerializeField] private GameObject bulletPrefrab;
     [SerializeField] private Transform firePosition;
-    float time = 0;
-    private float nextShootTime = 0;
     [SerializeField] private float fireRate = 0.1f;
 
     private void OnEnable()
@@ -32,15 +32,13 @@ public class CSS_PlayerShip : MonoBehaviour, ISaveable
     private void Awake()
     {
         playerControls = new PlayerControls();
-        PlayerHealth = GetComponent<Health>();
-        PlayerBattlements = GetComponent<Arsenal>();
+        playerHealth = GetComponent<Health>();
+        playerBattlements = GetComponent<Arsenal>();
         coinCount = 0;
     }
 
     void Update()
     {
-        time += Time.deltaTime;
-
         if (playerControls.PlayerShipControls.Shoot.ReadValue<float>() > 0)
         {
 

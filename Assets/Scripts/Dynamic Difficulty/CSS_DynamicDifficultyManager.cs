@@ -6,13 +6,12 @@ public class CSS_DynamicDifficultyManager : MonoBehaviour
 {
     private CSS_PlayerShip playerShip;
     private CSS_GameManager gameManager;
-    private CSS_MoneyManager moneyManager;
+    private float moneyMultiplier;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerShip = GetComponent<CSS_PlayerShip>();
-        gameManager = CSS_GameManager.Instance;
-        moneyManager = CSS_MoneyManager.Instance;
+        moneyMultiplier = CSS_MoneyManager.Instance.moneyMultiplier;
     }
+
 }

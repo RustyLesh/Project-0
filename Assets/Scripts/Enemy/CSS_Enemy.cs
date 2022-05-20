@@ -148,7 +148,7 @@ public class CSS_Enemy : MonoBehaviour
             //Debug.Log("Enemy Touched Player");
 
             // Health script with take damage function Invoke line linked to UI 
-            collision.gameObject.GetComponent<CSS_PlayerShip>().PlayerHealth.TakeDamage(this.bodyDmg);
+            collision.gameObject.GetComponent<CSS_PlayerShip>().playerHealth.TakeDamage(this.bodyDmg);
             this.OnDeath();
             
         }

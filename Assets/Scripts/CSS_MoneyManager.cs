@@ -22,10 +22,10 @@ public class CSS_MoneyManager : MonoBehaviour, ISaveable
 
     #endregion
 
-    public int Money { get; private set; }
-    public int CoinBaseValue = 1;
-    public float MoneyMultiplier = 1;
+    public int money { get; private set; }
+    public float moneyMultiplier { get; private set; } = 1;
 
+    private int coinBaseValue = 1;
 
 
     void OnEnable()
@@ -35,7 +35,7 @@ public class CSS_MoneyManager : MonoBehaviour, ISaveable
 
     private void CoinCollected()
     {
-        GainCoins((int)(CoinBaseValue * MoneyMultiplier));
+        GainCoins((int)(coinBaseValue * moneyMultiplier));
     }
 
     void OnDisable()
@@ -57,9 +57,9 @@ public class CSS_MoneyManager : MonoBehaviour, ISaveable
             return false;
         }
 
-        if (Money >= amount)
+        if (money >= amount)
         {
-            Money -= amount;
+            money -= amount;
             return true;
         }
         else
@@ -73,7 +73,7 @@ public class CSS_MoneyManager : MonoBehaviour, ISaveable
     {
         if (amount > 0)
         {
-            Money += amount;
+            money += amount;
         }
         else
         {
@@ -81,20 +81,27 @@ public class CSS_MoneyManager : MonoBehaviour, ISaveable
         }
     }
 
+    public void AdjustMoneyMultiplier(float amount)
+    {
+        moneyMultiplier = Mathf.Clamp(moneyMultiplier + amount, 0, float.MaxValue); 
+    }
+
+    #region Save/Load
     public object SaveState() {
-        Debug.Log(Money);
+        Debug.Log(money);
         return new SaveData() {
-            Money = this.Money,
+            Money = this.money,
         };
     }
 
     public void LoadState(object state) {
         var saveData = (SaveData)state;
-        Money = saveData.Money;
+        money = saveData.Money;
     }
 
     [Serializable]
     private struct SaveData {
         public int Money;
     }
+    #endregion
 }
