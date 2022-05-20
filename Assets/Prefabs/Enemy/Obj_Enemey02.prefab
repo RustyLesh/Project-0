@@ -7,18 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1042711222, guid: 7e7c906f5b23e7f41bfaaafc368be2e7, type: 3}
-      propertyPath: matWhite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4354148017874603611, guid: 7e7c906f5b23e7f41bfaaafc368be2e7, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 21fedf86e116a2548bd7ebd20bc23904, type: 3}
-    - target: {fileID: 5373240388673223023, guid: 7e7c906f5b23e7f41bfaaafc368be2e7, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.04
-      objectReference: {fileID: 0}
     - target: {fileID: 7140702229461096008, guid: 7e7c906f5b23e7f41bfaaafc368be2e7, type: 3}
       propertyPath: m_Name
       value: Obj_Enemey02
@@ -67,9 +55,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7140702229461096015, guid: 7e7c906f5b23e7f41bfaaafc368be2e7, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 92b2ed6379c65e9458bd914823a07d6e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e7c906f5b23e7f41bfaaafc368be2e7, type: 3}

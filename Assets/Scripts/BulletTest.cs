@@ -68,7 +68,7 @@ public class BulletTest : MonoBehaviour
         }
         else if(collision.gameObject.tag == "PlayerShip" && this.isFiredFromPlayer == false)
         {
-            collision.gameObject.GetComponent<Health>().TakeDamage(baseDamage);
+            collision.gameObject.GetComponent<CSS_Health>().TakeDamage(baseDamage);
             Destroy(this.gameObject);
         }
     }

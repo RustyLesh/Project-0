@@ -22,10 +22,11 @@ public class CSS_MoneyManager : MonoBehaviour, ISaveable
 
     #endregion
 
-    public int money { get; private set; }
-    public float moneyMultiplier { get; private set; } = 1;
+    [field: SerializeField] public int money { get; private set; }
+    [field: SerializeField] public float moneyMultiplier { get; private set; } = 1;
 
     private int coinBaseValue = 1;
+
 
 
     void OnEnable()

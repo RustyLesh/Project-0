@@ -39,13 +39,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3109177252232432973}
-  - component: {fileID: 3109177252232432974}
   - component: {fileID: 3109177252232432975}
   - component: {fileID: 3109177252232432968}
   - component: {fileID: 3109177252232432972}
   - component: {fileID: 3109177252232432963}
   - component: {fileID: 3109177252232432962}
   - component: {fileID: 5662319621679261699}
+  - component: {fileID: 2279883405637231841}
+  - component: {fileID: 9084746400420471710}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: PlayerShip
@@ -69,20 +70,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3109177252232432974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3109177252232432969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 027015beddd4252408ed6e951965ba28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealth: 0
-  maxHealth: 100
 --- !u!114 &3109177252232432975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88cc49c64d1e508409c48eac52dbec37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerShoot: 0
+  playerShoot: 0
   shootDelay: 0.7
   bulletPrefrab: {fileID: 9187117320916237108, guid: cc885e5c1c804c04e9e9f9523a814472, type: 3}
   firePosition: {fileID: 3109177251409946555}
@@ -179,6 +166,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 3c84d836-f3de-4f34-b08f-3501a45cf6e9
+--- !u!114 &2279883405637231841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3109177252232432969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76364a7cdc7783d4f9d63511297a8262, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 100
+--- !u!114 &9084746400420471710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3109177252232432969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 7e0b1b59268ace24585635cf68a83f8c, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PlayerShipControls
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &3109177252339880582
 GameObject:
   m_ObjectHideFlags: 0

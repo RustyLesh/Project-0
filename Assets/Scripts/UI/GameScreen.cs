@@ -92,13 +92,13 @@ public class GameScreen : MonoBehaviour
 
     void OnEnable()
     {
-        Health.OnHealthChanged += HealthChanged;
+        CSS_Health.OnHealthChanged += HealthChanged;
         CSS_GameManager.onBossUpdate += ActivateBossHealthBar;
     }
 
     void OnDisable()
     {
-        Health.OnHealthChanged -= HealthChanged;
+        CSS_Health.OnHealthChanged -= HealthChanged;
         CSS_GameManager.onBossUpdate -= ActivateBossHealthBar;
     }
 

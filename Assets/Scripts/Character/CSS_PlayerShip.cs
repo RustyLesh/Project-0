@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[RequireComponent(typeof(Health), typeof(Arsenal))]
+[RequireComponent(typeof(CSS_Health), typeof(Arsenal))]
 public class CSS_PlayerShip : MonoBehaviour, ISaveable
 {
     public bool playerShoot;
-    public Health playerHealth { get; private set; }
+    public CSS_Health playerHealth { get; private set; }
     public Arsenal playerBattlements { get; private set; }
     public int coinCount { get; private set; }
 
@@ -32,7 +32,7 @@ public class CSS_PlayerShip : MonoBehaviour, ISaveable
     private void Awake()
     {
         playerControls = new PlayerControls();
-        playerHealth = GetComponent<Health>();
+        playerHealth = GetComponent<CSS_Health>();
         playerBattlements = GetComponent<Arsenal>();
         coinCount = 0;
     }
