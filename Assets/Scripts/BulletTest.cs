@@ -12,6 +12,9 @@ public class BulletTest : MonoBehaviour
     private Vector3 vecDirection = new Vector3(0,0,0);
     [SerializeField] private int direction = 1;
     public int baseDamage = 10;
+    public Sprite[] bulletSprites;
+
+  
 
     void Start()
     {
@@ -33,10 +36,18 @@ public class BulletTest : MonoBehaviour
         if (isFiredFromPlayer == true)
         {
             direction = 1;
+            SpriteRenderer sprite = this.gameObject.GetComponentInChildren<SpriteRenderer>();
+            sprite.sprite = bulletSprites[0];
         }
         else
         {
+            /*if (gameObject.tag == "Boss")
+            {
+                SpriteRenderer sprite = this.gameObject.GetComponentInChildren<SpriteRenderer>();
+                sprite.sprite = bulletSprites[1];
+            }*/
             direction = -1;
+            /**/
         }
 
         this.SetVecDirection(new Vector3(0, this.direction, 0));

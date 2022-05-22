@@ -66,7 +66,7 @@ public class CSS_Enemy : MonoBehaviour
     {
         this.UpdateMovementPattern(this.movementPatternID);
         //this.Shooting();
-
+        
         // Debug Functions
         this.DebugIsTakeDamage();
     }

@@ -172,3 +172,6 @@ MonoBehaviour:
   velocityDir: {x: 0, y: 0}
   direction: 1
   baseDamage: 10
+  bulletSprites:
+  - {fileID: 21300000, guid: cb12b3f6f20af3c41aa057549e2d638c, type: 3}
+  - {fileID: 21300000, guid: 43042ed9cb133094bac65f32c4ab832f, type: 3}
