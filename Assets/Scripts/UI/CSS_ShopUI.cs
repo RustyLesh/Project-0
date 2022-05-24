@@ -1,19 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+/*
+ * Author: Peter An
+ * 
+ * Manages the front-end of the shop
+ * The shop logics is handled in CSS_Shop and this makes
+ * the shop intractable.
+ * 
+ */
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ShopUI : MonoBehaviour
+public class CSS_ShopUI : MonoBehaviour
 {
     [SerializeField] CSS_MoneyManager moneyManager;
+    [SerializeField] TMP_Text currentCoinsText;
 
     Shop shop;
     public ShopSlot[] slots;
     public GameObject[] shopSlotsGO;
     public Button[] purchaseButtons;
-
-    [SerializeField] TMP_Text currentCoinsText;
+    
 
     void Start()
     {
@@ -38,7 +45,6 @@ public class ShopUI : MonoBehaviour
 
     void UpdateUI()
     {
-        //Debug.Log("Updating UI");
         currentCoinsText.text = "Coins: " + moneyManager.money;
 
         // loop through all shop slots
@@ -85,14 +91,11 @@ public class ShopUI : MonoBehaviour
 
     public void PurchaseItem(int btnNo)
     {
-        // Debug.Log("Button: " + btnNo + " has been pressed");
-        // Debug.Log(shop.GetItemAtIndex(btnNo).GetItem().ItemName);
         // if we do have enough coins
         if (moneyManager.money >= shop.GetItemAtIndex(btnNo).GetPurchaseValue())
         {
             shop.PurchaseItem(btnNo);
             CheckPurchaseable();
-
         }
         // minus coins from wallet
         // update coin value in UI

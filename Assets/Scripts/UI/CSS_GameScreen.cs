@@ -3,6 +3,7 @@
  * 
  * This will manage the logic behind the gameplay screen
  * All elements on the gamescreen UI will be managed here
+ * 
  */
 
 using UnityEngine;
@@ -11,7 +12,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
 
-public class GameScreen : MonoBehaviour
+public class CSS_GameScreen : MonoBehaviour
 {
     // Player
     [SerializeField] Slider playerHPBar;
@@ -29,13 +30,13 @@ public class GameScreen : MonoBehaviour
 
     int currentStage = 1;
 
+    // Flags
     bool timerOn = false;
     bool bossSpawned = false;
 
-    // CACHE
+    // Cache
     GameObject playerShip;
     GameObject bossShip;
-    //CSS_GameManager gameManager = CSS_GameManager.Instance;
 
 
     void Start()
@@ -64,6 +65,7 @@ public class GameScreen : MonoBehaviour
             {
                 UpdateTime();
             }
+            // When timer reaches 0, spawn boss UI
             else
             {
                 timerOn = false;
@@ -72,24 +74,26 @@ public class GameScreen : MonoBehaviour
         }
 
 
-        // Update the boss health bar
+        // Update the boss health bar when spawned
         if (bossSpawned)
         {
             bossHPBar.value = bossShip.GetComponent<CSS_Boss>().GetTotalBossHealth();
         }
 
-        if (CSS_GameManager.Instance.isBossDead)
+        // Scene management when game ends
+        if (CSS_GameManager.Instance.isBossDead && !CSS_GameManager.Instance.isPlayerDead)
         {
             ReturnToMainMenu("boss");
         }
 
-        if(CSS_GameManager.Instance.isPlayerDead)
+        if(CSS_GameManager.Instance.isPlayerDead && !CSS_GameManager.Instance.isBossDead)
         {
             ReturnToMainMenu("player");
         }
 
     }
 
+    // Subscribe to listners (observers)
     void OnEnable()
     {
         CSS_Health.OnHealthChanged += HealthChanged;
@@ -122,9 +126,7 @@ public class GameScreen : MonoBehaviour
 
     void UpdateTime()
     {
-
         timeRemainingInSecondsText.text = (140 - (int)CSS_GameManager.Instance.gameTimer).ToString();
-        //timeRemainingInSecondsText.text = ((int) Game).ToString();
     }
 
     void ReturnToMainMenu(string entityDead)
@@ -142,6 +144,7 @@ public class GameScreen : MonoBehaviour
         StartCoroutine(DelayToMainMenu());
     }
 
+    // Delay for 5 seconds and enter main menu
     IEnumerator DelayToMainMenu()
     {
         yield return new WaitForSeconds(5);
