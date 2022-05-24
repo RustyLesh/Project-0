@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpawnCoin : MonoBehaviour {
+public class CSS_SpawnCoin : MonoBehaviour {
     [SerializeField] GameObject coin;
     [SerializeField] public float radius = 0.5f;
     [SerializeField] public int minCoinDrop = 2;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpriteScroller : MonoBehaviour {
+public class CSS_SpriteScroller : MonoBehaviour {
 
     [SerializeField] Vector2 moveSpeed;
 

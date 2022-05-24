@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpawnParticleSystem : MonoBehaviour {
+public class CSS_SpawnParticleSystem : MonoBehaviour {
     [SerializeField] ParticleSystem enemyParticleSystem;
 
     //Creates a clone of the EnemyParticleSystem

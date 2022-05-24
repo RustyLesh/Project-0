@@ -3,7 +3,7 @@ using Project0;
 using System;
 
 
-public class CSS_MoneyManager : MonoBehaviour, ISaveable
+public class CSS_MoneyManager : MonoBehaviour, CSS_ISaveable
 {
     #region Singleton
 

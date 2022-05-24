@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[RequireComponent(typeof(CSS_Health), typeof(Arsenal))]
-public class CSS_PlayerShip : MonoBehaviour, ISaveable
+[RequireComponent(typeof(CSS_Health))]
+public class CSS_PlayerShip : MonoBehaviour, CSS_ISaveable
 {
     public bool playerShoot;
     public CSS_Health playerHealth { get; private set; }
-    public Arsenal playerBattlements { get; private set; }
     public int coinCount { get; private set; }
 
     private PlayerControls playerControls;
@@ -33,7 +32,6 @@ public class CSS_PlayerShip : MonoBehaviour, ISaveable
     {
         playerControls = new PlayerControls();
         playerHealth = GetComponent<CSS_Health>();
-        playerBattlements = GetComponent<Arsenal>();
         coinCount = 0;
     }
 

@@ -17,7 +17,7 @@ public class CoinTest {
     [Test]
     public void coin_out_of_view() {
         var gameObject = new GameObject();
-        var spawnCoin = gameObject.AddComponent<SpawnCoin>();
+        var spawnCoin = gameObject.AddComponent<CSS_SpawnCoin>();
         spawnCoin.SpawnCoinOnDeath(gameObject.transform);
 
         Coin coin = GameObject.FindObjectOfType<Coin>();

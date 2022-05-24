@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ParticleSystemScript : MonoBehaviour {
+public class CSS_ParticleSystemScript : MonoBehaviour {
     [SerializeField] public ParticleSystem thisParticleSystem;
 
     public void Awake() {

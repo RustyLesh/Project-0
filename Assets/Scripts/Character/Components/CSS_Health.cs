@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class CSS_Health : MonoBehaviour, ISaveable
+public class CSS_Health : MonoBehaviour, CSS_ISaveable
 {
     [SerializeField] private float currentHealth;
     

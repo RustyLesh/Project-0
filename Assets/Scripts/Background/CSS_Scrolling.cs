@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Scrolling : MonoBehaviour {
+public class CSS_Scrolling : MonoBehaviour {
 
     [SerializeField] float speed = 4f;
     [SerializeField] float lastPosition = -37.10443f;
