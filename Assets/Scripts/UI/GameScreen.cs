@@ -42,8 +42,8 @@ public class GameScreen : MonoBehaviour
     {
         // Initiallize Player related
         playerShip = CSS_GameManager.Instance.playerShip;
-        playerHPBar.maxValue = playerShip.GetComponent<PlayerShip>().PlayerHealth.GetHealth();
-        playerHPBar.value = playerShip.GetComponent<PlayerShip>().PlayerHealth.GetHealth();
+        playerHPBar.maxValue = playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetHealth();
+        playerHPBar.value = playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetHealth();
 
         // Init stage
         currentStageText.text = $"Stage: {currentStage}";
@@ -92,20 +92,20 @@ public class GameScreen : MonoBehaviour
 
     void OnEnable()
     {
-        Health.OnHealthChanged += HealthChanged;
+        CSS_Health.OnHealthChanged += HealthChanged;
         CSS_GameManager.onBossUpdate += ActivateBossHealthBar;
     }
 
     void OnDisable()
     {
-        Health.OnHealthChanged -= HealthChanged;
+        CSS_Health.OnHealthChanged -= HealthChanged;
         CSS_GameManager.onBossUpdate -= ActivateBossHealthBar;
     }
 
     // Subscribing to the Health. Updates value when player health is changed
     public void HealthChanged()
     {
-        playerHPBar.value = playerShip.GetComponent<PlayerShip>().PlayerHealth.GetHealth();
+        playerHPBar.value = playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetHealth();
     }
 
     // Subscribing to boss.
@@ -137,7 +137,8 @@ public class GameScreen : MonoBehaviour
         {
             playerDeadPanel.SetActive(true);
         }
-        
+
+        playerShip.GetComponent<CSS_PlayerShip>().DisablePlayer();
         StartCoroutine(DelayToMainMenu());
     }
 

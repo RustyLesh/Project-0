@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Health : MonoBehaviour, ISaveable
+public class CSS_Health : MonoBehaviour, ISaveable
 {
     [SerializeField] private float currentHealth;
     
@@ -47,6 +47,8 @@ public class Health : MonoBehaviour, ISaveable
     }
 
     public object SaveState() {
+        Debug.Log(currentHealth);
+        Debug.Log(maxHealth);
         return new SaveData() {
             currentHealth = this.currentHealth,
             maxHealth = this.maxHealth
