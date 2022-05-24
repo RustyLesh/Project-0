@@ -3,7 +3,12 @@ guid: ac0fed96933a89148b0b421c1f569a35
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - EnemyShoot: {instanceID: 0}
+  - bullet: {fileID: 9187117320916237108, guid: cc885e5c1c804c04e9e9f9523a814472, type: 3}
+  - enemyData: {fileID: 11400000, guid: e48ca92f1bf2d6045be261eb671db518, type: 2}
+  - spawnCoin: {instanceID: 0}
+  - spawnParticleSystem: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

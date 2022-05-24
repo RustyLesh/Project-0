@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Gun", menuName = "ScriptableObjects/Gun", order = 10)]
-public class Gun : Item
+public class SO_Gun : Item
 {
-    [SerializeField] private Bullet bullet;
+    [SerializeField] private SO_Bullet bullet;
     [SerializeField] private Texture2D sprite;
     [SerializeField] private int projectileCount;
     public float fireRate;
 
 #region Public Getters
 
-    public Bullet Bullet
+    public SO_Bullet Bullet
     {
         private set => bullet = value;
         get => bullet;

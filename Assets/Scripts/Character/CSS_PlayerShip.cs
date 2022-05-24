@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[RequireComponent(typeof(CSS_Health), typeof(Arsenal))]
+[RequireComponent(typeof(CSS_Health))]
 public class CSS_PlayerShip : MonoBehaviour, ISaveable
 {
     public bool playerShoot;
     public CSS_Health playerHealth { get; private set; }
-    public Arsenal playerBattlements { get; private set; }
     public int coinCount { get; private set; }
 
     private PlayerControls playerControls;
     private float timer;
 
-    [SerializeField]private float shootDelay = 0.7f;
+    [SerializeField] private float shootDelay = 0.7f;
     [SerializeField] private GameObject bulletPrefrab;
     [SerializeField] private Transform firePosition;
     [SerializeField] private float fireRate = 0.1f;
@@ -33,7 +32,6 @@ public class CSS_PlayerShip : MonoBehaviour, ISaveable
     {
         playerControls = new PlayerControls();
         playerHealth = GetComponent<CSS_Health>();
-        playerBattlements = GetComponent<Arsenal>();
         coinCount = 0;
     }
 
@@ -46,7 +44,7 @@ public class CSS_PlayerShip : MonoBehaviour, ISaveable
             if (timer > fireRate) {
                 
                 GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
-                newBullet.GetComponent<BulletTest>().SetPlayerFired(true);
+                newBullet.GetComponent<CSS_Bullet>().SetPlayerFired(true);
 
                 timer = 0;
             }

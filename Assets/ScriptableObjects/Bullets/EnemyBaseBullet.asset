@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e248786c0e846047bd285557359a4ca, type: 3}
-  m_Name: Shell
+  m_Name: EnemyBaseBullet
   m_EditorClassIdentifier: 
   baseDamage: 10
-  sprite: {fileID: 2800000, guid: 96589bd622ab3414fa4b00f252239e8d, type: 3}
+  sprite: {fileID: 21300000, guid: bfe89e363d083d044b1665b0d9edd7e5, type: 3}
+  speed: 20

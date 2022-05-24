@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Bullet", menuName = "ScriptableObjects/Bullet", order = 20)]
-public class Bullet : ScriptableObject
+public class SO_Bullet : ScriptableObject
 {
-    [SerializeField] private float baseDamage;
-    [SerializeField] private Texture2D sprite;
+    public int baseDamage;
+    public Sprite sprite;
+    public float speed;
+    public int fireRate;
 }

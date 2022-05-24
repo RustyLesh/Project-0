@@ -91,14 +91,15 @@ public class CSS_Enemy : MonoBehaviour
             //Vector3 spawnPosition = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
             Vector3 spawnPos = this.shootPos.position;
 
+
             GameObject newBullet = Instantiate(bullet, spawnPos, Quaternion.identity);
-            newBullet.GetComponent<BulletTest>().SetPlayerFired(false);
+            newBullet.GetComponent<CSS_Bullet>().SetPlayerFired(false);
 
             // Setting shoot direction
             Vector3 shootDir = this.shootPos.position - this.transform.position;
             if (this.movementPatternID == 2)
             {
-                newBullet.GetComponent<BulletTest>().SetVecDirection(shootDir);
+                newBullet.GetComponent<CSS_Bullet>().SetVecDirection(shootDir);
             }
 
             // Reload

@@ -42,7 +42,8 @@ public class CSS_ModuleTurretBase : CSS_BossModules
                     //Debug.Log("Boss is Firing a bullet");
                     Vector3 spawnPosition = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
                     GameObject newBullet = Instantiate(CSS_GameManager.Instance.bullet, spawnPosition, this.transform.rotation);
-                    newBullet.GetComponent<BulletTest>().SetPlayerFired(false);
+                    newBullet.GetComponent<CSS_Bullet>().SetPlayerFired(false);
+                    
 
                     this.ammoCount--;
                     this.fireReload = this.fireRate;
