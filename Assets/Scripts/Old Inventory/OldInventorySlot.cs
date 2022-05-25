@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class InventorySlot : MonoBehaviour
+public class OldInventorySlot : MonoBehaviour
 {
     [SerializeField] TMP_Text itemName;
 

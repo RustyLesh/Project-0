@@ -11,17 +11,17 @@ using UnityEngine;
 
 
 
-public class InventoryUI : MonoBehaviour
+public class OldInventoryUI : MonoBehaviour
 {
     // public Transform itemsParent;
 
-    Inventory inventory;
+    OldInventory inventory;
 
-    public InventorySlot[] slots;
+    public OldInventorySlot[] slots;
 
     void Start()
     {
-        inventory = Inventory.instance;
+        inventory = OldInventory.instance;
 
         //slots = itemsParent.GetComponentsInChildren<InventorySlot>();
 
@@ -30,13 +30,13 @@ public class InventoryUI : MonoBehaviour
 
     void OnEnable()
     {
-        Inventory.onItemChangedCallBack += UpdateUI;
+        OldInventory.onItemChangedCallBack += UpdateUI;
 
     }
 
     void OnDisable()
     {
-        Inventory.onItemChangedCallBack -= UpdateUI;
+        OldInventory.onItemChangedCallBack -= UpdateUI;
     }
 
     void UpdateUI()
