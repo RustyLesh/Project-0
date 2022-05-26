@@ -24,12 +24,12 @@ public class CSS_PauseScreen : MonoBehaviour
 
     void Awake()
     {
-        gameManager = CSS_GameManager.Instance;
         playerControls = new PlayerControls();
     }
 
     void Start()
     {
+        gameManager = CSS_GameManager.Instance;
         pauseMenuUI.SetActive(false);
     }
 
