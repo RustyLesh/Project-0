@@ -5,7 +5,8 @@ using Project0.Inventories;
 
 public class InventoryDebug : MonoBehaviour
 {
-    [SerializeField] InventoryItem item;
+    [SerializeField] InventoryItem firstItem;
+    [SerializeField] InventoryItem secondItem;
 
     GameObject playerShip;
     Inventory playerInventory;
@@ -16,8 +17,15 @@ public class InventoryDebug : MonoBehaviour
         playerInventory = playerShip.GetComponent<Inventory>();
     }
 
-    public void addItem()
+    public void addFirstItem()
     {
-        playerInventory.AddToFirstEmptySlot(item, 1);
+        playerInventory.AddToFirstEmptySlot(firstItem, 1);
     }
+
+    public void addSecondItem()
+    {
+        playerInventory.AddToFirstEmptySlot(secondItem, 1);
+    }
+
+
 }

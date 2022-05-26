@@ -183,7 +183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2202322280793726717, guid: 3a1ffe295defe4f4a93d769bdd45f1ea, type: 3}
       propertyPath: m_Name
-      value: IventoryItem
+      value: InventoryItem
       objectReference: {fileID: 0}
     - target: {fileID: 2202322280793726717, guid: 3a1ffe295defe4f4a93d769bdd45f1ea, type: 3}
       propertyPath: m_IsActive
@@ -192,6 +192,46 @@ PrefabInstance:
     - target: {fileID: 2202322280821064656, guid: 3a1ffe295defe4f4a93d769bdd45f1ea, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2202322280821064659, guid: 3a1ffe295defe4f4a93d769bdd45f1ea, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 29.5089
+      objectReference: {fileID: 0}
+    - target: {fileID: 2202322280821064659, guid: 3a1ffe295defe4f4a93d769bdd45f1ea, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 30.7441
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846822215948445266, guid: 3a1ffe295defe4f4a93d769bdd45f1ea, type: 3}
+      propertyPath: m_fontSize
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846822215948445266, guid: 3a1ffe295defe4f4a93d769bdd45f1ea, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846822215948445266, guid: 3a1ffe295defe4f4a93d769bdd45f1ea, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846822215948445266, guid: 3a1ffe295defe4f4a93d769bdd45f1ea, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393510304543839195, guid: 3a1ffe295defe4f4a93d769bdd45f1ea, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 28.543
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393510304543839195, guid: 3a1ffe295defe4f4a93d769bdd45f1ea, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 17.6624
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393510304543839195, guid: 3a1ffe295defe4f4a93d769bdd45f1ea, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.48293972
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393510304543839195, guid: 3a1ffe295defe4f4a93d769bdd45f1ea, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000002861023
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a1ffe295defe4f4a93d769bdd45f1ea, type: 3}
