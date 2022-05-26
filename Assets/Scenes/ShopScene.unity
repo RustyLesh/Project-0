@@ -1548,13 +1548,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 440880837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62f6e43b30e104d4886801e737cc535b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e138ec52715c334c8d9052132e5d8f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallet:
-    coinCount: 100
-  CoinBaseValue: 1
-  MoneyMultiplier: 1
+  <money>k__BackingField: 100
+  <moneyMultiplier>k__BackingField: 1
 --- !u!114 &442878187 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 213299390, guid: acf2362a08c102d498867912a34eec0e, type: 3}
@@ -4612,6 +4610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyManager: {fileID: 440880840}
+  currentCoinsText: {fileID: 331333528}
   slots:
   - {fileID: 289832435}
   - {fileID: 2022252307}
@@ -4651,7 +4650,6 @@ MonoBehaviour:
   - {fileID: 2040719828}
   - {fileID: 1357795358}
   - {fileID: 1917384045}
-  currentCoinsText: {fileID: 331333528}
 --- !u!1001 &1774333120
 PrefabInstance:
   m_ObjectHideFlags: 0

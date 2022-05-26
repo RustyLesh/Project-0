@@ -36,7 +36,7 @@ namespace Project0.Inventories
         /// </summary>
         public static Inventory GetPlayerInventory()
         {
-            var player = GameObject.FindWithTag("Player");
+            var player = GameObject.FindWithTag("PlayerShip");
             return player.GetComponent<Inventory>();
         }
 
@@ -165,6 +165,7 @@ namespace Project0.Inventories
         private void Awake()
         {
             slots = new InventorySlot[inventorySize];
+            print(slots.Length);
         }
 
         /// <summary>
