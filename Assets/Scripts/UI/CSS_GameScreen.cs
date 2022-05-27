@@ -124,6 +124,7 @@ public class CSS_GameScreen : MonoBehaviour
         timeRemainingInSecondsText.text = "Boss Fight";
         bossObject.SetActive(true);
         bossSpawned = true;
+        this.bossShip = CSS_GameManager.Instance.bossShip;
     }
 
     void UpdateTime()

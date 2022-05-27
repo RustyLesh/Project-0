@@ -175,6 +175,7 @@ public class CSS_Spawn : MonoBehaviour
     {
         GameObject tempBoss01 = Instantiate(obj_boss01, this.bossSpawnPos.position, Quaternion.identity);
         tempBoss01.GetComponent<CSS_Boss>().SetMovementPattern(1, this.GetBossMovementPattern(0));
+        tempBoss01.GetComponent<CSS_Boss>().Init();
 
         return tempBoss01;
     }
@@ -310,6 +311,7 @@ public class CSS_Spawn : MonoBehaviour
         {
             GameObject tempBoss01 = Instantiate(obj_boss01, this.bossSpawnPos.position, Quaternion.identity);
             tempBoss01.GetComponent<CSS_Boss>().SetMovementPattern(1,this.GetBossMovementPattern(0));
+            tempBoss01.GetComponent<CSS_Boss>().Init();
 
             this.isSpawnBoss01 = false;
         }

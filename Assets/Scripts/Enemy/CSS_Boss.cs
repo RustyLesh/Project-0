@@ -15,6 +15,7 @@ public class CSS_Boss : MonoBehaviour
     bool isBossDead = false;
     public int bossID = 1;  // Only 1 boss atm
     public int bodyDmg = 50;
+    [SerializeField] private int totalHP;
     private int waypoint;
     [SerializeField] private float movementSpeed = 2.0f;
     public EBossState state;
@@ -25,13 +26,13 @@ public class CSS_Boss : MonoBehaviour
     // Debug
     [SerializeField] private bool isTakingDamage = false;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Init()
     {
         this.waypoint = 0;
         this.state = EBossState.Approach;
         this.modules = new List<GameObject>();
         this.SetModules();
+        this.totalHP = this.GetTotalBossHealth();
 
         // Turn Forward Direction to down 
         // due to unity Z-axis is the forward dir
@@ -143,9 +144,10 @@ public class CSS_Boss : MonoBehaviour
         {
             tempTotal += this.modules[i].GetComponent<CSS_BossModules>().GetModHP();
         }
+        this.totalHP = tempTotal;
 
-        Debug.Log($"Boss health: {tempTotal}");
-        return (tempTotal);
+        Debug.Log($"Boss health: {totalHP}");
+        return (totalHP);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////

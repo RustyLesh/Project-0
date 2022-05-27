@@ -12,8 +12,7 @@ public class CSS_ModuleTurretBase : CSS_BossModules
     [SerializeField] private float fireReload;
     [SerializeField] private float fireRate;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Init()
     {
         this.defaultModHP = 100;
         this.ammo = 6;
@@ -22,6 +21,11 @@ public class CSS_ModuleTurretBase : CSS_BossModules
         this.fireReload = this.fireSpeed;
         this.fireRate = 0.3f;
         this.Init(this.defaultModHP);
+    }
+
+    private void Awake()
+    {
+        this.Init();
     }
 
     // Depending on how many differnt attacks there would be 
