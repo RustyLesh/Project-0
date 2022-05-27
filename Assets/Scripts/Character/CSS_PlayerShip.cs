@@ -8,7 +8,6 @@ public class CSS_PlayerShip : MonoBehaviour, CSS_ISaveable
 {
     public bool playerShoot;
     public CSS_Health playerHealth { get; private set; }
-    public int coinCount { get; private set; }
 
     private PlayerControls playerControls;
     private float timer;
@@ -32,7 +31,6 @@ public class CSS_PlayerShip : MonoBehaviour, CSS_ISaveable
     {
         playerControls = new PlayerControls();
         playerHealth = GetComponent<CSS_Health>();
-        coinCount = 0;
     }
 
     void Update()
@@ -51,16 +49,8 @@ public class CSS_PlayerShip : MonoBehaviour, CSS_ISaveable
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "Coin") {
-            coinCount++;
-            Debug.Log("Player has: " + coinCount + " coins");
-        }
-    }
-
     public object SaveState() {
         return new SaveData() {
-            coinCount = this.coinCount,
             shootDelay = this.shootDelay,
             fireRate = this.fireRate,
         };
@@ -68,14 +58,12 @@ public class CSS_PlayerShip : MonoBehaviour, CSS_ISaveable
 
     public void LoadState(object state) {
         var saveData = (SaveData)state;
-        coinCount = saveData.coinCount;
         shootDelay = saveData.shootDelay;
         fireRate = saveData.fireRate;
     }
 
     [Serializable]
     private struct SaveData {
-        public int coinCount;
         public float shootDelay;
         public float fireRate;
     }
