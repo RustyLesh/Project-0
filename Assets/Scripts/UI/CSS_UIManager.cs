@@ -14,9 +14,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIManager : MonoBehaviour
+public class CSS_UIManager : MonoBehaviour
 {
-    public static UIManager instance;
+    public static CSS_UIManager instance;
 
     // All the screens
     [SerializeField] GameObject startScreen, gameScreen, endScreen;
