@@ -10,6 +10,10 @@ public class CSS_PlayerShip : MonoBehaviour, ISaveable
     public CSS_Health playerHealth { get; private set; }
     public int coinCount { get; private set; }
 
+    [SerializeField] private SO_Bullet bulletData;
+
+    //float bulletFireRate = bulletData.fireRate;
+
     private PlayerControls playerControls;
     private float timer;
 
@@ -41,10 +45,23 @@ public class CSS_PlayerShip : MonoBehaviour, ISaveable
         {
 
             timer += Time.deltaTime;
-            if (timer > fireRate) {
-                
-                GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
-                newBullet.GetComponent<CSS_Bullet>().SetPlayerFired(true);
+            if (timer > bulletData.fireRate) {
+
+                if (bulletData.burst == true)
+                {
+                    for (int TimesShot = 1; TimesShot <= bulletData.timesToShoot; TimesShot++)
+                    {
+                        GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
+                        newBullet.GetComponent<CSS_Bullet>().SetPlayerFired(true);
+                        new WaitForSeconds(100f / bulletData.fireRate);
+                    }
+                }
+
+                else
+                {
+                    GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
+                    newBullet.GetComponent<CSS_Bullet>().SetPlayerFired(true);
+                }
 
                 timer = 0;
             }

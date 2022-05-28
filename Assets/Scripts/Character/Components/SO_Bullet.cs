@@ -8,5 +8,7 @@ public class SO_Bullet : ScriptableObject
     public int baseDamage;
     public Sprite sprite;
     public float speed;
-    public int fireRate;
+    public float fireRate;
+    public bool burst = false;
+    public int timesToShoot = 3; 
 }

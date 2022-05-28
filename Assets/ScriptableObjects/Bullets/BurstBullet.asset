@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e248786c0e846047bd285557359a4ca, type: 3}
-  m_Name: EnemyBaseBullet
+  m_Name: BurstBullet
   m_EditorClassIdentifier: 
-  baseDamage: 10
-  sprite: {fileID: 21300000, guid: ecd1008bdc3279146967cfe0f2e7c47d, type: 3}
-  speed: 5
+  baseDamage: 0
+  sprite: {fileID: 0}
+  speed: 0
   fireRate: 0
+  burst: 0
+  timesToShoot: 3

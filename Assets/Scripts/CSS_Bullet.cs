@@ -58,12 +58,7 @@ public class CSS_Bullet : MonoBehaviour
             SpriteRenderer sprite = this.gameObject.GetComponentInChildren<SpriteRenderer>();
             sprite.sprite = data.sprite;
         }
-        else if(gameObject.tag == "Boss" && isFiredFromPlayer == false)
-        {
-            direction = -1;
-            SpriteRenderer sprite = this.gameObject.GetComponentInChildren<SpriteRenderer>();
-            sprite.sprite = bossData.sprite;
-        }
+
         else
         {
             

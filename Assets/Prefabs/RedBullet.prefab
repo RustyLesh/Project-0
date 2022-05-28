@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1773839936534793811}
   - component: {fileID: 7028012009541229707}
   m_Layer: 0
-  m_Name: PF_Bullet
+  m_Name: RedBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,10 +166,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFiredFromPlayer: 1
-  velocityDir: {x: 0, y: 0}
-  direction: 1
-  data: {fileID: 11400000, guid: 567ed3225a1ce8f45977c0e9647182cc, type: 2}
-  enemyData: {fileID: 11400000, guid: e48ca92f1bf2d6045be261eb671db518, type: 2}
-  bossData: {fileID: 0}
+  speed: 5
   angle: 0
   rb: {fileID: 6304990497609984036}
+  velocityDir: {x: 0, y: 0}
+  direction: 1
+  baseDamage: 10
