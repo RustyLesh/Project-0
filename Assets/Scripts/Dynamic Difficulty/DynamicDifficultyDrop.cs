@@ -10,7 +10,7 @@ namespace Project0
         [SerializeField] private float bossDamageMultiplyAmount;
         [SerializeField] private float bossHealthMultiplyAmount;
         [SerializeField] private float mobHealthMultiplyAmount;
-        [SerializeField] private float mobHealthMultiplyAmount;
+        [SerializeField] private float mobDamageMultiplyAmount;
 
         public delegate void MoneyMultiply(float amount);
         public static event MoneyMultiply onMoneyMultiply;
