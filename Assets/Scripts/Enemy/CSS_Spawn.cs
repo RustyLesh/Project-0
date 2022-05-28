@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Project0;
 
 public class CSS_Spawn : MonoBehaviour
 {
@@ -54,18 +53,6 @@ public class CSS_Spawn : MonoBehaviour
             Instance = this;
         else
             Destroy(this);
-    }
-
-    private void OnEnable()
-    {
-        DynamicDifficultyDrop.onBossDamageMultiply += AdjustBossDamageMultiplier;
-        DynamicDifficultyDrop.onBossHealthMultiply += AdjustBossHealthMultiplier;
-    }
-
-    private void OnDisable()
-    {
-        DynamicDifficultyDrop.onBossDamageMultiply -= AdjustBossDamageMultiplier;
-        DynamicDifficultyDrop.onBossHealthMultiply -= AdjustBossHealthMultiplier;
     }
 
     // Start is called before the first frame update
@@ -260,19 +247,19 @@ public class CSS_Spawn : MonoBehaviour
     }
 
     ///Multiplier Methods
-    private void AdjustBossDamageMultiplier(float value)
+    public void AdjustBossDamageMultiplier(float value)
     {
         bossDamageMultiplier = Mathf.Clamp(bossDamageMultiplier + value, 0, float.MaxValue);   
     }
-    private void AdjustBossHealthMultiplier(float value)
+    public void AdjustBossHealthMultiplier(float value)
     {
         bossHealthMultiplier = Mathf.Clamp(bossHealthMultiplier + value, 0, float.MaxValue);
     }
-    private void AdjustMobDamageMultiplier(float value)
+    public void AdjustMobDamageMultiplier(float value)
     {
         mobDamageMultiplier = Mathf.Clamp(mobDamageMultiplier + value, 0, float.MaxValue);
     }
-    private void AdjustMobHealthMultiplier(float value)
+    public void AdjustMobHealthMultiplier(float value)
     {
         mobHealthMultiplier = Mathf.Clamp(mobHealthMultiplier + value, 0, float.MaxValue);
     }

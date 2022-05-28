@@ -34,23 +34,28 @@ public class CSS_DynamicDifficultyManager : MonoBehaviour
         spawnManager.AdjustBossDamageMultiplier(amount);
     }
 
-    private void AdjustBossHealth(float amount)
-    {
-        spawnManager.AdjustBossHealthMultiplier(amount);
-    }
-
     private void AdjustMobHealth(float amount)
     {
         spawnManager.AdjustMobHealthMultiplier(amount);
     }
 
+    private void AdjustBossHealth(float amount)
+    {
+        spawnManager.AdjustBossHealthMultiplier(amount);
+    }
+
+
     private void OnEnable()
     {
         CSS_MoneyMultiplierDrop.onMoneyMultiply += AdjustMoneyMultiplier;
+        DynamicDifficultyDrop.onBossDamageMultiply += AdjustBossDamage;
+        DynamicDifficultyDrop.onBossHealthMultiply += AdjustBossHealth;
     }
 
     private void OnDisable()
     {
         CSS_MoneyMultiplierDrop.onMoneyMultiply -= AdjustMoneyMultiplier;
+        DynamicDifficultyDrop.onBossDamageMultiply -= AdjustBossDamage;
+        DynamicDifficultyDrop.onBossHealthMultiply -= AdjustBossHealth;
     }
 }
