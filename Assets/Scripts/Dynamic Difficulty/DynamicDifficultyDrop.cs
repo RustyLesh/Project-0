@@ -9,6 +9,8 @@ namespace Project0
         [SerializeField] private float moneyMultiplyamount;
         [SerializeField] private float bossDamageMultiplyAmount;
         [SerializeField] private float bossHealthMultiplyAmount;
+        [SerializeField] private float mobHealthMultiplyAmount;
+        [SerializeField] private float mobHealthMultiplyAmount;
 
         public delegate void MoneyMultiply(float amount);
         public static event MoneyMultiply onMoneyMultiply;
@@ -22,6 +24,9 @@ namespace Project0
         private void OnTriggerEnter2D(Collider2D collision)
         {
             onMoneyMultiply.Invoke(moneyMultiplyamount);
+            onBossDamageMultiply.Invoke(bossDamageMultiplyAmount);
+            onBossHealthMultiply.Invoke(bossHealthMultiplyAmount);
+
             Destroy(gameObject);
         }
     }
