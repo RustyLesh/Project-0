@@ -21,7 +21,7 @@ public class CSS_Boss : MonoBehaviour
     public EBossState state;
 
     private Transform[] movementPattern;
-    private List<GameObject> modules;
+    private List<CSS_BossModules> modules;
 
     // Debug
     [SerializeField] private bool isTakingDamage = false;
@@ -30,7 +30,7 @@ public class CSS_Boss : MonoBehaviour
     {
         this.waypoint = 0;
         this.state = EBossState.Approach;
-        this.modules = new List<GameObject>();
+        this.modules = new List<CSS_BossModules>();
         this.SetModules();
         this.totalHP = this.GetTotalBossHealth();
 
@@ -150,6 +150,25 @@ public class CSS_Boss : MonoBehaviour
         return (totalHP);
     }
 
+    public void ApplyLifeMultiplierToModules(float multiplier)
+    {
+        for(int i = 0; i <= this.modules.Count; i++)
+        {
+            modules[i].SetModHP((int)(modules[i].GetModHP() * multiplier));
+        }
+    }
+
+    public void ApplyDamageMultiplierToModules(float multiplier)
+    {
+        for (int i = 0; i <= this.modules.Count; i++)
+        {
+            if(modules[i].moduleType == BossModuleType.TURRET)
+            {
+                CSS_ModuleTurretBase turret = (CSS_ModuleTurretBase)modules[i];
+                turret.AdjustDamageMultiplier(multiplier);
+            }
+        }
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////
     /// Encapsulators
     ///
@@ -159,7 +178,7 @@ public class CSS_Boss : MonoBehaviour
         // Modules are stored in index 0 
         for (int i = 0; i < this.transform.GetChild(0).childCount; i++)
         {
-            this.modules.Add(this.transform.GetChild(0).transform.GetChild(i).gameObject);
+            this.modules.Add(this.transform.GetChild(0).transform.GetChild(i).GetComponent<CSS_BossModules>());
             //Debug.Log("Module " + i + ": "+ this.modules[i].GetComponent<CSS_BossModules>().GetModHP());
         }
 
@@ -167,7 +186,8 @@ public class CSS_Boss : MonoBehaviour
         //Debug.Log("Num of Modules: " + this.modules.Count);
     }
 
-    public void SetMovementPattern(int _id, Transform[] _movePat)
+
+        public void SetMovementPattern(int _id, Transform[] _movePat)
     {
         this.bossID = _id;
         this.movementPattern = _movePat;
@@ -181,7 +201,7 @@ public class CSS_Boss : MonoBehaviour
     {
         if (this.isTakingDamage == true)
         {
-            this.modules[0].GetComponent<CSS_BossModules>().TakeDamage(100);
+            this.modules[0].TakeDamage(100);
             this.isTakingDamage = false;
         }
     }

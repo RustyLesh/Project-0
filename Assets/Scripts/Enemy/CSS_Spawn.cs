@@ -30,6 +30,16 @@ public class CSS_Spawn : MonoBehaviour
     public List<List<Transform>> bossMovementPattern = new List<List<Transform>>();
     public List<List<Transform>> atkRunMovePos = new List<List<Transform>>();
 
+    //Multiplers start at a base of 1 ( 100% )
+    [Space]
+    [Header("Dynamic Difficulty Multipliers")] 
+    [SerializeField] private float mobDamageMultiplier = 1;
+    [SerializeField] private float mobHealthMultiplier = 1;
+
+    [Space]
+    [SerializeField] private float bossDamageMultiplier = 1;
+    [SerializeField] private float bossHealthMultiplier = 1;
+
     [Space]
     [Header("Debug Functions")]
     [SerializeField] private bool isSpawnMob01 = false; // Charger
@@ -37,7 +47,6 @@ public class CSS_Spawn : MonoBehaviour
     [SerializeField] private bool isSpawnMob03 = false; // Bulk fire and run
     [SerializeField] private bool isSpawnMob04 = false; // Cut 
     [SerializeField] private bool isSpawnBoss01 = false;
-
     private void Awake()
     {
         if (Instance == null)
@@ -176,6 +185,8 @@ public class CSS_Spawn : MonoBehaviour
         GameObject tempBoss01 = Instantiate(obj_boss01, this.bossSpawnPos.position, Quaternion.identity);
         tempBoss01.GetComponent<CSS_Boss>().SetMovementPattern(1, this.GetBossMovementPattern(0));
         tempBoss01.GetComponent<CSS_Boss>().Init();
+        tempBoss01.GetComponent<CSS_Boss>().ApplyLifeMultiplierToModules(bossHealthMultiplier);
+        tempBoss01.GetComponent<CSS_Boss>().ApplyDamageMultiplierToModules(bossDamageMultiplier);
 
         return tempBoss01;
     }
@@ -233,6 +244,24 @@ public class CSS_Spawn : MonoBehaviour
         tempVec = this.defSpawnPos[randIndex].position;
 
         return (tempVec);
+    }
+
+    ///Multiplier Methods
+    public void AdjustBossDamageMultiplier(float value)
+    {
+        bossDamageMultiplier = Mathf.Clamp(bossDamageMultiplier + value, 0, float.MaxValue);   
+    }
+    public void AdjustBossHealthMultiplier(float value)
+    {
+        bossHealthMultiplier = Mathf.Clamp(bossHealthMultiplier + value, 0, float.MaxValue);
+    }
+    public void AdjustMobDamageMultiplier(float value)
+    {
+        mobDamageMultiplier = Mathf.Clamp(mobDamageMultiplier + value, 0, float.MaxValue);
+    }
+    public void AdjustMobHealthMultiplier(float value)
+    {
+        mobHealthMultiplier = Mathf.Clamp(mobHealthMultiplier + value, 0, float.MaxValue);
     }
 
     /// Getters

@@ -11,6 +11,7 @@ public class CSS_ModuleTurretBase : CSS_BossModules
     [SerializeField] private float fireSpeed;
     [SerializeField] private float fireReload;
     [SerializeField] private float fireRate;
+    [SerializeField] private float damageMultiplier;
 
     public void Init()
     {
@@ -20,6 +21,7 @@ public class CSS_ModuleTurretBase : CSS_BossModules
         this.fireSpeed = 3.0f;
         this.fireReload = this.fireSpeed;
         this.fireRate = 0.3f;
+        this.moduleType = BossModuleType.TURRET;
         this.Init(this.defaultModHP);
     }
 
@@ -46,7 +48,9 @@ public class CSS_ModuleTurretBase : CSS_BossModules
                     //Debug.Log("Boss is Firing a bullet");
                     Vector3 spawnPosition = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
                     GameObject newBullet = Instantiate(CSS_GameManager.Instance.bullet, spawnPosition, this.transform.rotation);
-                    newBullet.GetComponent<BulletTest>().SetPlayerFired(false);
+                    BulletTest bulletTest = newBullet.GetComponent<BulletTest>();
+                    bulletTest.SetPlayerFired(false);
+                    bulletTest.baseDamage = (int)(bulletTest.baseDamage * this.damageMultiplier);
 
                     this.ammoCount--;
                     this.fireReload = this.fireRate;
@@ -61,6 +65,14 @@ public class CSS_ModuleTurretBase : CSS_BossModules
 
             //StartCoroutine(ShootingCoroutine());
         }
+    }
+
+    /// <summary>
+    /// Add or take away from multipler, clamped cannot go bellow 0
+    /// </summary>
+    public void AdjustDamageMultiplier(float value)
+    {
+        damageMultiplier = Mathf.Clamp(damageMultiplier + value, 0, float.MaxValue);
     }
 
     //private IEnumerator ShootingCoroutine()

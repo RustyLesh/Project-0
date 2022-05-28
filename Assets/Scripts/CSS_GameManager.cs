@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CSS_GameManager : MonoBehaviour
@@ -48,7 +46,7 @@ public class CSS_GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -67,7 +65,7 @@ public class CSS_GameManager : MonoBehaviour
         // deltaTime avg 120 - 300 ticks
 
         // Spawning Mobs till boss arrives
-        if(this.gameTimer <= 140.0f)
+        if (this.gameTimer <= 140.0f)
         {
             // Constantly spawn cannon fodders till boss
             // Spawn Basic Chargers aka cannon fodder
@@ -80,7 +78,7 @@ public class CSS_GameManager : MonoBehaviour
 
             // Hit and Run Lancers that are beefy cannon fodders
             this.lancerTimer += Time.deltaTime;
-            if(this.lancerTimer >= 30.0f)
+            if (this.lancerTimer >= 30.0f)
             {
                 CSS_Spawn.Instance.SpawnHitAndRunMob();
                 this.lancerTimer = 0.0f;
@@ -88,9 +86,9 @@ public class CSS_GameManager : MonoBehaviour
 
             // Set Pattern
             this.spawnTimer += Time.deltaTime;
-            if(this.spawnTimer >= 20.0f)
+            if (this.spawnTimer >= 20.0f)
             {
-                if(this.spawnPattern == 1)
+                if (this.spawnPattern == 1)
                 {
                     CSS_Spawn.Instance.SpawnCurveMob(false);
                 }
@@ -115,7 +113,7 @@ public class CSS_GameManager : MonoBehaviour
                     CSS_Spawn.Instance.SpawnCutterMob();
                 }
 
-                if(spawnNumbers != 0)
+                if (spawnNumbers != 0)
                 {
                     this.spawnTimer = 20.0f - this.spawnRate;
                     this.spawnNumbers--;
@@ -143,11 +141,13 @@ public class CSS_GameManager : MonoBehaviour
 
     ///////////////////////////////////////////////////////////////////////////////////
 
-    public void SetIsBossDead(bool _isDead){
+    public void SetIsBossDead(bool _isDead)
+    {
         this.isBossDead = _isDead;
     }
 
-    public void SetIsPlayerDead(bool _isDead){
+    public void SetIsPlayerDead(bool _isDead)
+    {
         this.isPlayerDead = _isDead;
     }
 

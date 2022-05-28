@@ -11,6 +11,7 @@ public class CSS_ModuleCore : CSS_BossModules
     {
         this.defaultModHP = 200;
         this.Init(this.defaultModHP);
+        this.moduleType = BossModuleType.CORE;
     }
 
     private void Awake()

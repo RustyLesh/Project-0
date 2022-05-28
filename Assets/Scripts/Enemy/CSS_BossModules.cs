@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public abstract class CSS_BossModules : MonoBehaviour
@@ -11,6 +10,8 @@ public abstract class CSS_BossModules : MonoBehaviour
     [SerializeField] private SpriteRenderer sprRen;
     [SerializeField] private ParticleSystem smokePart;
     [SerializeField] private Sprite sprDestroyedVer;
+
+    public BossModuleType moduleType { get; protected set; }
 
     public void Init(int _modHP)
     {
@@ -69,9 +70,15 @@ public abstract class CSS_BossModules : MonoBehaviour
 
     public void SetModHP(int _hp)
     {
-        this.modHP = _hp;
+        this.modHP = Mathf.Clamp(_hp, 0, int.MaxValue);
     }
 
     public bool GetIsDestroyed() { return (this.isDestroyed); }
     public int GetModHP() { return (this.modHP); }
 }
+public enum BossModuleType
+{
+    CORE,
+    TURRET,
+}
+
