@@ -4,17 +4,19 @@ using UnityEngine;
 using System;
 
 [RequireComponent(typeof(CSS_Health))]
-public class CSS_PlayerShip : MonoBehaviour, ISaveable
+
+
+public class CSS_PlayerShip : MonoBehaviour
 {
     public bool playerShoot;
     public CSS_Health playerHealth { get; private set; }
-    public int coinCount { get; private set; }
 
     [SerializeField] private SO_Bullet bulletData;
+    public int coinCount { get; private set; }
 
-    //float bulletFireRate = bulletData.fireRate;
+        //float bulletFireRate = bulletData.fireRate;
 
-    private PlayerControls playerControls;
+        private PlayerControls playerControls;
     private float timer;
 
     [SerializeField] private float shootDelay = 0.7f;
@@ -36,7 +38,9 @@ public class CSS_PlayerShip : MonoBehaviour, ISaveable
     {
         playerControls = new PlayerControls();
         playerHealth = GetComponent<CSS_Health>();
+
         coinCount = 0;
+
     }
 
     void Update()
@@ -68,16 +72,8 @@ public class CSS_PlayerShip : MonoBehaviour, ISaveable
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "Coin") {
-            coinCount++;
-            Debug.Log("Player has: " + coinCount + " coins");
-        }
-    }
-
     public object SaveState() {
         return new SaveData() {
-            coinCount = this.coinCount,
             shootDelay = this.shootDelay,
             fireRate = this.fireRate,
         };
@@ -85,14 +81,12 @@ public class CSS_PlayerShip : MonoBehaviour, ISaveable
 
     public void LoadState(object state) {
         var saveData = (SaveData)state;
-        coinCount = saveData.coinCount;
         shootDelay = saveData.shootDelay;
         fireRate = saveData.fireRate;
     }
 
     [Serializable]
     private struct SaveData {
-        public int coinCount;
         public float shootDelay;
         public float fireRate;
     }

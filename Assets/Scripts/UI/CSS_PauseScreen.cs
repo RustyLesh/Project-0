@@ -12,6 +12,7 @@ using UnityEngine.SceneManagement;
 
 public class CSS_PauseScreen : MonoBehaviour
 {
+    public CSS_GameManager gameManager;
     
     public static bool GameIsPaused = false;
 
@@ -28,6 +29,7 @@ public class CSS_PauseScreen : MonoBehaviour
 
     void Start()
     {
+        gameManager = CSS_GameManager.Instance;
         pauseMenuUI.SetActive(false);
     }
 
@@ -45,6 +47,8 @@ public class CSS_PauseScreen : MonoBehaviour
 
     void OnPause(InputAction.CallbackContext context)
     {
+        if (gameManager.isPlayerDead || gameManager.isBossDead) return;
+
         if (GameIsPaused)
         {
             Resume();

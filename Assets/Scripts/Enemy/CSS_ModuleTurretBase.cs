@@ -11,9 +11,9 @@ public class CSS_ModuleTurretBase : CSS_BossModules
     [SerializeField] private float fireSpeed;
     [SerializeField] private float fireReload;
     [SerializeField] private float fireRate;
+    [SerializeField] private float damageMultiplier;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Init()
     {
         this.defaultModHP = 100;
         this.ammo = 6;
@@ -21,7 +21,13 @@ public class CSS_ModuleTurretBase : CSS_BossModules
         this.fireSpeed = 3.0f;
         this.fireReload = this.fireSpeed;
         this.fireRate = 0.3f;
+        this.moduleType = BossModuleType.TURRET;
         this.Init(this.defaultModHP);
+    }
+
+    private void Awake()
+    {
+        this.Init();
     }
 
     // Depending on how many differnt attacks there would be 
@@ -42,8 +48,14 @@ public class CSS_ModuleTurretBase : CSS_BossModules
                     //Debug.Log("Boss is Firing a bullet");
                     Vector3 spawnPosition = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
                     GameObject newBullet = Instantiate(CSS_GameManager.Instance.bullet, spawnPosition, this.transform.rotation);
+
                     newBullet.GetComponent<CSS_Bullet>().SetPlayerFired(false);
                     
+
+                   /* BulletTest bulletTest = newBullet.GetComponent<BulletTest>();
+                    bulletTest.SetPlayerFired(false);
+                    bulletTest.baseDamage = (int)(bulletTest.baseDamage * this.damageMultiplier);*/
+
 
                     this.ammoCount--;
                     this.fireReload = this.fireRate;
@@ -58,6 +70,14 @@ public class CSS_ModuleTurretBase : CSS_BossModules
 
             //StartCoroutine(ShootingCoroutine());
         }
+    }
+
+    /// <summary>
+    /// Add or take away from multipler, clamped cannot go bellow 0
+    /// </summary>
+    public void AdjustDamageMultiplier(float value)
+    {
+        damageMultiplier = Mathf.Clamp(damageMultiplier + value, 0, float.MaxValue);
     }
 
     //private IEnumerator ShootingCoroutine()

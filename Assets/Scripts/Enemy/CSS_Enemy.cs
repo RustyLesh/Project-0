@@ -40,8 +40,8 @@ public class CSS_Enemy : MonoBehaviour
     private Vector3 playerShipPos;
     private Transform shootPos;
 
-    [SerializeField] SpawnCoin spawnCoin;
-    [SerializeField] SpawnParticleSystem spawnParticleSystem;
+    [SerializeField] CSS_SpawnCoin spawnCoin;
+    [SerializeField] CSS_SpawnParticleSystem spawnParticleSystem;
 
     // Start is called before the first frame update
     void Start()

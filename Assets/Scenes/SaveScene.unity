@@ -349,7 +349,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: saveTwo.json
+          m_StringArgument: saveTwo.txt
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &358498861
@@ -898,7 +898,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: saveOne.json
+          m_StringArgument: saveOne.txt
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1207065084
@@ -1501,7 +1501,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: saveThree.json
+          m_StringArgument: saveThree.txt
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2025317086

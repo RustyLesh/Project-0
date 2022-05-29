@@ -1,6 +1,6 @@
-public class MyEventArgs : System.EventArgs
+public class FloatEventArgs : System.EventArgs
 {
-    public int amount;
+    public float amount;
 }
 
 

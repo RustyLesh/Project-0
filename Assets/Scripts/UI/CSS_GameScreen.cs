@@ -41,19 +41,25 @@ public class CSS_GameScreen : MonoBehaviour
 
     void Start()
     {
-        // Initiallize Player related
+        // Init Player related
         playerShip = CSS_GameManager.Instance.playerShip;
         playerHPBar.maxValue = playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetHealth();
         playerHPBar.value = playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetHealth();
 
-        // Init stage
-        currentStageText.text = $"Stage: {currentStage}";
+        // Init Boss realted
+        bossShip = CSS_GameManager.Instance.bossShip;
 
         // boss object off
         bossObject.SetActive(false);
         bossDefeatPanel.SetActive(false);
 
+        // Init stage
+        currentStageText.text = $"Stage: {currentStage}";
+
+
         timerOn = true;
+
+
     }
 
     void Update()
@@ -116,12 +122,9 @@ public class CSS_GameScreen : MonoBehaviour
     void ActivateBossHealthBar()
     {
         timeRemainingInSecondsText.text = "Boss Fight";
-        bossShip = CSS_GameManager.Instance.bossShip;
         bossObject.SetActive(true);
         bossSpawned = true;
-
-        // TODO: Fix null error (prob instatiate timing different to Invoke)
-        //bossHPBar.maxValue = bossShip.GetComponent<CSS_Boss>().GetTotalBossHealth();
+        this.bossShip = CSS_GameManager.Instance.bossShip;
     }
 
     void UpdateTime()

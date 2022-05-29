@@ -22,7 +22,7 @@ namespace Project0
         {
             if (collision.tag == "PlayerShip")
             {
-                //OnCoinCollected.Invoke();
+                OnCoinCollected.Invoke();
                 Destroy(gameObject);
                 Debug.Log("Player ship touched coin");
             }

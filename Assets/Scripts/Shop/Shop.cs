@@ -8,7 +8,7 @@ public class Shop : MonoBehaviour
     [SerializeField] List<ShopItem> shopInventory = new List<ShopItem>();
 
     CSS_MoneyManager moneyManager;
-    Inventory inventory;
+    OldInventory inventory;
 
     public delegate void ShopChanged();
     public static event ShopChanged OnShopChanged;
@@ -16,7 +16,7 @@ public class Shop : MonoBehaviour
     void Start()
     {
         moneyManager = FindObjectOfType<CSS_MoneyManager>();
-        inventory = Inventory.instance;
+        inventory = OldInventory.instance;
     }
 
     public List<ShopItem> GetAllShotItem()

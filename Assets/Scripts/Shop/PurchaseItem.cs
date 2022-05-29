@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PurchaseItem : MonoBehaviour
 {
-    Inventory inventory;
+    OldInventory inventory;
     Shop shop;
     private void Start()
     {
-        inventory = Inventory.instance;
+        inventory = OldInventory.instance;
         shop = FindObjectOfType<Shop>();
     }
 

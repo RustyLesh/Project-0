@@ -7,7 +7,7 @@ public class SpawnCoinTest {
     [Test]
     public void spawn_coin() {
         var gameObject = new GameObject();
-        var spawnCoin = gameObject.AddComponent<SpawnCoin>();
+        var spawnCoin = gameObject.AddComponent<CSS_SpawnCoin>();
 
         spawnCoin.SpawnCoinOnDeath(gameObject.transform);
 
@@ -21,7 +21,7 @@ public class SpawnCoinTest {
         int beforeCount = GameObject.FindGameObjectsWithTag("Coin").Length;
 
         var gameObject = new GameObject();
-        var spawnCoin = gameObject.AddComponent<SpawnCoin>();
+        var spawnCoin = gameObject.AddComponent<CSS_SpawnCoin>();
 
         spawnCoin.SpawnCoinOnDeath(gameObject.transform);
 
