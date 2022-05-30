@@ -43,6 +43,10 @@ public class CSS_Enemy : MonoBehaviour
     [SerializeField] CSS_SpawnCoin spawnCoin;
     [SerializeField] CSS_SpawnParticleSystem spawnParticleSystem;
 
+    [SerializeField] public int xp = 5;
+    public delegate void AddXp(int amount);
+    public static event AddXp OnAddXp;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -125,6 +129,7 @@ public class CSS_Enemy : MonoBehaviour
 
         spawnCoin.SpawnCoinOnDeath(gameObject.transform);
         spawnParticleSystem.ParticleEffectOnDeath(gameObject.transform);
+        OnAddXp.Invoke(xp);
 
         // Delete itself
         this.DeleteItSelf();
