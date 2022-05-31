@@ -4,8 +4,6 @@ using UnityEngine;
 using System;
 
 [RequireComponent(typeof(CSS_Health))]
-
-
 public class CSS_PlayerShip : MonoBehaviour, CSS_ISaveable
 {
     public bool playerShoot;

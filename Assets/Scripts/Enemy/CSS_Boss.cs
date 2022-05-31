@@ -152,15 +152,18 @@ public class CSS_Boss : MonoBehaviour
 
     public void ApplyLifeMultiplierToModules(float multiplier)
     {
-        for(int i = 0; i <= this.modules.Count; i++)
+        Debug.Log("ApplyLifemultiMods");
+        for (int i = 0; i < this.modules.Count; i++)
         {
+            Debug.Log("I: " + i );
             modules[i].SetModHP((int)(modules[i].GetModHP() * multiplier));
         }
     }
 
     public void ApplyDamageMultiplierToModules(float multiplier)
     {
-        for (int i = 0; i <= this.modules.Count; i++)
+        Debug.Log("ApplyDamagemultiMods");
+        for (int i = 0; i < this.modules.Count; i++)
         {
             if(modules[i].moduleType == BossModuleType.TURRET)
             {

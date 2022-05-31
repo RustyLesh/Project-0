@@ -28,12 +28,10 @@ public class CSS_GameManager : MonoBehaviour
     public float cannonFodderTimer = 0.0f;
     public float lancerTimer = 0.0f;
 
-
     // event
     // to trigger to UI when boss is spawned
     public delegate void OnBossUpdate();
     public static event OnBossUpdate onBossUpdate;
-
 
     void Awake()
     {
@@ -54,7 +52,6 @@ public class CSS_GameManager : MonoBehaviour
     {
         this.gameTimer += Time.deltaTime;
         this.Level01Update(this.gameTimer);
-
     }
 
     // level 1 Infomation can be seperated into another class
@@ -132,6 +129,7 @@ public class CSS_GameManager : MonoBehaviour
             {
                 bossShip = CSS_Spawn.Instance.SpawnBoss01();
                 this.isBossSpawned = true;
+                Debug.Log("Boss Spawn Triggure " + this.isBossSpawned);
 
                 // send message that boss spawned
                 onBossUpdate.Invoke();
