@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e248786c0e846047bd285557359a4ca, type: 3}
   m_Name: BaseBullet
   m_EditorClassIdentifier: 
-  baseDamage: 10
+  baseDamage: 4
   sprite: {fileID: 21300000, guid: 1ae2ba8c6e723404d8ffce4acf0a4521, type: 3}
   speed: 5
+  fireRate: 0.1
+  burst: 0
+  timesToShoot: 3

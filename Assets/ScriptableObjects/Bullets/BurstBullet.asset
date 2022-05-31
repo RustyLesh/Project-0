@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e248786c0e846047bd285557359a4ca, type: 3}
   m_Name: BurstBullet
   m_EditorClassIdentifier: 
-  baseDamage: 0
+  baseDamage: 5
   sprite: {fileID: 0}
-  speed: 0
-  fireRate: 0
-  burst: 0
+  speed: 5
+  fireRate: 0.7
+  burst: 1
   timesToShoot: 3

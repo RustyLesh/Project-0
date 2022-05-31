@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: BaseEnemyBullet
   m_EditorClassIdentifier: 
   baseDamage: 10
-  sprite: {fileID: 21300000, guid: 43042ed9cb133094bac65f32c4ab832f, type: 3}
+  sprite: {fileID: 21300000, guid: e6d840fa64a1be64297107b4b0432efb, type: 3}
   speed: 5
   fireRate: 0
+  burst: 0
+  timesToShoot: 3
