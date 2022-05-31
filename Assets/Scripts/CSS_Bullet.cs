@@ -11,21 +11,16 @@ public class CSS_Bullet : MonoBehaviour
     public SO_Bullet data;
     public SO_Bullet enemyData;
     public SO_Bullet bossData;
-    
-    //public float speed = 5.0f;
+    CSS_AudioPlayer audioPlayer;
+
     public float angle;
     public Rigidbody2D rb;
     
     private Vector3 vecDirection = new Vector3(0,0,0);
-    
-    //public int baseDamage = 10;
-    //public Sprite[] bulletSprites;
 
-  
-
-    void Start()
+    private void Awake()
     {
-
+        audioPlayer = FindObjectOfType<CSS_AudioPlayer>();
     }
 
     void Update()
@@ -88,16 +83,22 @@ public class CSS_Bullet : MonoBehaviour
         {
             collision.gameObject.GetComponent<CSS_Enemy>().TakeDamage(data.baseDamage); 
             Destroy(this.gameObject);
+            audioPlayer.PlayCollisionClip();
+
         }
         else if (collision.gameObject.tag == "Boss" && this.isFiredFromPlayer == true)
         {
             collision.gameObject.GetComponent<CSS_BossModules>().TakeDamage(data.baseDamage);
             Destroy(this.gameObject);
+            audioPlayer.PlayCollisionClip();
+
         }
         else if(collision.gameObject.tag == "PlayerShip" && this.isFiredFromPlayer == false)
         {
             collision.gameObject.GetComponent<CSS_Health>().TakeDamage(enemyData.baseDamage);
             Destroy(this.gameObject);
+            audioPlayer.PlayCollisionClip();
+
         }
     }
 

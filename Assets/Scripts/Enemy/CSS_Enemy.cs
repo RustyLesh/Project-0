@@ -42,12 +42,20 @@ public class CSS_Enemy : MonoBehaviour
 
     [SerializeField] CSS_SpawnCoin spawnCoin;
     [SerializeField] CSS_SpawnParticleSystem spawnParticleSystem;
+    CSS_AudioPlayer audioPlayer;
+
 
     [SerializeField] public int xp = 5;
     public delegate void AddXp(int amount);
     public static event AddXp OnAddXp;
 
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        audioPlayer = FindObjectOfType<CSS_AudioPlayer>();
+
+    }
     void Start()
     {
         //movementPatternID = 0;
@@ -98,6 +106,7 @@ public class CSS_Enemy : MonoBehaviour
 
             GameObject newBullet = Instantiate(bullet, spawnPos, Quaternion.identity);
             newBullet.GetComponent<CSS_Bullet>().SetPlayerFired(false);
+            audioPlayer.PlayEnemyShootingClip();
 
             // Setting shoot direction
             Vector3 shootDir = this.shootPos.position - this.transform.position;

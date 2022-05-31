@@ -12,6 +12,8 @@ public class CSS_ModuleTurretBase : CSS_BossModules
     [SerializeField] private float fireReload;
     [SerializeField] private float fireRate;
     [SerializeField] private float damageMultiplier;
+    CSS_AudioPlayer audioPlayer;
+
 
     public void Init()
     {
@@ -28,6 +30,8 @@ public class CSS_ModuleTurretBase : CSS_BossModules
     private void Awake()
     {
         this.Init();
+        audioPlayer = FindObjectOfType<CSS_AudioPlayer>();
+
     }
 
     // Depending on how many differnt attacks there would be 
@@ -48,6 +52,8 @@ public class CSS_ModuleTurretBase : CSS_BossModules
                     //Debug.Log("Boss is Firing a bullet");
                     Vector3 spawnPosition = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
                     GameObject newBullet = Instantiate(CSS_GameManager.Instance.bullet, spawnPosition, this.transform.rotation);
+                    audioPlayer.PlayBossShootingClip();
+
 
                     newBullet.GetComponent<CSS_Bullet>().SetPlayerFired(false);
                     

@@ -6,7 +6,7 @@ using System;
 [RequireComponent(typeof(CSS_Health))]
 
 
-public class CSS_PlayerShip : MonoBehaviour
+public class CSS_PlayerShip : MonoBehaviour, CSS_ISaveable
 {
     public bool playerShoot;
     public CSS_Health playerHealth { get; private set; }
@@ -23,6 +23,8 @@ public class CSS_PlayerShip : MonoBehaviour
     [SerializeField] private GameObject bulletPrefrab;
     [SerializeField] private Transform firePosition;
     [SerializeField] private float fireRate = 0.1f;
+    CSS_AudioPlayer audioPlayer;
+
 
     private void OnEnable()
     {
@@ -38,6 +40,7 @@ public class CSS_PlayerShip : MonoBehaviour
     {
         playerControls = new PlayerControls();
         playerHealth = GetComponent<CSS_Health>();
+        audioPlayer = FindObjectOfType<CSS_AudioPlayer>();
 
         coinCount = 0;
 
@@ -45,6 +48,7 @@ public class CSS_PlayerShip : MonoBehaviour
 
     void Update()
     {
+        
         if (playerControls.PlayerShipControls.Shoot.ReadValue<float>() > 0)
         {
 
@@ -53,23 +57,38 @@ public class CSS_PlayerShip : MonoBehaviour
 
                 if (bulletData.burst == true)
                 {
-                    for (int TimesShot = 1; TimesShot <= bulletData.timesToShoot; TimesShot++)
-                    {
-                        GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
-                        newBullet.GetComponent<CSS_Bullet>().SetPlayerFired(true);
-                        new WaitForSeconds(100f / bulletData.fireRate);
-                    }
+                    StartCoroutine(FireBurst());
+
+
                 }
 
                 else
                 {
                     GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
                     newBullet.GetComponent<CSS_Bullet>().SetPlayerFired(true);
+                    audioPlayer.PlayShootingClip();
+                    
+
                 }
 
                 timer = 0;
             }
         }
+    }
+
+    public IEnumerator FireBurst()
+    {
+        
+        for (int i = 0; i < 3; i++)
+        {   
+                
+            GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
+            newBullet.GetComponent<CSS_Bullet>().SetPlayerFired(true);
+            audioPlayer.PlayShootingClip();
+           
+            yield return new WaitForSeconds(0.1f);
+        }
+        
     }
 
     public object SaveState() {
