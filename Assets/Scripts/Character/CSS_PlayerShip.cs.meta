@@ -5,7 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - bulletData: {fileID: 11400000, guid: daf07bada6b1d4842a87a5e2fd8e6106, type: 2}
-  - bulletPrefrab: {instanceID: 0}
+  - bulletPrefrab: {fileID: 9187117320916237108, guid: cc885e5c1c804c04e9e9f9523a814472, type: 3}
   - firePosition: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
