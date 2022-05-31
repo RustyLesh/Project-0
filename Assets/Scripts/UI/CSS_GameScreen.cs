@@ -15,7 +15,10 @@ using System.Collections;
 public class CSS_GameScreen : MonoBehaviour
 {
     // Player
+    [SerializeField] CSS_MoneyManager moneyManager;
     [SerializeField] Slider playerHPBar;
+
+    [SerializeField] TMP_Text coinsText;
 
     // Boss
     [SerializeField] GameObject bossObject;
@@ -45,6 +48,7 @@ public class CSS_GameScreen : MonoBehaviour
         playerShip = CSS_GameManager.Instance.playerShip;
         playerHPBar.maxValue = playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetHealth();
         playerHPBar.value = playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetHealth();
+
 
         // Init Boss realted
         bossShip = CSS_GameManager.Instance.bossShip;
@@ -97,6 +101,9 @@ public class CSS_GameScreen : MonoBehaviour
             ReturnToMainMenu("player");
         }
 
+        // Update coin count
+        coinsText.text = moneyManager.money.ToString();
+
     }
 
     // Subscribe to listners (observers)
@@ -121,10 +128,11 @@ public class CSS_GameScreen : MonoBehaviour
     // Subscribing to boss.
     void ActivateBossHealthBar()
     {
+        this.bossShip = CSS_GameManager.Instance.bossShip;
+
         timeRemainingInSecondsText.text = "Boss Fight";
         bossObject.SetActive(true);
         bossSpawned = true;
-        this.bossShip = CSS_GameManager.Instance.bossShip;
     }
 
     void UpdateTime()

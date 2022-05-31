@@ -198,7 +198,8 @@ PrefabInstance:
       propertyPath: bulletData
       value: 
       objectReference: {fileID: 11400000, guid: daf07bada6b1d4842a87a5e2fd8e6106, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3109177252232432972, guid: b027930150a553c44a5a82e5947ee3d8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b027930150a553c44a5a82e5947ee3d8, type: 3}
 --- !u!1001 &271825203
 PrefabInstance:
@@ -331,6 +332,17 @@ Transform:
   m_Father: {fileID: 897104364}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &568434213 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5798073533867440886, guid: 3d468838829b25a409a74430d7f46483, type: 3}
+  m_PrefabInstance: {fileID: 579703376}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e138ec52715c334c8d9052132e5d8f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &579703376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -766,6 +778,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3140913851020366980, guid: 3d468838829b25a409a74430d7f46483, type: 3}
   m_PrefabInstance: {fileID: 579703376}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1621249930 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4333204775631877554, guid: 5a9bc28b82adf46b28439800c165cef0, type: 3}
+  m_PrefabInstance: {fileID: 1848642258143489198}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1687989220 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3109177252232432969, guid: b027930150a553c44a5a82e5947ee3d8, type: 3}
@@ -801,6 +824,17 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerShipControls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1756334587 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3140913851063077604, guid: 3d468838829b25a409a74430d7f46483, type: 3}
+  m_PrefabInstance: {fileID: 579703376}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e13492a3b8bb2f49af186cc589ec4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1859232831 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2400032090337409569, guid: 5a9bc28b82adf46b28439800c165cef0, type: 3}
@@ -850,10 +884,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 639949884, guid: 5a9bc28b82adf46b28439800c165cef0, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1756334587}
     - target: {fileID: 1438019887, guid: 5a9bc28b82adf46b28439800c165cef0, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1848642256777982048, guid: 5a9bc28b82adf46b28439800c165cef0, type: 3}
+      propertyPath: coinsText
+      value: 
+      objectReference: {fileID: 1621249930}
+    - target: {fileID: 1848642256777982048, guid: 5a9bc28b82adf46b28439800c165cef0, type: 3}
+      propertyPath: moneyManager
+      value: 
+      objectReference: {fileID: 568434213}
     - target: {fileID: 1848642256777982048, guid: 5a9bc28b82adf46b28439800c165cef0, type: 3}
       propertyPath: playerDeadPanel
       value: 
