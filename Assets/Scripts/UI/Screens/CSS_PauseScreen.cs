@@ -67,6 +67,12 @@ public class CSS_PauseScreen : MonoBehaviour
         GameIsPaused = false;
     }
 
+    public void Restart()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(1);
+    }
+
     // Set global time to 0 and show pause UI
     void Pause()
     {
@@ -78,6 +84,7 @@ public class CSS_PauseScreen : MonoBehaviour
     // Exit Application
     public void Quit()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
 }

@@ -134,6 +134,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""e9b660b5-791a-4267-bcb5-305d677aeb3b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -145,6 +153,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c52e1eca-ba28-46d4-af8c-421fcd4abb0e"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -161,6 +180,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         // UIControls
         m_UIControls = asset.FindActionMap("UIControls", throwIfNotFound: true);
         m_UIControls_Pause = m_UIControls.FindAction("Pause", throwIfNotFound: true);
+        m_UIControls_Inventory = m_UIControls.FindAction("Inventory", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -260,11 +280,13 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_UIControls;
     private IUIControlsActions m_UIControlsActionsCallbackInterface;
     private readonly InputAction m_UIControls_Pause;
+    private readonly InputAction m_UIControls_Inventory;
     public struct UIControlsActions
     {
         private @PlayerControls m_Wrapper;
         public UIControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Pause => m_Wrapper.m_UIControls_Pause;
+        public InputAction @Inventory => m_Wrapper.m_UIControls_Inventory;
         public InputActionMap Get() { return m_Wrapper.m_UIControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -277,6 +299,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_UIControlsActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_UIControlsActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_UIControlsActionsCallbackInterface.OnPause;
+                @Inventory.started -= m_Wrapper.m_UIControlsActionsCallbackInterface.OnInventory;
+                @Inventory.performed -= m_Wrapper.m_UIControlsActionsCallbackInterface.OnInventory;
+                @Inventory.canceled -= m_Wrapper.m_UIControlsActionsCallbackInterface.OnInventory;
             }
             m_Wrapper.m_UIControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -284,6 +309,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Inventory.started += instance.OnInventory;
+                @Inventory.performed += instance.OnInventory;
+                @Inventory.canceled += instance.OnInventory;
             }
         }
     }
@@ -297,5 +325,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     public interface IUIControlsActions
     {
         void OnPause(InputAction.CallbackContext context);
+        void OnInventory(InputAction.CallbackContext context);
     }
 }

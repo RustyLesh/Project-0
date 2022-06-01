@@ -5,7 +5,7 @@ using Project0;
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField] List<ShopItem> shopInventory = new List<ShopItem>();
+    [SerializeField] List<Old_ShopItem> shopInventory = new List<Old_ShopItem>();
 
     CSS_MoneyManager moneyManager;
     OldInventory inventory;
@@ -19,12 +19,12 @@ public class Shop : MonoBehaviour
         inventory = OldInventory.instance;
     }
 
-    public List<ShopItem> GetAllShotItem()
+    public List<Old_ShopItem> GetAllShotItem()
     {
         return shopInventory;
     }
 
-    public ShopItem GetShopItem(int slotNumber)
+    public Old_ShopItem GetShopItem(int slotNumber)
     {
         return shopInventory[slotNumber];
     }
@@ -49,7 +49,7 @@ public class Shop : MonoBehaviour
 
     public void AddItemIntoShop(Item item, int amount, int price)
     {
-        shopInventory.Add(new ShopItem(item, amount, price));
+        shopInventory.Add(new Old_ShopItem(item, amount, price));
         OnShopChanged.Invoke();
     }
 
@@ -61,5 +61,5 @@ public class Shop : MonoBehaviour
 
     public int GetItemCount() { return shopInventory.Count; }
 
-    public ShopItem GetItemAtIndex(int index) { return shopInventory[index]; }//TODO: Change to ShopItem
+    public Old_ShopItem GetItemAtIndex(int index) { return shopInventory[index]; }//TODO: Change to ShopItem
 }

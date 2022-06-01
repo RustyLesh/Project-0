@@ -165,7 +165,6 @@ namespace Project0.Inventories
         private void Awake()
         {
             slots = new InventorySlot[inventorySize];
-            print(slots.Length);
         }
 
         /// <summary>

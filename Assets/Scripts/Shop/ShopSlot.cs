@@ -9,9 +9,9 @@ public class ShopSlot : MonoBehaviour
     [SerializeField] public TMP_Text purchaseValue;
     public Image icon;
 
-    ShopItem shopItem;
+    Old_ShopItem shopItem;
 
-    public void AddItem(ShopItem newItem)
+    public void AddItem(Old_ShopItem newItem)
     {
         shopItem = newItem;
 

@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class CSS_ShopUI : MonoBehaviour
+public class ShopUI : MonoBehaviour
 {
     [SerializeField] CSS_MoneyManager moneyManager;
     [SerializeField] TMP_Text currentCoinsText;

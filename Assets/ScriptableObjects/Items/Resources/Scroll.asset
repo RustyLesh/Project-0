@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24bda479780a3464d8e6bfe9b4dce7ea, type: 3}
-  m_Name: Mana Potion
+  m_Name: Scroll
   m_EditorClassIdentifier: 
-  itemID: 7ad1eb87-379a-4b06-846c-4b2a660c6dbc
-  displayName: Mana Potion
-  description: A low tier mana potion
-  icon: {fileID: 21300000, guid: 24d6f21ed17364542837fe78dd191a16, type: 3}
-  stackable: 1
-  price: 15
+  itemID: 67fdaf02-5be1-4907-8cc5-c73db597dc2e
+  displayName: Basic Scroll
+  description: A basic scrool
+  icon: {fileID: 21300000, guid: 849d341bd346a8b4fb4530bfda2e3b9c, type: 3}
+  stackable: 0
+  price: 50
   consumable: 0

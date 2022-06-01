@@ -2,13 +2,13 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class ShopItem
+public class Old_ShopItem
 {
     [SerializeField] int purchaseValue = 1;
     [SerializeField] int amountInStock = 0;
     [SerializeField] Item item;
 
-    public ShopItem(Item item, int purchaseValue, int amountInStock)
+    public Old_ShopItem(Item item, int purchaseValue, int amountInStock)
     {
         this.item = item;
         this.purchaseValue = purchaseValue;
