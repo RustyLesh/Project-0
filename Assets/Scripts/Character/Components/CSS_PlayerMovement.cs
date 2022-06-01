@@ -8,7 +8,6 @@ public class CSS_PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 minBounds;
     [SerializeField] private Vector2 maxBounds;
 
-
     private Vector2 worldMinBounds;
     private Vector2 worldMaxBounds;
 

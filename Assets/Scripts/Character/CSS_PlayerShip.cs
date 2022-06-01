@@ -2,27 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Project0;
 
 [RequireComponent(typeof(CSS_Health))]
 public class CSS_PlayerShip : MonoBehaviour, CSS_ISaveable
 {
+        //float bulletFireRate = bulletData.fireRate;
+    public int coinCount { get; private set; }
     public bool playerShoot;
     public CSS_Health playerHealth { get; private set; }
 
-    [SerializeField] private SO_Bullet bulletData;
-    public int coinCount { get; private set; }
-
-        //float bulletFireRate = bulletData.fireRate;
-
-        private PlayerControls playerControls;
+    private PlayerControls playerControls;
     private float timer;
+    [SerializeField] private SO_Bullet bulletData;
 
     [SerializeField] private float shootDelay = 0.7f;
     [SerializeField] private GameObject bulletPrefrab;
     [SerializeField] private Transform firePosition;
     [SerializeField] private float fireRate = 0.1f;
-    CSS_AudioPlayer audioPlayer;
 
+    //Dynamic difficulty multipliers
+    [SerializeField] private float damageMultiplier;
+    [SerializeField] private float healthMultplier;
+
+    CSS_AudioPlayer audioPlayer;
 
     private void OnEnable()
     {
@@ -56,8 +59,6 @@ public class CSS_PlayerShip : MonoBehaviour, CSS_ISaveable
                 if (bulletData.burst == true)
                 {
                     StartCoroutine(FireBurst());
-
-
                 }
 
                 else
@@ -72,6 +73,16 @@ public class CSS_PlayerShip : MonoBehaviour, CSS_ISaveable
                 timer = 0;
             }
         }
+    }
+
+    public void AdjustMaxHealthMultiplier(float value)
+    {
+        playerHealth.SetMaxHealth(Mathf.Clamp(playerHealth.GetMaxHealth() * value, 1, float.MaxValue));
+    }
+
+    public void AdjustDamageMultiplier(float value)
+    {
+        bulletData.baseDamage = (Mathf.Clamp((int)(bulletData.baseDamage * value), 1, int.MaxValue));
     }
 
     public IEnumerator FireBurst()

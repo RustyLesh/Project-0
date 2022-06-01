@@ -46,8 +46,8 @@ public class CSS_GameScreen : MonoBehaviour
     {
         // Init Player related
         playerShip = CSS_GameManager.Instance.playerShip;
-        playerHPBar.maxValue = playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetHealth();
-        playerHPBar.value = playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetHealth();
+        playerHPBar.maxValue = playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetCurrentHealth();
+        playerHPBar.value = playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetCurrentHealth();
 
 
         // Init Boss realted
@@ -122,7 +122,7 @@ public class CSS_GameScreen : MonoBehaviour
     // Subscribing to the Health. Updates value when player health is changed
     public void HealthChanged()
     {
-        playerHPBar.value = playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetHealth();
+        playerHPBar.value = playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetCurrentHealth();
     }
 
     // Subscribing to boss.

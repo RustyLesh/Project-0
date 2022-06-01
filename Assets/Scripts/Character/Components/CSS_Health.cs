@@ -33,11 +33,14 @@ public class CSS_Health : MonoBehaviour, CSS_ISaveable
         OnHealthChanged.Invoke();
     }
 
-    public float GetHealth()
+    public float GetCurrentHealth()
     {
         return currentHealth;
     }
-
+    public float GetMaxHealth()
+    {
+        return currentHealth;
+    }
     public void SetMaxHealth(float maxHealthValue)
     {
         maxHealth = maxHealthValue;
