@@ -19,9 +19,11 @@ public class CSS_Enemy : MonoBehaviour
     public int bodyDmg = 50;     // 
     public float movementSpeed = 3.0f;
     public float fireSpeed = 2.0f;
+
     [SerializeField] private float fireReload;
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float stateTimer;
+    [SerializeField] private float damageMultiplier;
     [SerializeField] private EAIState state;
     [SerializeField] private GameObject bullet;
 
@@ -49,12 +51,12 @@ public class CSS_Enemy : MonoBehaviour
     public delegate void AddXp(int amount);
     public static event AddXp OnAddXp;
 
+
     // Start is called before the first frame update
 
     private void Awake()
     {
         audioPlayer = FindObjectOfType<CSS_AudioPlayer>();
-
     }
     void Start()
     {
@@ -71,6 +73,8 @@ public class CSS_Enemy : MonoBehaviour
         // Turn Forward Direction to down 
         // due to unity Z-axis is the forward dir
         this.transform.Rotate(new Vector3(0, 0, -90));
+
+        ApplyMaxHealthMultiplier();
     }
 
     // Update is called once per frame
@@ -84,6 +88,11 @@ public class CSS_Enemy : MonoBehaviour
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private void ApplyMaxHealthMultiplier()
+    {
+        hp = Mathf.Clamp((int)(CSS_DynamicDifficultyManager.Instance.enemyMaxHealthMultiplier * hp), 1, int.MaxValue);
+    }
 
     private void Shooting()
     {
@@ -103,9 +112,10 @@ public class CSS_Enemy : MonoBehaviour
             //Vector3 spawnPosition = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
             Vector3 spawnPos = this.shootPos.position;
 
-
             GameObject newBullet = Instantiate(bullet, spawnPos, Quaternion.identity);
-            newBullet.GetComponent<CSS_Bullet>().SetPlayerFired(false);
+            CSS_Bullet bulletClass = newBullet.GetComponent<CSS_Bullet>();
+            bulletClass.SetPlayerFired(false);
+            bulletClass.enemyData.baseDamage = Mathf.Clamp((int)(bulletClass.enemyData.baseDamage * damageMultiplier), 1, int.MaxValue);
             audioPlayer.PlayEnemyShootingClip();
 
             // Setting shoot direction

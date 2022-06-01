@@ -33,8 +33,6 @@ public class CSS_Spawn : MonoBehaviour
     //Multiplers start at a base of 1 ( 100% )
     [Space]
     [Header("Dynamic Difficulty Multipliers")] 
-    [SerializeField] private float mobDamageMultiplier = 1;
-    [SerializeField] private float mobHealthMultiplier = 1;
 
     [Space]
     [SerializeField] private float bossDamageMultiplier = 1;
@@ -254,14 +252,6 @@ public class CSS_Spawn : MonoBehaviour
     public void AdjustBossHealthMultiplier(float value)
     {
         bossHealthMultiplier = Mathf.Clamp(bossHealthMultiplier + value, 0, float.MaxValue);
-    }
-    public void AdjustMobDamageMultiplier(float value)
-    {
-        mobDamageMultiplier = Mathf.Clamp(mobDamageMultiplier + value, 0, float.MaxValue);
-    }
-    public void AdjustMobHealthMultiplier(float value)
-    {
-        mobHealthMultiplier = Mathf.Clamp(mobHealthMultiplier + value, 0, float.MaxValue);
     }
 
     /// Getters
