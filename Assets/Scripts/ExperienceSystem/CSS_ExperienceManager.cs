@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
 
-public class CSS_ExperienceManager : MonoBehaviour {
-
+public class CSS_ExperienceManager : MonoBehaviour, CSS_ISaveable {
     #region Singleton
 
     public static CSS_ExperienceManager Instance;
@@ -24,7 +23,6 @@ public class CSS_ExperienceManager : MonoBehaviour {
     [field: SerializeField] public int maxLevel { get; private set; } = 100;
     [field: SerializeField] public int xp { get; private set; } = 0;
     [field: SerializeField] public int xpToNextLevel { get; private set; } = 100;
-    [field: SerializeField] public int statPoint { get; private set; } = 0;
 
     public delegate void OnExperienceChanged();
     public static event OnExperienceChanged onExperienceChanged;
@@ -43,10 +41,35 @@ public class CSS_ExperienceManager : MonoBehaviour {
             currentLevel++;
             xp -= xpToNextLevel;
             xpToNextLevel = Convert.ToInt32(xpToNextLevel * 1.10);
-            statPoint++;
         }
         Debug.Log("XP: " + xp);
         onExperienceChanged.Invoke();
+    }
+
+    public object SaveState() {
+        return new SaveData() {
+            currentLevel = this.currentLevel,
+            maxLevel = this.maxLevel,
+            xp = this.xp,
+            xpToNextLevel = this.xpToNextLevel,
+        };
+    }
+
+    public void LoadState(object state) {
+        var saveData = (SaveData)state;
+        currentLevel = saveData.currentLevel;
+        maxLevel = saveData.maxLevel;
+        xp = saveData.xp;
+        xpToNextLevel = saveData.xpToNextLevel;
+
+    }
+
+    [Serializable]
+    private struct SaveData {
+        public int currentLevel;
+        public int maxLevel;
+        public int xp;
+        public int xpToNextLevel;
     }
 }
 
