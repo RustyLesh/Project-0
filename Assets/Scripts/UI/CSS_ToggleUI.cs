@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class CSS_ToggleUI : MonoBehaviour
 {
@@ -44,6 +45,11 @@ public class CSS_ToggleUI : MonoBehaviour
 
         firstScreen.SetActive(firstScreenOn);
         secondScreen.SetActive(secondScreenOn);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }

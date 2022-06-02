@@ -12,9 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e248786c0e846047bd285557359a4ca, type: 3}
   m_Name: Semi-Auto Bullet
   m_EditorClassIdentifier: 
-  baseDamage: 0
-  sprite: {fileID: 0}
-  speed: 0
-  fireRate: 0
+  itemID: 699b5aa2-9039-420f-af60-1a733959b46a
+  displayName: Semi-Auto Bullet
+  description: Slow but powerful bullet
+  icon: {fileID: 21300000, guid: 1ae2ba8c6e723404d8ffce4acf0a4521, type: 3}
+  stackable: 0
+  price: 300
+  baseDamage: 10
+  sprite: {fileID: 21300000, guid: 1ae2ba8c6e723404d8ffce4acf0a4521, type: 3}
+  speed: 5
+  fireRate: 0.7
   burst: 0
   timesToShoot: 3

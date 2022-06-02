@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 491728121}
   - component: {fileID: 491728120}
   m_Layer: 5
-  m_Name: Settings
+  m_Name: Shop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -334,18 +334,18 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 491728121}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1013578739}
+        m_TargetAssemblyTypeName: CSS_StartScreen, Scripts
+        m_MethodName: LoadShop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -802,10 +802,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d528a6cbf5b4cd390150da0d0ff788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newGameButton: {fileID: 0}
-  continueButton: {fileID: 0}
-  settingsButton: {fileID: 0}
-  QuitButton: {fileID: 0}
+  newGameButton: {fileID: 1151864155}
+  continueButton: {fileID: 1278702193}
+  ShopButton: {fileID: 0}
+  QuitButton: {fileID: 36129459}
 --- !u!1 &1060921868
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,7 +876,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Settings
+  m_Text: Shop
 --- !u!222 &1060921871
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1287,103 +1287,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278702191}
   m_CullTransparentMesh: 1
---- !u!1001 &1411653120
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2724836212178727947, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_Name
-      value: SaveLoadScreen
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6855576833832948975, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5edd7e4095dd8444e83d914993ae264e, type: 3}
 --- !u!1 &1459055270
 GameObject:
   m_ObjectHideFlags: 0
@@ -1474,7 +1377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newGameButton: {fileID: 0}
   continueButton: {fileID: 0}
-  settingsButton: {fileID: 0}
+  ShopButton: {fileID: 0}
   QuitButton: {fileID: 0}
 --- !u!1 &1483245629
 GameObject:

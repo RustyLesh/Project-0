@@ -16,13 +16,18 @@ public class CSS_StartScreen : MonoBehaviour
     // Cached buttons
     [SerializeField] Button newGameButton;
     [SerializeField] Button continueButton;
-    [SerializeField] Button settingsButton;
+    [SerializeField] Button ShopButton;
     [SerializeField] Button QuitButton;
 
     // Load game screen
     public void StartNewGame()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void LoadShop()
+    {
+        SceneManager.LoadScene(2);
     }
 
     // Quit game
