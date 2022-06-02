@@ -1,6 +1,10 @@
 using Project0;
 using UnityEngine;
 
+/// <summary>
+/// Takes in event calls from the dynamic difficulty drop and then passes it on to the related classes.
+/// Base difficulty multipliers are 1 ( 100% ). All multipliers from dyn diff drop are added to this.
+/// </summary>
 public class CSS_DynamicDifficultyManager : MonoBehaviour
 {
     #region Singleton
@@ -26,7 +30,6 @@ public class CSS_DynamicDifficultyManager : MonoBehaviour
     public float enemyMaxHealthMultiplier = 1;
     public float enemyDamageMultiplier = 1;
 
-    // Start is called before the first frame update
     void Start()
     {
         moneyManager = CSS_MoneyManager.Instance;
@@ -75,25 +78,26 @@ public class CSS_DynamicDifficultyManager : MonoBehaviour
         playerShip.AdjustMaxHealthMultiplier(amount);
     }
 
+    //Subcribes to events
     private void OnEnable()
     {
         CSS_MoneyMultiplierDrop.onMoneyMultiply += AdjustMoneyMultiplier;
-        DynamicDifficultyDrop.onMoneyMultiply += AdjustMoneyMultiplier;
-        DynamicDifficultyDrop.onBossDamageMultiply += AdjustBossDamage;
-        DynamicDifficultyDrop.onBossHealthMultiply += AdjustBossHealth;
-        DynamicDifficultyDrop.onPlayerDamageMultiply += AdjustPlayerDamage;
-        DynamicDifficultyDrop.onPlayerHealthMultiply += AdjustPlayerHealth;
-        DynamicDifficultyDrop.onMobDamageMultiply += AdjustMobDamage;
-        DynamicDifficultyDrop.onMobHealthMultiply += AdjustMobHealth;
+        CSS_DynamicDifficultyDrop.onMoneyMultiply += AdjustMoneyMultiplier;
+        CSS_DynamicDifficultyDrop.onBossDamageMultiply += AdjustBossDamage;
+        CSS_DynamicDifficultyDrop.onBossHealthMultiply += AdjustBossHealth;
+        CSS_DynamicDifficultyDrop.onPlayerDamageMultiply += AdjustPlayerDamage;
+        CSS_DynamicDifficultyDrop.onPlayerHealthMultiply += AdjustPlayerHealth;
+        CSS_DynamicDifficultyDrop.onMobDamageMultiply += AdjustMobDamage;
+        CSS_DynamicDifficultyDrop.onMobHealthMultiply += AdjustMobHealth;
     }
 
     private void OnDisable()
     {
         CSS_MoneyMultiplierDrop.onMoneyMultiply -= AdjustMoneyMultiplier;
-        DynamicDifficultyDrop.onMoneyMultiply -= AdjustMoneyMultiplier;
-        DynamicDifficultyDrop.onBossDamageMultiply -= AdjustBossDamage;
-        DynamicDifficultyDrop.onBossHealthMultiply -= AdjustBossHealth;
-        DynamicDifficultyDrop.onMobDamageMultiply -= AdjustMobDamage;
-        DynamicDifficultyDrop.onMobHealthMultiply -= AdjustMobHealth;
+        CSS_DynamicDifficultyDrop.onMoneyMultiply -= AdjustMoneyMultiplier;
+        CSS_DynamicDifficultyDrop.onBossDamageMultiply -= AdjustBossDamage;
+        CSS_DynamicDifficultyDrop.onBossHealthMultiply -= AdjustBossHealth;
+        CSS_DynamicDifficultyDrop.onMobDamageMultiply -= AdjustMobDamage;
+        CSS_DynamicDifficultyDrop.onMobHealthMultiply -= AdjustMobHealth;
     }
 }

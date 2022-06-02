@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// Contains logic for a health system
+/// </summary>
 public class CSS_Health : MonoBehaviour, CSS_ISaveable
 {
     [SerializeField] private float currentHealth;
@@ -17,6 +20,7 @@ public class CSS_Health : MonoBehaviour, CSS_ISaveable
         currentHealth = maxHealth;
     }
 
+    //Reduce current hp by value, clamped from 0 - maxHealth
     public void TakeDamage(int damage)
     {
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
@@ -27,6 +31,7 @@ public class CSS_Health : MonoBehaviour, CSS_ISaveable
         }
     }
 
+    //Increase current hp by value, clamped from 0 - maxHealth
     public void Heal(float healAmount)
     {
         currentHealth = Mathf.Clamp((currentHealth + healAmount), 0, maxHealth);

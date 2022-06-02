@@ -4,7 +4,12 @@ using UnityEngine;
 
 namespace Project0
 {
-    public class DynamicDifficultyDrop : MonoBehaviour
+    /// <summary>
+    /// To be attached to an object.
+    /// To be collected by player, which then invokes event calls for the dynamic difficulty manager to act on.
+    /// All Values are additive to total. (The multipliers add with each other). Events are only called if values are above 1.
+    /// </summary>
+    public class CSS_DynamicDifficultyDrop : MonoBehaviour
     {
         [SerializeField] private float moneyMultiplyamount;
 

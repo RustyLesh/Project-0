@@ -1,7 +1,11 @@
 using UnityEngine;
 using Project0;
 using System;
-
+/// <summary>
+/// Singleton
+/// Stores amount of money players has and the corrisponding logic.
+/// Contains event calls for UI and multipliers for dynamic difficulty.
+/// </summary>
 
 public class CSS_MoneyManager : MonoBehaviour, CSS_ISaveable
 {
@@ -34,6 +38,7 @@ public class CSS_MoneyManager : MonoBehaviour, CSS_ISaveable
         Coin.OnCoinCollected += CoinCollected;
     }
 
+    //To be called when a coin drop is collected
     private void CoinCollected()
     {
         GainCoins((int)(coinBaseValue * moneyMultiplier));
@@ -44,6 +49,7 @@ public class CSS_MoneyManager : MonoBehaviour, CSS_ISaveable
         Coin.OnCoinCollected -= CoinCollected;
     }
 
+    //Used when purchasing
     public bool PayCoins(int amount)
     {
         //TODO: Fix negative value purchases
@@ -58,10 +64,7 @@ public class CSS_MoneyManager : MonoBehaviour, CSS_ISaveable
             money -= amount;
 
             // notify wallet changed
-            if (onChange != null)
-            {
-                onChange();
-            }
+            onChange?.Invoke();
 
             return true;
         }
@@ -72,6 +75,7 @@ public class CSS_MoneyManager : MonoBehaviour, CSS_ISaveable
         }
     }
 
+    //Used when collecting coins( or selling items ).
     public void GainCoins(int amount)
     {
         if (amount > 0)
@@ -79,10 +83,7 @@ public class CSS_MoneyManager : MonoBehaviour, CSS_ISaveable
             money += amount;
 
             // notify wallet changed
-            if (onChange != null)
-            {
-                onChange();
-            }
+            onChange?.Invoke();
 
         }
         else
@@ -93,24 +94,28 @@ public class CSS_MoneyManager : MonoBehaviour, CSS_ISaveable
 
     public void AdjustMoneyMultiplier(float amount)
     {
-        moneyMultiplier = Mathf.Clamp(moneyMultiplier + amount, 0, float.MaxValue); 
+        moneyMultiplier = Mathf.Clamp(moneyMultiplier + amount, 0, float.MaxValue);
     }
 
     #region Save/Load
-    public object SaveState() {
+    public object SaveState()
+    {
         Debug.Log(money);
-        return new SaveData() {
+        return new SaveData()
+        {
             Money = this.money,
         };
     }
 
-    public void LoadState(object state) {
+    public void LoadState(object state)
+    {
         var saveData = (SaveData)state;
         money = saveData.Money;
     }
 
     [Serializable]
-    private struct SaveData {
+    private struct SaveData
+    {
         public int Money;
     }
     #endregion

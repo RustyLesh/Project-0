@@ -24,6 +24,8 @@ public class CSS_PlayerMovement : MonoBehaviour
     {
         Move();
     }
+
+    //Converts the min and max bounderies to world points
     private void InitBounds()
     {
         mainCamera = Camera.main;
@@ -32,6 +34,7 @@ public class CSS_PlayerMovement : MonoBehaviour
         worldMaxBounds = mainCamera.ViewportToWorldPoint(maxBounds);
     }
 
+    //Movement control
     private void Move()
     {
         Vector2 delta = moveSpeed * Time.deltaTime * rawInput;
@@ -43,14 +46,17 @@ public class CSS_PlayerMovement : MonoBehaviour
         transform.position = newPos;
     }
 
+    //Called through player controller input script, connected through inspector
     private void OnPlayerMovement(InputValue value)
     {
         rawInput = value.Get<Vector2>();
     }
+
     void OnDrawGizmosSelected()
     {
         Camera gizmoCam = Camera.main;
         // Draws a blue line from this transform to the target
+        //Gizmo for showing player bounderies.
         Gizmos.color = Color.blue;
 
         Vector2 botLeft = gizmoCam.ViewportToWorldPoint(new Vector2(0, minBounds.y));
