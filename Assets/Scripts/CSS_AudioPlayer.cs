@@ -22,6 +22,23 @@ public class CSS_AudioPlayer : MonoBehaviour
     // Variable to hold volume level 
     [SerializeField] private float audioVolume = 0.5f;
 
+    #region Singleton
+
+    public static CSS_AudioPlayer Instance;
+
+    void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogWarning("More than one inventory instance found!");
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    #endregion
+
     // Method that plays audio clip when player shoots
     public void PlayShootingClip()
     {
