@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e248786c0e846047bd285557359a4ca, type: 3}
   m_Name: BaseEnemyBullet
   m_EditorClassIdentifier: 
-  baseDamage: 10
+  itemID: 071f8cf5-d464-4087-961d-d0bccd60dd04
+  displayName: 
+  description: 
+  icon: {fileID: 0}
+  stackable: 0
+  price: 0
+  baseDamage: 7
   sprite: {fileID: 21300000, guid: e6d840fa64a1be64297107b4b0432efb, type: 3}
   speed: 5
   fireRate: 0

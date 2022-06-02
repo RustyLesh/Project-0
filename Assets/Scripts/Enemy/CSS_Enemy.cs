@@ -42,6 +42,7 @@ public class CSS_Enemy : MonoBehaviour
     private Vector3 playerShipPos;
     private Transform shootPos;
 
+
     [SerializeField] CSS_SpawnCoin spawnCoin;
     [SerializeField] CSS_SpawnParticleSystem spawnParticleSystem;
     CSS_AudioPlayer audioPlayer;
@@ -149,6 +150,8 @@ public class CSS_Enemy : MonoBehaviour
         spawnCoin.SpawnCoinOnDeath(gameObject.transform);
         spawnParticleSystem.ParticleEffectOnDeath(gameObject.transform);
         OnAddXp.Invoke(xp);
+        audioPlayer.PlayExplosionClip();
+
 
         // Delete itself
         this.DeleteItSelf();

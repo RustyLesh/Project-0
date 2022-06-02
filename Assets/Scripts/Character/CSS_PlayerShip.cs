@@ -1,3 +1,9 @@
+/*
+ * Author: Luke Jordens, Les McIlroy
+ * This class mainly deals with the playership spawning, dying, saving and shooting.
+*/
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,69 +13,74 @@ using Project0;
 [RequireComponent(typeof(CSS_Health))]
 public class CSS_PlayerShip : MonoBehaviour, CSS_ISaveable
 {
-        //float bulletFireRate = bulletData.fireRate;
-    public int coinCount { get; private set; }
-    public bool playerShoot;
+    // Collectsb 
+    public int coinCount { get; private set; } 
+
+    // Variable referencing the player health
     public CSS_Health playerHealth { get; private set; }
 
+    // Variable referencing the player controls 
     private PlayerControls playerControls;
-    private float timer;
-    [SerializeField] private SO_Bullet bulletData;
-
+    
+    // Variables with information regarding bullet instantiation 
     [SerializeField] private float shootDelay = 0.7f;
     [SerializeField] private GameObject bulletPrefrab;
     [SerializeField] private Transform firePosition;
     [SerializeField] private float fireRate = 0.1f;
+    [SerializeField] private SO_Bullet bulletData;
+    private float timer;
+
+    // Variable referencing audio clips for firing
+    CSS_AudioPlayer audioPlayer;
 
     //Dynamic difficulty multipliers
     [SerializeField] private float damageMultiplier;
     [SerializeField] private float healthMultplier;
 
-    CSS_AudioPlayer audioPlayer;
-
     private void OnEnable()
     {
-        playerControls.Enable();
+        playerControls.Enable(); // Enables player controls
     }
 
     private void OnDisable()
     {
-        playerControls.Disable();
+        playerControls.Disable(); // Disables player controls
     }
 
+    // Instantiates variables on awake
     private void Awake()
     {
         playerControls = new PlayerControls();
         playerHealth = GetComponent<CSS_Health>();
         audioPlayer = FindObjectOfType<CSS_AudioPlayer>();
-
         coinCount = 0;
 
     }
 
     void Update()
     {
-        
+        InstantiateBullet(); // Calls instantiate bullet every frame
+    }
+
+    // Instantiates a bullet at a fire position for both burst and normal fire bullets
+    private void InstantiateBullet()
+    {
         if (playerControls.PlayerShipControls.Shoot.ReadValue<float>() > 0)
         {
-
             timer += Time.deltaTime;
-            if (timer > bulletData.fireRate) {
+            if (timer > bulletData.fireRate)
+            {
 
                 if (bulletData.burst == true)
                 {
-                    StartCoroutine(FireBurst());
+                    StartCoroutine(FireBurst()); // Calls the coroutine that handles the burst fire
                 }
-
                 else
                 {
                     GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
                     newBullet.GetComponent<CSS_Bullet>().SetPlayerFired(true);
                     audioPlayer.PlayShootingClip();
-                    
-
                 }
-
                 timer = 0;
             }
         }
@@ -85,19 +96,16 @@ public class CSS_PlayerShip : MonoBehaviour, CSS_ISaveable
         bulletData.baseDamage = (Mathf.Clamp((int)(bulletData.baseDamage * value), 1, int.MaxValue));
     }
 
-    public IEnumerator FireBurst()
-    {
-        
-        for (int i = 0; i < 3; i++)
-        {   
-                
+    // Coroutine that handles the fire burst
+    private IEnumerator FireBurst()
+    { 
+        for (int i = 0; i < bulletData.timesToShoot; i++)
+        {        
             GameObject newBullet = Instantiate(bulletPrefrab, firePosition.position, firePosition.rotation);
             newBullet.GetComponent<CSS_Bullet>().SetPlayerFired(true);
             audioPlayer.PlayShootingClip();
-           
             yield return new WaitForSeconds(0.1f);
         }
-        
     }
 
     public object SaveState() {
@@ -119,11 +127,14 @@ public class CSS_PlayerShip : MonoBehaviour, CSS_ISaveable
         public float fireRate;
     }
 
+    // Disables player movement 
     public void DisablePlayer()
     {
         gameObject.SetActive(false);
+        audioPlayer.PlayExplosionClip();
     }
 
+    // Enables player movement 
     public void EnablePlayer()
     {
         gameObject.SetActive(true);

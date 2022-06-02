@@ -1,3 +1,7 @@
+/*
+ * Author: Luke Jordens
+ * This class holds all the data related to the different types of bullets available in the game
+*/
 using Project0.Inventories;
 using System.Collections;
 using System.Collections.Generic;

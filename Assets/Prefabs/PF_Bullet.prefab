@@ -170,6 +170,6 @@ MonoBehaviour:
   direction: 1
   data: {fileID: 11400000, guid: daf07bada6b1d4842a87a5e2fd8e6106, type: 2}
   enemyData: {fileID: 11400000, guid: 763eae6bcc428b24083c9b2f371ec24a, type: 2}
-  bossData: {fileID: 0}
+  bossData: {fileID: 11400000, guid: 674bf402483733e418f0ed71d068c5ac, type: 2}
   angle: 0
   rb: {fileID: 6304990497609984036}
