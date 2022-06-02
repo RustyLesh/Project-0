@@ -17,6 +17,7 @@ public class CSS_GameScreen : MonoBehaviour
     // Player
     [SerializeField] CSS_MoneyManager moneyManager;
     [SerializeField] Slider playerHPBar;
+    [SerializeField] TMP_Text playerHPText;
 
     [SerializeField] TMP_Text coinsText;
 
@@ -46,6 +47,9 @@ public class CSS_GameScreen : MonoBehaviour
     {
         // Init Player related
         playerShip = CSS_GameManager.Instance.playerShip;
+
+        playerHPText.text = $"{playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetCurrentHealth()}/{playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetMaxHealth()}";
+
         playerHPBar.maxValue = playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetCurrentHealth();
         playerHPBar.value = playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetCurrentHealth();
 
@@ -122,6 +126,7 @@ public class CSS_GameScreen : MonoBehaviour
     // Subscribing to the Health. Updates value when player health is changed
     public void HealthChanged()
     {
+        playerHPText.text = $"{playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetCurrentHealth()}/{playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetMaxHealth()}";
         playerHPBar.value = playerShip.GetComponent<CSS_PlayerShip>().playerHealth.GetCurrentHealth();
     }
 

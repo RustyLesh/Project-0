@@ -39,7 +39,7 @@ public class CSS_Health : MonoBehaviour, CSS_ISaveable
     }
     public float GetMaxHealth()
     {
-        return currentHealth;
+        return maxHealth;
     }
     public void SetMaxHealth(float maxHealthValue)
     {
