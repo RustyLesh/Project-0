@@ -105,7 +105,7 @@ public class ShopUI : MonoBehaviour
     // for testing use
     public void AddCoins(int coins)
     {
-        moneyManager.DebugAddCoins(coins);
+        moneyManager.GainCoins(coins);
         currentCoinsText.text = "Coins: " + moneyManager.money;
     }
 }

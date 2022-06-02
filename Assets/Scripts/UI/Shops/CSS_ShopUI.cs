@@ -4,6 +4,9 @@ using UnityEngine;
 
 using Project0.Shops;
 
+using TMPro;
+using UnityEngine.UI;
+
 namespace Project0.UI.Shops
 {
     public class CSS_ShopUI : MonoBehaviour
@@ -13,13 +16,20 @@ namespace Project0.UI.Shops
 
         [SerializeField] Transform listRoot;
         [SerializeField] CSS_RowUI rowPrefab;
+        [SerializeField] TMP_Text totalField;
+        [SerializeField] Button confirmButton;
+
+        Color originalTotalTextColor;
 
         void Start()
         {
+            originalTotalTextColor = totalField.color;
+
             shopper = GameObject.FindGameObjectWithTag("PlayerShip").GetComponent<CSS_Shopper>();
 
             if (shopper == null) return;
             shopper.SetActiveShop(currentShop);
+            confirmButton.onClick.AddListener(ConfirmTransaction);
 
             shopper.activeShopChange += ShopChanged;
 
@@ -34,7 +44,6 @@ namespace Project0.UI.Shops
             }
 
             currentShop = shopper.GetActiveShop();
-            //gameObject.SetActive(currentShop != null);
 
             currentShop.onChange += RefreshUI;
 
@@ -53,6 +62,10 @@ namespace Project0.UI.Shops
                 CSS_RowUI row = Instantiate<CSS_RowUI>(rowPrefab, listRoot);
                 row.Setup(currentShop, item);
             }
+
+            totalField.text = $"Total: ${currentShop.TransactionTotal()}";
+            totalField.color = currentShop.HasSufficientFunds() ? originalTotalTextColor : Color.red;
+            confirmButton.interactable = currentShop.CanTransact();
         }
 
         public void ConfirmTransaction()

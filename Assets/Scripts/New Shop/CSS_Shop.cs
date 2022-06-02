@@ -22,9 +22,18 @@ namespace Project0.Shops
         }
 
         Dictionary<InventoryItem, int> transaction = new Dictionary<InventoryItem, int>();
+        Dictionary<InventoryItem, int> stock = new Dictionary<InventoryItem, int>();
         CSS_Shopper currentShopper = null;
 
         public event Action onChange;
+
+        void Awake()
+        {
+            foreach(StockItemConfig config in stockConfig)
+            {
+                stock[config.item] = config.initialStock;
+            }
+        }
 
         public void SetShopper(CSS_Shopper shopper)
         {
@@ -33,12 +42,18 @@ namespace Project0.Shops
 
         public IEnumerable<CSS_ShopItem> GetFilteredItems()
         {
+            return GetAllItems();
+        }
+
+        public IEnumerable<CSS_ShopItem> GetAllItems()
+        {
             foreach (StockItemConfig config in stockConfig)
             {
-                float price = config.item.GetPrice() * (1 - config.buyingDiscountPercentage / 100);
+                int price = (int) (config.item.GetPrice() * (1 - config.buyingDiscountPercentage / 100));
                 int quantityInTransaction = 0;
                 transaction.TryGetValue(config.item, out quantityInTransaction);
-                yield return new CSS_ShopItem(config.item, config.initialStock, price, quantityInTransaction);
+                int currentStock = stock[config.item];
+                yield return new CSS_ShopItem(config.item, currentStock, price, quantityInTransaction);
             }
         }
 
@@ -46,33 +61,60 @@ namespace Project0.Shops
 
         public ItemCategory GetFilter() { return ItemCategory.None; }
 
-        public void SelectMode(bool isBuying) { }
+        // FUTURE IMPLEMENTATION
+        //public void SelectMode(bool isBuying) { }
+        //public bool IsBuyingMode() { return true; }
 
-        public bool IsBuyingMode() { return true; }
+        public bool CanTransact() 
+        { 
+            if(IsTransactionEmpty()) return false;
+            if (!HasSufficientFunds()) return false;
+            if (!HasInventorySpace()) return false;
 
-        public bool CanTransact() { return true; }
+            return true;
+        }
 
         public void ConfirmTransaction() 
         {
             Inventory shopperInventory = currentShopper.GetComponent<Inventory>();
-            if (shopperInventory == null) return;
+            CSS_MoneyManager shopperPurse = currentShopper.GetPurse();
 
-            var transactionSnapshot = new Dictionary<InventoryItem, int>(transaction);
-            foreach (InventoryItem item in transactionSnapshot.Keys)
+            if (shopperInventory == null ) return;
+
+            foreach (CSS_ShopItem shopItem in GetAllItems())
             {
-                int quantity = transaction[item];
+                InventoryItem item = shopItem.GetInventoryItem();
+                int quantity = shopItem.GetQuantityInTransaction();
+                int price = shopItem.GetPrice();
                 for(int i = 0; i < quantity; i++)
                 {
+                    // When player don't have enough money
+                    if (shopperPurse.money < price) break;
+
                     bool success = shopperInventory.AddToFirstEmptySlot(item, 1);
                     if (success)
                     {
                         AddToTransaction(item, -1);
+                        stock[item]--;
+                        shopperPurse.PayCoins(price);
                     }
                 }
             }
+
+            if (onChange != null) onChange();
         }
 
-        public float TransactionTotal() { return 0; }
+        public float TransactionTotal() 
+        { 
+            float total = 0;
+
+            foreach(CSS_ShopItem item in GetAllItems())
+            {
+                total += item.GetPrice() * item.GetQuantityInTransaction();
+            }
+
+            return total;
+        }
 
         public void AddToTransaction(InventoryItem item, int quantity) 
         {
@@ -82,7 +124,14 @@ namespace Project0.Shops
                 transaction[item] = 0;
             }
 
-            transaction[item] += quantity;
+            if(transaction[item] + quantity > stock[item])
+            {
+                transaction[item] = stock[item];
+            }
+            else
+            {
+                transaction[item] += quantity;
+            }
 
             if(transaction[item] <= 0)
             {
@@ -93,6 +142,37 @@ namespace Project0.Shops
             {
                 onChange();
             }
+        }
+        public bool HasSufficientFunds()
+        {
+            CSS_MoneyManager purse = currentShopper.GetPurse();
+            if (purse == null) return false;
+
+            return purse.money > TransactionTotal();
+        }
+
+        public bool HasInventorySpace()
+        {
+            Inventory shopperInventory = currentShopper.GetComponent<Inventory>();
+            if (shopperInventory == null) return false;
+
+            List<InventoryItem> flatItems = new List<InventoryItem>();
+            foreach(CSS_ShopItem shopItem in GetAllItems())
+            {
+                InventoryItem item = shopItem.GetInventoryItem();
+                int quantity = shopItem.GetQuantityInTransaction();
+                for(int i = 0; i < quantity; i++)
+                {
+                    flatItems.Add(item);
+                }
+            }
+
+            return shopperInventory.HasSpaceFor(flatItems);
+        }
+
+        bool IsTransactionEmpty()
+        {
+            return transaction.Count == 0;
         }
     }
 }

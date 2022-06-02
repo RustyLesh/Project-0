@@ -7,10 +7,10 @@ namespace Project0.Shops
     {
         InventoryItem item;
         int availability;
-        float price;
+        int price;
         int quantityInTransaction;
 
-        public CSS_ShopItem(InventoryItem item, int availability, float price, int quantityInTransaction)
+        public CSS_ShopItem(InventoryItem item, int availability, int price, int quantityInTransaction)
         {
             this.item = item;
             this.availability = availability;
@@ -38,7 +38,7 @@ namespace Project0.Shops
             return this.availability;
         }
 
-        public float GetPrice()
+        public int GetPrice()
         {
             return this.price;
         }

@@ -27,7 +27,7 @@ public class CSS_MoneyManager : MonoBehaviour, CSS_ISaveable
 
     private int coinBaseValue = 1;
 
-
+    public event Action onChange;
 
     void OnEnable()
     {
@@ -44,11 +44,6 @@ public class CSS_MoneyManager : MonoBehaviour, CSS_ISaveable
         Coin.OnCoinCollected -= CoinCollected;
     }
 
-    public void DebugAddCoins(int coins)
-    {
-        GainCoins(coins);
-    }
-
     public bool PayCoins(int amount)
     {
         //TODO: Fix negative value purchases
@@ -61,6 +56,13 @@ public class CSS_MoneyManager : MonoBehaviour, CSS_ISaveable
         if (money >= amount)
         {
             money -= amount;
+
+            // notify wallet changed
+            if (onChange != null)
+            {
+                onChange();
+            }
+
             return true;
         }
         else
@@ -75,6 +77,13 @@ public class CSS_MoneyManager : MonoBehaviour, CSS_ISaveable
         if (amount > 0)
         {
             money += amount;
+
+            // notify wallet changed
+            if (onChange != null)
+            {
+                onChange();
+            }
+
         }
         else
         {

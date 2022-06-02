@@ -28,6 +28,11 @@ namespace Project0.Shops
         {
             return activeShop;
         }
+
+        public CSS_MoneyManager GetPurse()
+        {
+            return CSS_MoneyManager.Instance;
+        }
     }
 
 }
