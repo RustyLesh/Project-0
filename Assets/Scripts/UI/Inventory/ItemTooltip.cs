@@ -15,7 +15,7 @@ namespace Project0.UI.Inventories
 
         // PUBLIC
 
-        public void Setup(InventoryItem item)
+        public void Setup(SO_InventoryItem item)
         {
             titleText.text = item.GetDisplayName();
             bodyText.text = item.GetDescription();

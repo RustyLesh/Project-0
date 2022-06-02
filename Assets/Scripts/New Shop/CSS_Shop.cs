@@ -15,14 +15,14 @@ namespace Project0.Shops
         [System.Serializable]
         class StockItemConfig
         {
-            public InventoryItem item;
+            public SO_InventoryItem item;
             public int initialStock;
             [Range(0, 100)]
             public float buyingDiscountPercentage;
         }
 
-        Dictionary<InventoryItem, int> transaction = new Dictionary<InventoryItem, int>();
-        Dictionary<InventoryItem, int> stock = new Dictionary<InventoryItem, int>();
+        Dictionary<SO_InventoryItem, int> transaction = new Dictionary<SO_InventoryItem, int>();
+        Dictionary<SO_InventoryItem, int> stock = new Dictionary<SO_InventoryItem, int>();
         CSS_Shopper currentShopper = null;
 
         public event Action onChange;
@@ -57,9 +57,9 @@ namespace Project0.Shops
             }
         }
 
-        public void SelectFilter(ItemCategory category) { }
+        public void SelectFilter(Enum_ItemCategory category) { }
 
-        public ItemCategory GetFilter() { return ItemCategory.None; }
+        public Enum_ItemCategory GetFilter() { return Enum_ItemCategory.None; }
 
         // FUTURE IMPLEMENTATION
         //public void SelectMode(bool isBuying) { }
@@ -76,14 +76,14 @@ namespace Project0.Shops
 
         public void ConfirmTransaction() 
         {
-            Inventory shopperInventory = currentShopper.GetComponent<Inventory>();
+            CSS_Inventory shopperInventory = currentShopper.GetComponent<CSS_Inventory>();
             CSS_MoneyManager shopperPurse = currentShopper.GetPurse();
 
             if (shopperInventory == null ) return;
 
             foreach (CSS_ShopItem shopItem in GetAllItems())
             {
-                InventoryItem item = shopItem.GetInventoryItem();
+                SO_InventoryItem item = shopItem.GetInventoryItem();
                 int quantity = shopItem.GetQuantityInTransaction();
                 int price = shopItem.GetPrice();
                 for(int i = 0; i < quantity; i++)
@@ -116,7 +116,7 @@ namespace Project0.Shops
             return total;
         }
 
-        public void AddToTransaction(InventoryItem item, int quantity) 
+        public void AddToTransaction(SO_InventoryItem item, int quantity) 
         {
 
             if (!transaction.ContainsKey(item))
@@ -153,13 +153,13 @@ namespace Project0.Shops
 
         public bool HasInventorySpace()
         {
-            Inventory shopperInventory = currentShopper.GetComponent<Inventory>();
+            CSS_Inventory shopperInventory = currentShopper.GetComponent<CSS_Inventory>();
             if (shopperInventory == null) return false;
 
-            List<InventoryItem> flatItems = new List<InventoryItem>();
+            List<SO_InventoryItem> flatItems = new List<SO_InventoryItem>();
             foreach(CSS_ShopItem shopItem in GetAllItems())
             {
-                InventoryItem item = shopItem.GetInventoryItem();
+                SO_InventoryItem item = shopItem.GetInventoryItem();
                 int quantity = shopItem.GetQuantityInTransaction();
                 for(int i = 0; i < quantity; i++)
                 {

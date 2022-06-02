@@ -20,12 +20,12 @@ namespace Project0.UI.Inventories
 
         // PUBLIC
 
-        public void SetItem(InventoryItem item)
+        public void SetItem(SO_InventoryItem item)
         {
             SetItem(item, 0);
         }
 
-        public void SetItem(InventoryItem item, int number)
+        public void SetItem(SO_InventoryItem item, int number)
         {
             var iconImage = GetComponent<Image>();
             if (item == null)

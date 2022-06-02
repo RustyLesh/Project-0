@@ -10,6 +10,6 @@ namespace Project0.UI.Inventories
     /// </summary>
     public interface IItemHolder
     {
-        InventoryItem GetItem();
+        SO_InventoryItem GetItem();
     }
 }

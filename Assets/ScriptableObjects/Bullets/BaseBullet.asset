@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e248786c0e846047bd285557359a4ca, type: 3}
   m_Name: BaseBullet
   m_EditorClassIdentifier: 
+  itemID: 8d986d7a-b2c7-434b-87d0-b76a81b3a468
+  displayName: Base Bullet
+  description: A basic 5.6mm bullet
+  icon: {fileID: 0}
+  stackable: 0
+  price: 0
   baseDamage: 4
   sprite: {fileID: 21300000, guid: 1ae2ba8c6e723404d8ffce4acf0a4521, type: 3}
   speed: 5

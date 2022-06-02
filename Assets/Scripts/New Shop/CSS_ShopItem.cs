@@ -5,12 +5,12 @@ namespace Project0.Shops
 {
     public class CSS_ShopItem
     {
-        InventoryItem item;
+        SO_InventoryItem item;
         int availability;
         int price;
         int quantityInTransaction;
 
-        public CSS_ShopItem(InventoryItem item, int availability, int price, int quantityInTransaction)
+        public CSS_ShopItem(SO_InventoryItem item, int availability, int price, int quantityInTransaction)
         {
             this.item = item;
             this.availability = availability;
@@ -18,7 +18,7 @@ namespace Project0.Shops
             this.quantityInTransaction = quantityInTransaction;
         }
 
-        public InventoryItem GetInventoryItem()
+        public SO_InventoryItem GetInventoryItem()
         {
             return item;
         }

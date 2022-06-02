@@ -11,7 +11,7 @@ namespace Project0.Inventories
     ///
     /// This component should be placed on the GameObject tagged "Player".
     /// </summary>
-    public class Inventory : MonoBehaviour, CSS_ISaveable
+    public class CSS_Inventory : MonoBehaviour, CSS_ISaveable
     {
         // CONFIG DATA
         [Tooltip("Allowed size")]
@@ -22,7 +22,7 @@ namespace Project0.Inventories
 
         public struct InventorySlot
         {
-            public InventoryItem item;
+            public SO_InventoryItem item;
             public int number;
         }
 
@@ -36,24 +36,24 @@ namespace Project0.Inventories
         /// <summary>
         /// Convenience for getting the player's inventory.
         /// </summary>
-        public static Inventory GetPlayerInventory()
+        public static CSS_Inventory GetPlayerInventory()
         {
             var player = GameObject.FindWithTag("PlayerShip");
-            return player.GetComponent<Inventory>();
+            return player.GetComponent<CSS_Inventory>();
         }
 
         /// <summary>
         /// Could this item fit anywhere in the inventory?
         /// </summary>
-        public bool HasSpaceFor(InventoryItem item)
+        public bool HasSpaceFor(SO_InventoryItem item)
         {
             return FindSlot(item) >= 0;
         }
 
-        public bool HasSpaceFor(IEnumerable<InventoryItem> items)
+        public bool HasSpaceFor(IEnumerable<SO_InventoryItem> items)
         {
             int freeSlots = FreeSlots();
-            List<InventoryItem> stackedItems = new List<InventoryItem>();
+            List<SO_InventoryItem> stackedItems = new List<SO_InventoryItem>();
             foreach(var item in items)
             {
                 if(item.IsStackable())
@@ -96,7 +96,7 @@ namespace Project0.Inventories
         /// <param name="item">The item to add.</param>
         /// <param name="number">The number to add.</param>
         /// <returns>Whether or not the item could be added.</returns>
-        public bool AddToFirstEmptySlot(InventoryItem item, int number)
+        public bool AddToFirstEmptySlot(SO_InventoryItem item, int number)
         {
             int i = FindSlot(item);
 
@@ -117,7 +117,7 @@ namespace Project0.Inventories
         /// <summary>
         /// Is there an instance of the item in the inventory?
         /// </summary>
-        public bool HasItem(InventoryItem item)
+        public bool HasItem(SO_InventoryItem item)
         {
             for (int i = 0; i < slots.Length; i++)
             {
@@ -132,7 +132,7 @@ namespace Project0.Inventories
         /// <summary>
         /// Return the item type in the given slot.
         /// </summary>
-        public InventoryItem GetItemInSlot(int slot)
+        public SO_InventoryItem GetItemInSlot(int slot)
         {
             return slots[slot].item;
         }
@@ -172,7 +172,7 @@ namespace Project0.Inventories
         /// <param name="item">The item type to add.</param>
         /// <param name="number">The number of items to add.</param>
         /// <returns>True if the item was added anywhere in the inventory.</returns>
-        public bool AddItemToSlot(int slot, InventoryItem item, int number)
+        public bool AddItemToSlot(int slot, SO_InventoryItem item, int number)
         {
             if (slots[slot].item != null)
             {
@@ -205,7 +205,7 @@ namespace Project0.Inventories
         /// Find a slot that can accomodate the given item.
         /// </summary>
         /// <returns>-1 if no slot is found.</returns>
-        private int FindSlot(InventoryItem item)
+        private int FindSlot(SO_InventoryItem item)
         {
             int i = FindStack(item);
             if (i < 0)
@@ -235,7 +235,7 @@ namespace Project0.Inventories
         /// Find an existing stack of this item type.
         /// </summary>
         /// <returns>-1 if no stack exists or if the item is not stackable.</returns>
-        private int FindStack(InventoryItem item)
+        private int FindStack(SO_InventoryItem item)
         {
             if (!item.IsStackable())
             {
@@ -278,7 +278,7 @@ namespace Project0.Inventories
             var slotStrings = (InventorySlotRecord[])state;
             for (int i = 0; i < inventorySize; i++)
             {
-                slots[i].item = InventoryItem.GetFromID(slotStrings[i].itemID);
+                slots[i].item = SO_InventoryItem.GetFromID(slotStrings[i].itemID);
                 slots[i].number = slotStrings[i].number;
             }
             if (inventoryUpdated != null)

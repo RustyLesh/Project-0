@@ -1,6 +1,6 @@
 namespace Project0.Inventories
 {
-    public enum ItemCategory
+    public enum Enum_ItemCategory
     {
         None,
         Bullet,

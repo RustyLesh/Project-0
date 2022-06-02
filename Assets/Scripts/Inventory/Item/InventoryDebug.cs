@@ -5,16 +5,16 @@ using Project0.Inventories;
 
 public class InventoryDebug : MonoBehaviour
 {
-    [SerializeField] InventoryItem firstItem;
-    [SerializeField] InventoryItem secondItem;
+    [SerializeField] SO_InventoryItem firstItem;
+    [SerializeField] SO_InventoryItem secondItem;
 
     GameObject playerShip;
-    Inventory playerInventory;
+    CSS_Inventory playerInventory;
 
     private void Start()
     {
         playerShip = GameObject.FindWithTag("PlayerShip");
-        playerInventory = playerShip.GetComponent<Inventory>();
+        playerInventory = playerShip.GetComponent<CSS_Inventory>();
     }
 
     public void addFirstItem()

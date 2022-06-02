@@ -12,7 +12,7 @@ namespace Project0.Inventories
     /// In practice, you are likely to use a subclass such as `ActionItem` or
     /// `EquipableItem`.
     /// </remarks>
-    public abstract class InventoryItem : ScriptableObject, ISerializationCallbackReceiver
+    public abstract class SO_InventoryItem : ScriptableObject, ISerializationCallbackReceiver
     {
         // CONFIG DATA
         [Tooltip("Auto-generated UUID for saving/loading. Clear this field if you want to generate a new one.")]
@@ -28,7 +28,7 @@ namespace Project0.Inventories
         [SerializeField] int price;
 
         // STATE
-        static Dictionary<string, InventoryItem> itemLookupCache;
+        static Dictionary<string, SO_InventoryItem> itemLookupCache;
 
         // PUBLIC
 
@@ -41,12 +41,12 @@ namespace Project0.Inventories
         /// <returns>
         /// Inventory item instance corresponding to the ID.
         /// </returns>
-        public static InventoryItem GetFromID(string itemID)
+        public static SO_InventoryItem GetFromID(string itemID)
         {
             if (itemLookupCache == null)
             {
-                itemLookupCache = new Dictionary<string, InventoryItem>();
-                var itemList = Resources.LoadAll<InventoryItem>("");
+                itemLookupCache = new Dictionary<string, SO_InventoryItem>();
+                var itemList = Resources.LoadAll<SO_InventoryItem>("");
                 foreach (var item in itemList)
                 {
                     if (itemLookupCache.ContainsKey(item.itemID))

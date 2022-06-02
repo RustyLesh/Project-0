@@ -15,13 +15,13 @@ namespace Project0.UI.Inventories
         [SerializeField] InventorySlotUI InventoryItemPrefab = null;
 
         // CACHE
-        Inventory playerInventory;
+        CSS_Inventory playerInventory;
 
         // LIFECYCLE METHODS
 
         private void Awake() 
         {
-            playerInventory = Inventory.GetPlayerInventory();
+            playerInventory = CSS_Inventory.GetPlayerInventory();
             playerInventory.inventoryUpdated += Redraw;
         }
 

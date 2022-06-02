@@ -11,7 +11,7 @@ namespace Project0.Inventories
     /// method.
     /// </remarks>
     [CreateAssetMenu(menuName = ("Project0/Project0.UI.InventorySystem/Action Item"))]
-    public class ActionItem : InventoryItem
+    public class SO_ActionItem : SO_InventoryItem
     {
         // CONFIG DATA
         [Tooltip("Does an instance of this item get consumed every time it's used.")]

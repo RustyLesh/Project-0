@@ -204,6 +204,12 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 1ecd159c34befa44dbf221c2b4f30232, type: 2}
     initialStock: 100
     buyingDiscountPercentage: 1
+  - item: {fileID: 11400000, guid: a6c8c59f043dd9e4884d0fd5f820a7c6, type: 2}
+    initialStock: 1
+    buyingDiscountPercentage: 1
+  - item: {fileID: 11400000, guid: bf61212b4255db54aa9e16c0333da2fa, type: 2}
+    initialStock: 1
+    buyingDiscountPercentage: 1
 --- !u!4 &425665599
 Transform:
   m_ObjectHideFlags: 0

@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e248786c0e846047bd285557359a4ca, type: 3}
   m_Name: BurstBullet
   m_EditorClassIdentifier: 
+  itemID: a0e0892f-099f-4295-a9cc-d45f41e39eb7
+  displayName: Burst Bullet
+  description: A fast loading bullet
+  icon: {fileID: 21300000, guid: 1ae2ba8c6e723404d8ffce4acf0a4521, type: 3}
+  stackable: 0
+  price: 200
   baseDamage: 5
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 1ae2ba8c6e723404d8ffce4acf0a4521, type: 3}
   speed: 5
   fireRate: 0.7
   burst: 1

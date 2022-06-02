@@ -6,26 +6,26 @@ using Project0.Core.UI.Dragging;
 
 namespace Project0.UI.Inventories
 {
-    public class InventorySlotUI : MonoBehaviour, IItemHolder, IDragContainer<InventoryItem>
+    public class InventorySlotUI : MonoBehaviour, IItemHolder, IDragContainer<SO_InventoryItem>
     {
         // CONFIG DATA
         [SerializeField] InventoryItemIcon icon = null;
 
         // STATE
         int index;
-        InventoryItem item;
-        Inventory inventory;
+        SO_InventoryItem item;
+        CSS_Inventory inventory;
 
         // PUBLIC
 
-        public void Setup(Inventory inventory, int index)
+        public void Setup(CSS_Inventory inventory, int index)
         {
             this.inventory = inventory;
             this.index = index;
             icon.SetItem(inventory.GetItemInSlot(index), inventory.GetNumberInSlot(index));
         }
 
-        public int MaxAcceptable(InventoryItem item)
+        public int MaxAcceptable(SO_InventoryItem item)
         {
             if (inventory.HasSpaceFor(item))
             {
@@ -34,12 +34,12 @@ namespace Project0.UI.Inventories
             return 0;
         }
 
-        public void AddItems(InventoryItem item, int number)
+        public void AddItems(SO_InventoryItem item, int number)
         {
             inventory.AddItemToSlot(index, item, number);
         }
 
-        public InventoryItem GetItem()
+        public SO_InventoryItem GetItem()
         {
             return inventory.GetItemInSlot(index);
         }
