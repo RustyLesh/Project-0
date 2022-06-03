@@ -1,9 +1,9 @@
 using NUnit.Framework;
 using UnityEngine;
-using Project0;
 
-public class SpawnCoinTest {
+public class CSS_SpawnCoinTest {
 
+    //Tests if coin spawns
     [Test]
     public void spawn_coin() {
         var gameObject = new GameObject();
@@ -16,6 +16,7 @@ public class SpawnCoinTest {
         Assert.AreEqual(true, coins.Length > 0);
     }
 
+    //Tests is coin spawns right amount
     [Test]
     public void spawn_coin_amount() {
         int beforeCount = GameObject.FindGameObjectsWithTag("Coin").Length;

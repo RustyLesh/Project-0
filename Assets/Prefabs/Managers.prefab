@@ -43,11 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db84f6399ddb1f44934903ee685848a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <currenLevel>k__BackingField: 0
+  <currentLevel>k__BackingField: 1
   <maxLevel>k__BackingField: 100
   <xp>k__BackingField: 0
   <xpToNextLevel>k__BackingField: 100
-  <statPoint>k__BackingField: 0
 --- !u!1 &3140913851020366981
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,6 +56,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3140913851020366980}
+  - component: {fileID: 6217990961298753165}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -84,6 +84,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6217990961298753165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3140913851020366981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb01a20d39984e48a5e7d5b0b1d4d67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: ed9d64c7-b783-47e2-8c55-d40e259c899e
 --- !u!1 &3140913851063077602
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,8 +209,6 @@ MonoBehaviour:
   spawnTimer: 0
   spawnTime: 1
   defSpawnPos: []
-  mobDamageMultiplier: 0
-  mobHealthMultiplier: 0
   bossDamageMultiplier: 0
   bossHealthMultiplier: 0
   isSpawnMob01: 0
@@ -248,6 +259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e93389cbee5f7347ada76a888f926e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyMaxHealthMultiplier: 1
+  enemyDamageMultiplier: 1
 --- !u!1 &7838405642083327799
 GameObject:
   m_ObjectHideFlags: 0
