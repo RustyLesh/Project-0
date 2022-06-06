@@ -1,3 +1,11 @@
+/*
+ * Author: Peter An
+ * 
+ * This class manages the components in the
+ * Shop UI so that the current shop can display each items
+ * 
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

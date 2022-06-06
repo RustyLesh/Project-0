@@ -1,3 +1,12 @@
+/*
+ * Author: Peter An
+ * 
+ * The shopper is attached to the player
+ * so that in the future when you want different
+ * shops you can attach them dynamically.
+ * 
+ */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;

@@ -1,3 +1,14 @@
+/*
+ * Author: Peter An
+ * 
+ * This inherits from Inventory Item
+ * so that it can be stored into an inventory
+ * but also can perform other actions.
+ * 
+ * eg: potions can heal player with the use method
+ * 
+ */
+
 using System;
 using UnityEngine;
 

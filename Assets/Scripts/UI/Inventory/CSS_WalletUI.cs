@@ -1,3 +1,11 @@
+/*
+ * Author: Peter An
+ * 
+ * Displays the current amount of coins
+ * the player has onto the screen
+ * 
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

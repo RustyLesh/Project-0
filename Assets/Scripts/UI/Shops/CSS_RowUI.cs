@@ -1,3 +1,13 @@
+/*
+ * Author: Peter An
+ * 
+ * The RowUI is the infomation from
+ * each items from the shops.
+ * This makes it easy to display each
+ * components into the UI
+ * 
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -1,3 +1,12 @@
+/*
+ * Author: Peter An
+ * 
+ * UI Class to update the EXPBar on the UI
+ * The information is from the 
+ * experienceManager.
+ * 
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;

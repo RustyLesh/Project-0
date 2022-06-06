@@ -1,3 +1,14 @@
+/*
+ * Author: Peter An
+ * 
+ * This is a helper method to
+ * toggle between two screens.
+ * 
+ * Mainly used for the shp and inventory to be toggled
+ * 
+ */
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

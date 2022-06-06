@@ -1,3 +1,16 @@
+/*
+ * Author: Peter An
+ * 
+ * This class is manages the trascation of the shop.
+ * 
+ * The transaction variable is like a shopping cart.
+ * 
+ * When the player adds items they go in the transaction
+ * and then shop calculates if the player has enough
+ * money or inventory slot.
+ * 
+ */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;

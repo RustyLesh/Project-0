@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ * Author: Peter An
+ * 
+ * This is a abstract class that other types of items
+ * can be inhereted so they all keep the same functionality
+ * 
+ */
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 

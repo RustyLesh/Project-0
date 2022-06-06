@@ -1,3 +1,11 @@
+/*
+ * Author: Peter An
+ * 
+ * This class is for the UI to know if its a shop slot
+ * rather than a inventory slot.
+ * 
+ */
+
 using Project0.Inventories;
 using UnityEngine;
 

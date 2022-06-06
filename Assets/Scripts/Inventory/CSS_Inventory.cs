@@ -1,4 +1,14 @@
-﻿using System;
+﻿/*
+ * Author: Peter An, Gamedev.tv
+ * 
+ * This is a inventory system from the tutorial Gamedev.tv.
+ * They have approved for us to use this
+ * and I have integrated the inventory system
+ * within our game.
+ * 
+ */
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

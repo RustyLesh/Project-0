@@ -2,29 +2,29 @@ using NUnit.Framework;
 using Project0;
 public class WalletTest
 {
-    [Test]
-    public void add_coins_starting_at_0()
-    {
-        Wallet wallet = new Wallet();
+    //[Test]
+    //public void add_coins_starting_at_0()
+    //{
+    //    Wallet wallet = new Wallet();
 
-        int gain_amount_to_test = 15;
-        wallet.GainCoins(gain_amount_to_test);
+    //    int gain_amount_to_test = 15;
+    //    wallet.GainCoins(gain_amount_to_test);
 
-        Assert.AreEqual(expected: gain_amount_to_test, actual: wallet.CoinCount);
-    }
+    //    Assert.AreEqual(expected: gain_amount_to_test, actual: wallet.CoinCount);
+    //}
 
-    [Test]
-    public void add_coins_not_starting_at_0()
-    {
-        int walletStart = 20;
-        int amountToAdd = 10;
-        Wallet wallet = new Wallet(walletStart);
+    //[Test]
+    //public void add_coins_not_starting_at_0()
+    //{
+    //    int walletStart = 20;
+    //    int amountToAdd = 10;
+    //    Wallet wallet = new Wallet(walletStart);
 
-        int testValue = walletStart + amountToAdd;
-        wallet.GainCoins(amountToAdd);
+    //    int testValue = walletStart + amountToAdd;
+    //    wallet.GainCoins(amountToAdd);
 
-        Assert.AreEqual(expected: testValue, actual: wallet.CoinCount);
-    }
+    //    Assert.AreEqual(expected: testValue, actual: wallet.CoinCount);
+    //}
 
     [Test]
     public void pay_with_having_more_than_amount_in_wallet()
