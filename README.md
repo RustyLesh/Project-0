@@ -4,9 +4,9 @@ For the COMP602 (Software Development Practice) paper at AUT
 ![image](https://user-images.githubusercontent.com/75343007/172086453-3e63d72e-b52a-4f6a-a50d-d8a5f03a1bb0.png)
 
 
-Made by: The Default Game Team
+**Made by:** The Default Game Team
 
-Authors: Peter An, Les McIlroy, Leo Liao, Luke Jordens, Belle Zhang
+**Authors:** Peter An, Les McIlroy, Leo Liao, Luke Jordens, Belle Zhang
 
 ## Basic Overview
 
