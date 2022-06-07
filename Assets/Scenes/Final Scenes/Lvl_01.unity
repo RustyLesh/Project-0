@@ -418,6 +418,10 @@ PrefabInstance:
       propertyPath: movementPoints
       value: 
       objectReference: {fileID: 897104362}
+    - target: {fileID: 8612475775658553778, guid: 3d468838829b25a409a74430d7f46483, type: 3}
+      propertyPath: enemyMaxHealthMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d468838829b25a409a74430d7f46483, type: 3}
 --- !u!1001 &897104360

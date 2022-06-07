@@ -21,6 +21,14 @@ public class CSS_SaveableEntity : MonoBehaviour {
             //Insert name and save data into dictionary
             state[saveable.GetType().ToString()] = saveable.SaveState();
         }
+
+        //Create an array of CSS_IsSaveable
+        CSS_ISaveable[] components = GetComponentsInChildren<CSS_ISaveable>();
+        //Loop through array
+        foreach (var saveable in components) {
+            //Insert name and save daata into dictionary
+            state[saveable.GetType().ToString()] = saveable.SaveState();
+        }
         return state;
     }
 
@@ -36,6 +44,17 @@ public class CSS_SaveableEntity : MonoBehaviour {
                 saveable.LoadState(savedState);
             }
         }
+
+        //Create an array of CSS_IsSaveable
+        CSS_ISaveable[] components = GetComponentsInChildren<CSS_ISaveable>();
+        foreach (var saveable in components) {
+            string typeName = saveable.GetType().ToString();
+            //If try get value is successful, call ISaveable LoadState to load data
+            if (stateDictionary.TryGetValue(typeName, out object savedState)) {
+                saveable.LoadState(savedState);
+            }
+        }
+
     }
 }
 
