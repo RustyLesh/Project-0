@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class CSS_SaveableEntity : MonoBehaviour {
 
+    //Unique id for object
     [SerializeField] private string id;
     public string Id => id;
 

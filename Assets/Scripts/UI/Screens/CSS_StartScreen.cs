@@ -30,6 +30,19 @@ public class CSS_StartScreen : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
+    public void LoadLoadScene() 
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    public void LoadSaveScene() {
+        SceneManager.LoadScene(4);
+    }
+
+    public void LoadStartScreen() {
+        SceneManager.LoadScene(0);
+    }
+
     // Quit game
     public void QuitGame()
     {
