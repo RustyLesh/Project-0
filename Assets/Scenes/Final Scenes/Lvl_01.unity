@@ -418,6 +418,14 @@ PrefabInstance:
       propertyPath: movementPoints
       value: 
       objectReference: {fileID: 897104362}
+    - target: {fileID: 3140913851325038310, guid: 3d468838829b25a409a74430d7f46483, type: 3}
+      propertyPath: bossDamageMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140913851325038310, guid: 3d468838829b25a409a74430d7f46483, type: 3}
+      propertyPath: bossHealthMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8612475775658553778, guid: 3d468838829b25a409a74430d7f46483, type: 3}
       propertyPath: enemyMaxHealthMultiplier
       value: 1
@@ -971,6 +979,14 @@ PrefabInstance:
       propertyPath: levelText
       value: 
       objectReference: {fileID: 923415912}
+    - target: {fileID: 3705777641787874417, guid: 5a9bc28b82adf46b28439800c165cef0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 147.9765
+      objectReference: {fileID: 0}
+    - target: {fileID: 3705777641787874417, guid: 5a9bc28b82adf46b28439800c165cef0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -224.42915
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a9bc28b82adf46b28439800c165cef0, type: 3}
 --- !u!1001 &3673839589782278232

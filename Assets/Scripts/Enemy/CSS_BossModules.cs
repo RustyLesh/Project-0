@@ -70,7 +70,7 @@ public abstract class CSS_BossModules : MonoBehaviour
 
     public void SetModHP(int _hp)
     {
-        this.modHP = Mathf.Clamp(_hp, 0, int.MaxValue);
+        //this.modHP = Mathf.Clamp(_hp, 0, int.MaxValue);
     }
 
     public bool GetIsDestroyed() { return (this.isDestroyed); }
